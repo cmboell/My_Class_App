@@ -5,60 +5,60 @@
         private BookstoreContext context { get; set; }
         public BookstoreUnitOfWork(BookstoreContext ctx) => context = ctx;
 
-        private IRepository<Book> bookData;
-        public IRepository<Book> Books {
+        private IRepository<Class> bookData;
+        public IRepository<Class> Classes {
             get {
                 if (bookData == null)
-                    bookData = new Repository<Book>(context);
+                    bookData = new Repository<Class>(context);
                 return bookData;
             }
         }
 
-        private IRepository<Author> authorData;
-        public IRepository<Author> Authors {
+        private IRepository<Teacher> authorData;
+        public IRepository<Teacher> Teachers {
             get {
                 if (authorData == null)
-                    authorData = new Repository<Author>(context);
+                    authorData = new Repository<Teacher>(context);
                 return authorData;
             }
         }
 
-        private IRepository<BookAuthor> bookauthorData;
-        public IRepository<BookAuthor> BookAuthors {
+        private IRepository<ClassTeacher> bookauthorData;
+        public IRepository<ClassTeacher> ClassTeachers {
             get {
                 if (bookauthorData == null)
-                    bookauthorData = new Repository<BookAuthor>(context);
+                    bookauthorData = new Repository<ClassTeacher>(context);
                 return bookauthorData;
             }
         }
 
-        private IRepository<Genre> genreData;
-        public IRepository<Genre> Genres
+        private IRepository<ClassType> genreData;
+        public IRepository<ClassType> Genres
         {
             get {
                 if (genreData == null)
-                    genreData = new Repository<Genre>(context);
+                    genreData = new Repository<ClassType>(context);
                 return genreData;
             }
         }
 
-        public void DeleteCurrentBookAuthors(Book book)
+        public void DeleteCurrentBookAuthors(Class book)
         {
-            var currentAuthors = BookAuthors.List(new QueryOptions<BookAuthor> {
-                Where = ba => ba.BookId == book.BookId
+            var currentAuthors = ClassTeachers.List(new QueryOptions<ClassTeacher> {
+                Where = ba => ba.ClassId == book.ClassId
             });
-            foreach (BookAuthor ba in currentAuthors) {
-                BookAuthors.Delete(ba);
+            foreach (ClassTeacher ba in currentAuthors) {
+                ClassTeachers.Delete(ba);
             }
         }
 
-        public void AddNewBookAuthors(Book book, int[] authorids)
+        public void AddNewBookAuthors(Class book, int[] authorids)
         {
             foreach (int id in authorids)
             {
-                BookAuthor ba =
-                    new BookAuthor { BookId = book.BookId, AuthorId = id };
-                BookAuthors.Insert(ba);
+                ClassTeacher ba =
+                    new ClassTeacher { ClassId = book.ClassId, TeacherId = id };
+                ClassTeachers.Insert(ba);
             }
         }
 

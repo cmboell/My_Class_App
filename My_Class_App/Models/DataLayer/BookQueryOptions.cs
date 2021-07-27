@@ -2,35 +2,35 @@
 
 namespace My_Classes_App.Models
 {
-    public class BookQueryOptions : QueryOptions<Book>
+    public class BookQueryOptions : QueryOptions<Class>
     {
         public void SortFilter(BooksGridBuilder builder)
         {
             if (builder.IsFilterByGenre) {
-                Where = b => b.GenreId == builder.CurrentRoute.GenreFilter;
+                Where = b => b.ClassTypeId == builder.CurrentRoute.GenreFilter;
             }
             if (builder.IsFilterByPrice) {
                 if (builder.CurrentRoute.PriceFilter == "under7")
-                    Where = b => b.Price < 7;
+                    Where = b => b.StartDate < 7;
                 else if (builder.CurrentRoute.PriceFilter == "7to14")
-                    Where = b => b.Price >= 7 && b.Price <= 14;
+                    Where = b => b.StartDate >= 7 && b.StartDate <= 14;
                 else
-                    Where = b => b.Price > 14;
+                    Where = b => b.StartDate > 14;
             }
             if (builder.IsFilterByAuthor) {
                 int id = builder.CurrentRoute.AuthorFilter.ToInt();
                 if (id > 0)
-                    Where = b => b.BookAuthors.Any(ba => ba.Author.AuthorId == id);
+                    Where = b => b.ClassTeachers.Any(ba => ba.Teacher.TeacherId == id);
             }
 
             if (builder.IsSortByGenre) {
-                OrderBy = b => b.Genre.Name;
+                OrderBy = b => b.ClassType.Name;
             }
             else if (builder.IsSortByPrice) {
-                OrderBy = b => b.Price;
+                OrderBy = b => b.StartDate;
             }
             else  {
-                OrderBy = b => b.Title;
+                OrderBy = b => b.ClassName;
             }
         }
     }

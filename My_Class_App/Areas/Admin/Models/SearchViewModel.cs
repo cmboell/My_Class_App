@@ -5,7 +5,7 @@ namespace My_Classes_App.Models
 {
     public class SearchViewModel
     {
-        public IEnumerable<Book> Books { get; set; }
+        public IEnumerable<Class> Classes { get; set; }
 
         [Required(ErrorMessage = "Please enter a search term.")]
         public string SearchTerm { get; set; }

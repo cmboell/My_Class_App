@@ -12,28 +12,28 @@ namespace My_Classes_App.Tests
     {
         public IBookstoreUnitOfWork GetUnitOfWork()
         {
-            // set up Book repository
-            var bookRep = new Mock<IRepository<Book>>();
-            bookRep.Setup(m => m.Get(It.IsAny<QueryOptions<Book>>()))
-                .Returns(new Book { BookAuthors = new List<BookAuthor>() });
-            bookRep.Setup(m => m.List(It.IsAny<QueryOptions<Book>>()))
-               .Returns(new List<Book>());
+            // set up Class repository
+            var bookRep = new Mock<IRepository<Class>>();
+            bookRep.Setup(m => m.Get(It.IsAny<QueryOptions<Class>>()))
+                .Returns(new Class { ClassTeachers = new List<ClassTeacher>() });
+            bookRep.Setup(m => m.List(It.IsAny<QueryOptions<Class>>()))
+               .Returns(new List<Class>());
             bookRep.Setup(m => m.Count).Returns(0);
 
-            // set up Author repository
-            var authorRep = new Mock<IRepository<Author>>();
-            authorRep.Setup(m => m.List(It.IsAny<QueryOptions<Author>>()))
-                .Returns(new List<Author>());
+            // set up Teacher repository
+            var authorRep = new Mock<IRepository<Teacher>>();
+            authorRep.Setup(m => m.List(It.IsAny<QueryOptions<Teacher>>()))
+                .Returns(new List<Teacher>());
 
-            // set up Genre repository
-            var genreRep = new Mock<IRepository<Genre>>();
-            genreRep.Setup(m => m.List(It.IsAny<QueryOptions<Genre>>()))
-                .Returns(new List<Genre>());
+            // set up ClassType repository
+            var genreRep = new Mock<IRepository<ClassType>>();
+            genreRep.Setup(m => m.List(It.IsAny<QueryOptions<ClassType>>()))
+                .Returns(new List<ClassType>());
 
             // set up unit of work
             var unit = new Mock<IBookstoreUnitOfWork>();
-            unit.Setup(m => m.Books).Returns(bookRep.Object);
-            unit.Setup(m => m.Authors).Returns(authorRep.Object);
+            unit.Setup(m => m.Classes).Returns(bookRep.Object);
+            unit.Setup(m => m.Teachers).Returns(authorRep.Object);
             unit.Setup(m => m.Genres).Returns(genreRep.Object);
 
             return unit.Object;
@@ -44,7 +44,7 @@ namespace My_Classes_App.Tests
         {
             // arrange
             var unit = GetUnitOfWork();
-            var controller = new BookController(unit);
+            var controller = new ClassController(unit);
 
             // act
             var model = controller.Edit(1).ViewData.Model as BookViewModel;
@@ -58,7 +58,7 @@ namespace My_Classes_App.Tests
         {
             // arrange
             var unit = GetUnitOfWork();
-            var controller = new BookController(unit);
+            var controller = new ClassController(unit);
 
             controller.ModelState.AddModelError("", "Test error message.");
             BookViewModel vm = new BookViewModel();
@@ -75,10 +75,10 @@ namespace My_Classes_App.Tests
         {
             // arrange
             var unit = GetUnitOfWork();
-            var controller = new BookController(unit);
+            var controller = new ClassController(unit);
             var temp = new Mock<ITempDataDictionary>();
             controller.TempData = temp.Object;
-            BookViewModel vm = new BookViewModel { Book = new Book() };
+            BookViewModel vm = new BookViewModel { Class = new Class() };
 
             // act
             var result = controller.Edit(vm);

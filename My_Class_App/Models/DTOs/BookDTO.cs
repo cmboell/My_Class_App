@@ -4,19 +4,19 @@ namespace My_Classes_App.Models
 {
     public class BookDTO
     {
-        public int BookId { get; set; }
-        public string Title { get; set; }
-        public double Price { get; set; }
-        public Dictionary<int, string> Authors { get; set; }
+        public int ClassId { get; set; }
+        public string ClassName { get; set; }
+        public double StartDate { get; set; }
+        public Dictionary<int, string> Teachers { get; set; }
 
-        public void Load(Book book)
+        public void Load(Class book)
         {
-            BookId = book.BookId;
-            Title = book.Title;
-            Price = book.Price;
-            Authors = new Dictionary<int, string>();
-            foreach (BookAuthor ba in book.BookAuthors) {
-                Authors.Add(ba.Author.AuthorId, ba.Author.FullName);
+            ClassId = book.ClassId;
+            ClassName = book.ClassName;
+            StartDate = book.StartDate;
+            Teachers = new Dictionary<int, string>();
+            foreach (ClassTeacher ba in book.ClassTeachers) {
+                Teachers.Add(ba.Teacher.TeacherId, ba.Teacher.FullName);
             }
         }
     }

@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace My_Classes_App.Models
 {
-    internal class SeedGenres : IEntityTypeConfiguration<Genre>
+    internal class SeedGenres : IEntityTypeConfiguration<ClassType>
     {
-        public void Configure(EntityTypeBuilder<Genre> entity)
+        public void Configure(EntityTypeBuilder<ClassType> entity)
         {
             entity.HasData(
-                new Genre { GenreId = "novel", Name = "Novel" },
-                new Genre { GenreId = "memoir", Name = "Memoir" },
-                new Genre { GenreId = "mystery", Name = "Mystery" },
-                new Genre { GenreId = "scifi", Name = "Science Fiction" },
-                new Genre { GenreId = "history", Name = "History" }
+                new ClassType { ClassTypeId = "novel", Name = "Novel" },
+                new ClassType { ClassTypeId = "memoir", Name = "Memoir" },
+                new ClassType { ClassTypeId = "mystery", Name = "Mystery" },
+                new ClassType { ClassTypeId = "scifi", Name = "Science Fiction" },
+                new ClassType { ClassTypeId = "history", Name = "History" }
             );
         }
     }

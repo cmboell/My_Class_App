@@ -20,7 +20,7 @@ namespace My_Classes_App.Tests
 
             // Moq
             // arrange
-            var rep = new Mock<IRepository<Book>>();
+            var rep = new Mock<IRepository<Class>>();
             var controller = new HomeController(rep.Object);
 
             // act
@@ -38,10 +38,10 @@ namespace My_Classes_App.Tests
             var controller = new HomeController(rep);
 
             // act
-            var model = controller.Index().ViewData.Model as Book;
+            var model = controller.Index().ViewData.Model as Class;
 
             // assert
-            Assert.IsType<Book>(model);
+            Assert.IsType<Class>(model);
         }
     }
 }

@@ -67,7 +67,7 @@ namespace My_Classes_App
                 endpoints.MapAreaControllerRoute(
                     name: "admin",
                     areaName: "Admin",
-                    pattern: "Admin/{controller=Book}/{action=Index}/{id?}");
+                    pattern: "Admin/{controller=Class}/{action=Index}/{id?}");
 
                 // route for paging, sorting, and filtering
                 endpoints.MapControllerRoute(

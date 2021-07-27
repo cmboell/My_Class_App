@@ -1,14 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace My_Classes_App.Controllers
 {
+    [Authorize] //makes it so have to sign in to view
     public class CartController : Controller
     {
-        private IRepository<Book> data { get; set; }
+        private IRepository<Class> data { get; set; }
         private ICart cart { get; set; }
 
-        public CartController(IRepository<Book> rep, ICart c)
+        public CartController(IRepository<Class> rep, ICart c)
         {
             data = rep;
             cart = c;
@@ -30,9 +32,9 @@ namespace My_Classes_App.Controllers
         [HttpPost]
         public RedirectToActionResult Add(int id)
         {
-            var book = data.Get(new QueryOptions<Book> {
-                Includes = "BookAuthors.Author, Genre",
-                Where = b => b.BookId == id
+            var book = data.Get(new QueryOptions<Class> {
+                Includes = "ClassTeachers.Teacher, ClassType",
+                Where = b => b.ClassId == id
             });
             if (book == null){
                 TempData["message"] = "Unable to add book to cart.";   
@@ -41,18 +43,18 @@ namespace My_Classes_App.Controllers
                 var dto = new BookDTO();
                 dto.Load(book);
                 CartItem item = new CartItem {
-                    Book = dto,
+                    Class = dto,
                     Quantity = 1  // default value
                 };
 
                 cart.Add(item);
                 cart.Save();
 
-                TempData["message"] = $"{book.Title} added to cart";
+                TempData["message"] = $"{book.ClassName} added to cart";
             }
 
             var builder = new BooksGridBuilder(HttpContext.Session);
-            return RedirectToAction("List", "Book", builder.CurrentRoute);
+            return RedirectToAction("List", "Class", builder.CurrentRoute);
         }
 
         [HttpPost]
@@ -62,7 +64,7 @@ namespace My_Classes_App.Controllers
             cart.Remove(item);
             cart.Save();
 
-            TempData["message"] = $"{item.Book.Title} removed from cart.";
+            TempData["message"] = $"{item.Class.ClassName} removed from cart.";
             return RedirectToAction("Index");
         }
                 
@@ -97,7 +99,7 @@ namespace My_Classes_App.Controllers
             cart.Edit(item);
             cart.Save();
 
-            TempData["message"] = $"{item.Book.Title} updated";
+            TempData["message"] = $"{item.Class.ClassName} updated";
             return RedirectToAction("Index");
         }
 

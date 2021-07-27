@@ -13,15 +13,15 @@ namespace My_Classes_App.Tests
         public void Edit_GET_ModelIsAuthorObject()
         {
             // arrange
-            var rep = new Mock<IRepository<Author>>();
-            rep.Setup(m => m.Get(It.IsAny<int>())).Returns(new Author());
-            var controller = new AuthorController(rep.Object);
+            var rep = new Mock<IRepository<Teacher>>();
+            rep.Setup(m => m.Get(It.IsAny<int>())).Returns(new Teacher());
+            var controller = new TeacherController(rep.Object);
 
             // act
-            var model = controller.Edit(1).ViewData.Model as Author;
+            var model = controller.Edit(1).ViewData.Model as Teacher;
 
             // assert
-            Assert.IsType<Author>(model);
+            Assert.IsType<Teacher>(model);
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace My_Classes_App.Tests
             // arrange
             /*
             var rep = new FakeAuthorRepository();
-            var controller = new AuthorController(rep)
+            var controller = new TeacherController(rep)
             {
                 TempData = new FakeTempData()
             };
@@ -39,15 +39,15 @@ namespace My_Classes_App.Tests
 
             // Moq
             // arrange
-            var rep = new Mock<IRepository<Author>>();            
+            var rep = new Mock<IRepository<Teacher>>();            
             var temp = new Mock<ITempDataDictionary>();
-            var controller = new AuthorController(rep.Object)
+            var controller = new TeacherController(rep.Object)
             {
                 TempData = temp.Object
             };
 
             // act
-            var result = controller.Edit(new Author());
+            var result = controller.Edit(new Teacher());
 
             // assert
             Assert.IsType<RedirectToActionResult>(result);
@@ -57,12 +57,12 @@ namespace My_Classes_App.Tests
         public void Edit_POST_ReturnsViewResultIfModelStateIsNotValid()
         {
             // arrange
-            var rep = new Mock<IRepository<Author>>();
-            var controller = new AuthorController(rep.Object);
+            var rep = new Mock<IRepository<Teacher>>();
+            var controller = new TeacherController(rep.Object);
             controller.ModelState.AddModelError("", "Test error message.");
 
             // act
-            var result = controller.Edit(new Author());
+            var result = controller.Edit(new Teacher());
 
             // assert
             Assert.IsType<ViewResult>(result);

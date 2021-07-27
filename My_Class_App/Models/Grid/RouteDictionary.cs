@@ -6,9 +6,9 @@ namespace My_Classes_App.Models
 {
     public static class FilterPrefix
     {
-        public const string Genre = "genre-";
-        public const string Price = "price-";
-        public const string Author = "author-";
+        public const string ClassType = "genre-";
+        public const string StartDate = "price-";
+        public const string Teacher = "author-";
     }
 
     public class RouteDictionary : Dictionary<string, string>
@@ -44,23 +44,23 @@ namespace My_Classes_App.Models
         }
 
         public string GenreFilter {
-            get => Get(nameof(BooksGridDTO.Genre))?.Replace(FilterPrefix.Genre, "");
-            set => this[nameof(BooksGridDTO.Genre)] = value;
+            get => Get(nameof(BooksGridDTO.ClassType))?.Replace(FilterPrefix.ClassType, "");
+            set => this[nameof(BooksGridDTO.ClassType)] = value;
         }
 
         public string PriceFilter {
-            get => Get(nameof(BooksGridDTO.Price))?.Replace(FilterPrefix.Price, "");
-            set => this[nameof(BooksGridDTO.Price)] = value;
+            get => Get(nameof(BooksGridDTO.StartDate))?.Replace(FilterPrefix.StartDate, "");
+            set => this[nameof(BooksGridDTO.StartDate)] = value;
         }
 
         public string AuthorFilter {
             get
             {
-                string s = Get(nameof(BooksGridDTO.Author))?.Replace(FilterPrefix.Author, "");
+                string s = Get(nameof(BooksGridDTO.Teacher))?.Replace(FilterPrefix.Teacher, "");
                 int index = s?.IndexOf('-') ?? -1;
                 return (index == -1) ? s : s.Substring(0, index);
             }
-            set => this[nameof(BooksGridDTO.Author)] = value;
+            set => this[nameof(BooksGridDTO.Teacher)] = value;
         }
 
         public void ClearFilters() =>

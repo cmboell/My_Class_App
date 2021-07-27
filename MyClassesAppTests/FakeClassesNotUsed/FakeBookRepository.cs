@@ -4,28 +4,28 @@ using System.Collections.Generic;
 
 namespace My_Classes_App.Tests
 {
-    class FakeBookRepository : IRepository<Book>
+    class FakeBookRepository : IRepository<Class>
     {
         public int Count => throw new NotImplementedException();
-        public void Delete(Book entity) => throw new NotImplementedException();
-        public Book Get(QueryOptions<Book> options) => new Book();  // returns a new Book object
+        public void Delete(Class entity) => throw new NotImplementedException();
+        public Class Get(QueryOptions<Class> options) => new Class();  // returns a new Class object
 
-        public Book Get(int id)
+        public Class Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Book Get(string id)
+        public Class Get(string id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Book entity)
+        public void Insert(Class entity)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Book> List(QueryOptions<Book> options)
+        public IEnumerable<Class> List(QueryOptions<Class> options)
         {
             throw new NotImplementedException();
         }
@@ -35,7 +35,7 @@ namespace My_Classes_App.Tests
             throw new NotImplementedException();
         }
 
-        public void Update(Book entity)
+        public void Update(Class entity)
         {
             throw new NotImplementedException();
         }

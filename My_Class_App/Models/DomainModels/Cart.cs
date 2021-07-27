@@ -24,7 +24,7 @@ namespace My_Classes_App.Models
             items = new List<CartItem>(); // needed for test method to run
         }
 
-        public void Load(IRepository<Book> data)
+        public void Load(IRepository<Class> data)
         {
             items = session.GetObject<List<CartItem>>(CartKey);
             if (items == null) {
@@ -33,16 +33,16 @@ namespace My_Classes_App.Models
             }
             if (storedItems?.Count > items?.Count) {
                 foreach (CartItemDTO storedItem in storedItems) {
-                    var book = data.Get(new QueryOptions<Book> {
-                        Includes = "BookAuthors.Author, Genre",
-                        Where = b => b.BookId == storedItem.BookId
+                    var book = data.Get(new QueryOptions<Class> {
+                        Includes = "ClassTeachers.Teacher, ClassType",
+                        Where = b => b.ClassId == storedItem.ClassId
                     });
                     if (book != null) {
                         var dto = new BookDTO();
                         dto.Load(book);
 
                         CartItem item = new CartItem {
-                            Book = dto,
+                            Class = dto,
                             Quantity = storedItem.Quantity
                         };
                         items.Add(item);
@@ -57,10 +57,10 @@ namespace My_Classes_App.Models
         public IEnumerable<CartItem> List => items;
 
         public CartItem GetById(int id) => 
-            items.FirstOrDefault(ci => ci.Book.BookId == id);
+            items.FirstOrDefault(ci => ci.Class.ClassId == id);
 
         public void Add(CartItem item) {
-            var itemInCart = GetById(item.Book.BookId);
+            var itemInCart = GetById(item.Class.ClassId);
             
             if (itemInCart == null) {
                 items.Add(item);
@@ -72,7 +72,7 @@ namespace My_Classes_App.Models
 
         public void Edit(CartItem item)
         {
-            var itemInCart = GetById(item.Book.BookId);
+            var itemInCart = GetById(item.Class.ClassId);
             if (itemInCart != null) {
                 itemInCart.Quantity = item.Quantity;
             }

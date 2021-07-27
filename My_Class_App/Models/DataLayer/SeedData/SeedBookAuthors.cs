@@ -3,41 +3,41 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace My_Classes_App.Models
 {
-    internal class SeedBookAuthors : IEntityTypeConfiguration<BookAuthor>
+    internal class SeedBookAuthors : IEntityTypeConfiguration<ClassTeacher>
     {
-        public void Configure(EntityTypeBuilder<BookAuthor> entity)
+        public void Configure(EntityTypeBuilder<ClassTeacher> entity)
         {
             entity.HasData(
-                new BookAuthor { BookId = 1, AuthorId = 18 },
-                new BookAuthor { BookId = 2, AuthorId = 20 },
-                new BookAuthor { BookId = 3, AuthorId = 7 },
-                new BookAuthor { BookId = 4, AuthorId = 2 },
-                new BookAuthor { BookId = 5, AuthorId = 19 },
-                new BookAuthor { BookId = 6, AuthorId = 8 },
-                new BookAuthor { BookId = 7, AuthorId = 12 },
-                new BookAuthor { BookId = 8, AuthorId = 16 },
-                new BookAuthor { BookId = 9, AuthorId = 2 },
-                new BookAuthor { BookId = 10, AuthorId = 20 },
-                new BookAuthor { BookId = 11, AuthorId = 15 },
-                new BookAuthor { BookId = 12, AuthorId = 4 },
-                new BookAuthor { BookId = 13, AuthorId = 21 },
-                new BookAuthor { BookId = 14, AuthorId = 5 },
-                new BookAuthor { BookId = 15, AuthorId = 9 },
-                new BookAuthor { BookId = 16, AuthorId = 13 },
-                new BookAuthor { BookId = 17, AuthorId = 7 },
-                new BookAuthor { BookId = 18, AuthorId = 4 },
-                new BookAuthor { BookId = 19, AuthorId = 11 },
-                new BookAuthor { BookId = 20, AuthorId = 22 },
-                new BookAuthor { BookId = 21, AuthorId = 17 },
-                new BookAuthor { BookId = 22, AuthorId = 3 },
-                new BookAuthor { BookId = 23, AuthorId = 14 },
-                new BookAuthor { BookId = 24, AuthorId = 1 },
-                new BookAuthor { BookId = 25, AuthorId = 10 },
-                new BookAuthor { BookId = 26, AuthorId = 6 },
-                new BookAuthor { BookId = 27, AuthorId = 23 },
-                new BookAuthor { BookId = 28, AuthorId = 4 },
-                new BookAuthor { BookId = 28, AuthorId = 26 },
-                new BookAuthor { BookId = 29, AuthorId = 25 }
+                new ClassTeacher { ClassId = 1, TeacherId = 18 },
+                new ClassTeacher { ClassId = 2, TeacherId = 20 },
+                new ClassTeacher { ClassId = 3, TeacherId = 7 },
+                new ClassTeacher { ClassId = 4, TeacherId = 2 },
+                new ClassTeacher { ClassId = 5, TeacherId = 19 },
+                new ClassTeacher { ClassId = 6, TeacherId = 8 },
+                new ClassTeacher { ClassId = 7, TeacherId = 12 },
+                new ClassTeacher { ClassId = 8, TeacherId = 16 },
+                new ClassTeacher { ClassId = 9, TeacherId = 2 },
+                new ClassTeacher { ClassId = 10, TeacherId = 20 },
+                new ClassTeacher { ClassId = 11, TeacherId = 15 },
+                new ClassTeacher { ClassId = 12, TeacherId = 4 },
+                new ClassTeacher { ClassId = 13, TeacherId = 21 },
+                new ClassTeacher { ClassId = 14, TeacherId = 5 },
+                new ClassTeacher { ClassId = 15, TeacherId = 9 },
+                new ClassTeacher { ClassId = 16, TeacherId = 13 },
+                new ClassTeacher { ClassId = 17, TeacherId = 7 },
+                new ClassTeacher { ClassId = 18, TeacherId = 4 },
+                new ClassTeacher { ClassId = 19, TeacherId = 11 },
+                new ClassTeacher { ClassId = 20, TeacherId = 22 },
+                new ClassTeacher { ClassId = 21, TeacherId = 17 },
+                new ClassTeacher { ClassId = 22, TeacherId = 3 },
+                new ClassTeacher { ClassId = 23, TeacherId = 14 },
+                new ClassTeacher { ClassId = 24, TeacherId = 1 },
+                new ClassTeacher { ClassId = 25, TeacherId = 10 },
+                new ClassTeacher { ClassId = 26, TeacherId = 6 },
+                new ClassTeacher { ClassId = 27, TeacherId = 23 },
+                new ClassTeacher { ClassId = 28, TeacherId = 4 },
+                new ClassTeacher { ClassId = 28, TeacherId = 26 },
+                new ClassTeacher { ClassId = 29, TeacherId = 25 }
             );
         }
     }

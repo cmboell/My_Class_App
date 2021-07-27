@@ -12,30 +12,30 @@ namespace My_Classes_App.Models
         public bool IsValid { get; private set; }
         public string ErrorMessage { get; private set; }
 
-        public void CheckGenre(string genreId, IRepository<Genre> data)
+        public void CheckGenre(string genreId, IRepository<ClassType> data)
         {
-            Genre entity = data.Get(genreId);
+            ClassType entity = data.Get(genreId);
             IsValid = (entity == null) ? true : false;
             ErrorMessage = (IsValid) ? "" :
-                $"Genre id {genreId} is already in the database.";
+                $"ClassType id {genreId} is already in the database.";
         }
         public void MarkGenreChecked() => tempData[GenreKey] = true;
         public void ClearGenre() => tempData.Remove(GenreKey);
         public bool IsGenreChecked => tempData.Keys.Contains(GenreKey);
 
-        public void CheckAuthor(string firstName, string lastName, string operation, IRepository<Author> data)
+        public void CheckTeacher(string firstName, string lastName, string operation, IRepository<Teacher> data)
         {
-            Author entity = null; 
+            Teacher entity = null; 
             if (Operation.IsAdd(operation))
             {
-                entity = data.Get(new QueryOptions<Author>
+                entity = data.Get(new QueryOptions<Teacher>
                 {
                     Where = a => a.FirstName == firstName && a.LastName == lastName
                 });
             }
             IsValid = (entity == null) ? true : false;
             ErrorMessage = (IsValid) ? "" :
-                $"Author {entity.FullName} is already in the database.";
+                $"Teacher {entity.FullName} is already in the database.";
         }
         public void MarkAuthorChecked() => tempData[AuthorKey] = true;
         public void ClearAuthor() => tempData.Remove(AuthorKey);

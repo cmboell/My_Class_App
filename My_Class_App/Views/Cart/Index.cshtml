@@ -1,7 +1,7 @@
 ﻿@model CartViewModel
 
 @{
-    ViewData["Title"] = " | Cart";
+    ViewData["ClassName"] = " | Cart";
 }
 
 <h1>Your Cart</h1>
@@ -17,7 +17,7 @@
                     <div class="float-right">
                         <a asp-action="Checkout" class="btn btn-primary">Checkout</a>
                         <button type="submit" class="btn btn-primary">Clear Cart</button>
-                        <a asp-action="List" asp-controller="Book"
+                        <a asp-action="List" asp-controller="Class"
                            asp-all-route-data="@Model.BookGridRoute">Back to Shopping</a>
                     </div>
                     
@@ -30,9 +30,9 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th>Title</th>
-                <th>Author(s)</th>
-                <th>Price</th>
+                <th>ClassName</th>
+                <th>Teacher(s)</th>
+                <th>StartDate</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
                 <th></th>
@@ -42,16 +42,16 @@
             @foreach (CartItem item in Model.List)  {
                 <tr>
                     <td>
-                        <a asp-action="Details" asp-controller="Book"
-                           asp-route-id="@item.Book.BookId"
-                           asp-route-slug="@item.Book.Title.Slug()">
-                            @item.Book.Title
+                        <a asp-action="Details" asp-controller="Class"
+                           asp-route-id="@item.Class.ClassId"
+                           asp-route-slug="@item.Class.ClassName.Slug()">
+                            @item.Class.ClassName
                         </a>
                     </td>
                     <td>
-                        @foreach (var keyValuePair in item.Book.Authors) {
+                        @foreach (var keyValuePair in item.Class.Teachers) {
                             <p>
-                                <a asp-action="Details" asp-controller="Author"
+                                <a asp-action="Details" asp-controller="Teacher"
                                    asp-route-id="@keyValuePair.Key"
                                    asp-route-slug="@keyValuePair.Value.Slug()">
                                     @keyValuePair.Value
@@ -59,16 +59,16 @@
                             </p>
                         }
                     </td>
-                    <td>@item.Book.Price.ToString("c")</td>
+                    <td>@item.Class.StartDate.ToString("c")</td>
                     <td>@item.Quantity</td>
                     <td>@item.Subtotal.ToString("c")</td>
                     <td>
                         <div class="float-right">
                             <a asp-action="Edit" asp-controller="Cart"
-                               asp-route-id="@item.Book.BookId"
-                               asp-route-slug="@item.Book.Title.Slug()"
+                               asp-route-id="@item.Class.ClassId"
+                               asp-route-slug="@item.Class.ClassName.Slug()"
                                class="btn btn-primary">Edit</a>
-                            <button type="submit" name="id" value="@item.Book.BookId"
+                            <button type="submit" name="id" value="@item.Class.ClassId"
                                     class="btn btn-primary">Remove</button>
                         </div>
                     </td>

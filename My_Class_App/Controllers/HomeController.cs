@@ -6,12 +6,12 @@ namespace My_Classes_App.Controllers
 {
     public class HomeController : Controller
     {
-        private IRepository<Book> data { get; set; }
-        public HomeController(IRepository<Book> rep) => data = rep;
+        private IRepository<Class> data { get; set; }
+        public HomeController(IRepository<Class> rep) => data = rep;
 
         public ViewResult Index()
         {
-            var random = data.Get(new QueryOptions<Book> {
+            var random = data.Get(new QueryOptions<Class> {
                 OrderBy = b => Guid.NewGuid()
             });
 

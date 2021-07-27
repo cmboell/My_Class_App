@@ -7,79 +7,79 @@ namespace Ch16Ex1Bookstore.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Authors",
+                name: "Teachers",
                 columns: table => new
                 {
-                    AuthorId = table.Column<int>(nullable: false)
+                    TeacherId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(maxLength: 200, nullable: false),
                     LastName = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Authors", x => x.AuthorId);
+                    table.PrimaryKey("PK_Authors", x => x.TeacherId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Genres",
                 columns: table => new
                 {
-                    GenreId = table.Column<string>(maxLength: 10, nullable: false),
+                    ClassTypeId = table.Column<string>(maxLength: 10, nullable: false),
                     Name = table.Column<string>(maxLength: 25, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Genres", x => x.GenreId);
+                    table.PrimaryKey("PK_Genres", x => x.ClassTypeId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Books",
+                name: "Classes",
                 columns: table => new
                 {
-                    BookId = table.Column<int>(nullable: false)
+                    ClassId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(maxLength: 200, nullable: false),
-                    Price = table.Column<double>(nullable: false),
-                    GenreId = table.Column<string>(nullable: false)
+                    ClassName = table.Column<string>(maxLength: 200, nullable: false),
+                    StartDate = table.Column<double>(nullable: false),
+                    ClassTypeId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Books", x => x.BookId);
+                    table.PrimaryKey("PK_Books", x => x.ClassId);
                     table.ForeignKey(
                         name: "FK_Books_Genres_GenreId",
-                        column: x => x.GenreId,
+                        column: x => x.ClassTypeId,
                         principalTable: "Genres",
-                        principalColumn: "GenreId",
+                        principalColumn: "ClassTypeId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BookAuthors",
+                name: "ClassTeachers",
                 columns: table => new
                 {
-                    BookId = table.Column<int>(nullable: false),
-                    AuthorId = table.Column<int>(nullable: false)
+                    ClassId = table.Column<int>(nullable: false),
+                    TeacherId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookAuthors", x => new { x.BookId, x.AuthorId });
+                    table.PrimaryKey("PK_BookAuthors", x => new { x.ClassId, x.TeacherId });
                     table.ForeignKey(
                         name: "FK_BookAuthors_Authors_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "Authors",
-                        principalColumn: "AuthorId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teachers",
+                        principalColumn: "TeacherId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_BookAuthors_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
-                        principalColumn: "BookId",
+                        column: x => x.ClassId,
+                        principalTable: "Classes",
+                        principalColumn: "ClassId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Authors",
-                columns: new[] { "AuthorId", "FirstName", "LastName" },
+                table: "Teachers",
+                columns: new[] { "TeacherId", "FirstName", "LastName" },
                 values: new object[,]
                 {
                     { 1, "Michelle", "Alexander" },
@@ -111,7 +111,7 @@ namespace Ch16Ex1Bookstore.Migrations
 
             migrationBuilder.InsertData(
                 table: "Genres",
-                columns: new[] { "GenreId", "Name" },
+                columns: new[] { "ClassTypeId", "Name" },
                 values: new object[,]
                 {
                     { "scifi", "Science Fiction" },
@@ -122,8 +122,8 @@ namespace Ch16Ex1Bookstore.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Books",
-                columns: new[] { "BookId", "GenreId", "Price", "Title" },
+                table: "Classes",
+                columns: new[] { "ClassId", "ClassTypeId", "StartDate", "ClassName" },
                 values: new object[,]
                 {
                     { 5, "novel", 10.99, "Beloved" },
@@ -158,8 +158,8 @@ namespace Ch16Ex1Bookstore.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "BookAuthors",
-                columns: new[] { "BookId", "AuthorId" },
+                table: "ClassTeachers",
+                columns: new[] { "ClassId", "TeacherId" },
                 values: new object[,]
                 {
                     { 5, 19 },
@@ -196,25 +196,25 @@ namespace Ch16Ex1Bookstore.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_BookAuthors_AuthorId",
-                table: "BookAuthors",
-                column: "AuthorId");
+                table: "ClassTeachers",
+                column: "TeacherId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_GenreId",
-                table: "Books",
-                column: "GenreId");
+                table: "Classes",
+                column: "ClassTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BookAuthors");
+                name: "ClassTeachers");
 
             migrationBuilder.DropTable(
-                name: "Authors");
+                name: "Teachers");
 
             migrationBuilder.DropTable(
-                name: "Books");
+                name: "Classes");
 
             migrationBuilder.DropTable(
                 name: "Genres");

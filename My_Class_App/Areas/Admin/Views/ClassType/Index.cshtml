@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ClassType>
+
+@{
+    ViewData["ClassName"] = " | Manage Genres";
+}
+
+<h1 class="mb-2">Manage Genres</h1>
+
+<h5 class="mt-2"><a asp-action="Add" asp-area="Admin">Add a ClassType</a></h5>
+
+<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr><th>ClassTypeId</th><th>Name</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (ClassType genre in Model)
+        {
+            <tr>
+                <td>@genre.ClassTypeId</td>
+                <td>@genre.Name</td>
+                <td>
+                    <a asp-action="ViewBooks" asp-area="Admin" asp-route-id="@genre.ClassTypeId"
+                        class="btn btn-primary">View Classes</a>
+                    <a asp-action="Edit" asp-area="Admin" asp-route-id="@genre.ClassTypeId"
+                        class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-area="Admin" asp-route-id="@genre.ClassTypeId"
+                        class="btn btn-primary">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

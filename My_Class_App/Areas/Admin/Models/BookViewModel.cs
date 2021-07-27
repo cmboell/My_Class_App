@@ -5,9 +5,9 @@ namespace My_Classes_App.Models
 {
     public class BookViewModel : IValidatableObject
     {
-        public Book Book { get; set; }
-        public IEnumerable<Genre> Genres { get; set; }
-        public IEnumerable<Author> Authors { get; set; }
+        public Class Class { get; set; }
+        public IEnumerable<ClassType> Genres { get; set; }
+        public IEnumerable<Teacher> Teachers { get; set; }
         public int[] SelectedAuthors { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext ctx) {

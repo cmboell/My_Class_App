@@ -1,13 +1,13 @@
 ﻿@model AuthorListViewModel
 @{
-    ViewData["Title"] = " | Author Catalog";
+    ViewData["ClassName"] = " | Teacher Catalog";
 
     // aliases to make paging and sorting code shorter
     RouteDictionary current = Model.CurrentRoute;
     RouteDictionary routes = Model.CurrentRoute.Clone();
 }
 
-<h1>Author Catalog</h1>
+<h1>Teacher Catalog</h1>
 
 <table class="table table-bordered table-striped table-sm">
     @* for the name columns, update the route dictionary with the field to sort by, and then use
@@ -15,42 +15,42 @@
     <thead class="thead-dark">
         <tr>
             <th>
-                @{ routes.SetSortAndDirection(nameof(Author.FirstName), current); }
+                @{ routes.SetSortAndDirection(nameof(Teacher.FirstName), current); }
                 <a asp-action="List" asp-all-route-data="@routes"
                    class="text-white">First Name</a>
             </th>
             <th>
-                @{ routes.SetSortAndDirection(nameof(Author.LastName), current); }
+                @{ routes.SetSortAndDirection(nameof(Teacher.LastName), current); }
                 <a asp-action="List" asp-all-route-data="@routes"
                    class="text-white">Last Name</a>
             </th>
-            <th>Book(s)</th>
+            <th>Class(s)</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (Author author in Model.Authors)
+        @foreach (Teacher author in Model.Teachers)
         {
         <tr>
             <td>
-                <a asp-action="Details" asp-route-id="@author.AuthorId"
+                <a asp-action="Details" asp-route-id="@author.TeacherId"
                    asp-route-slug="@author.FullName.Slug()">
                     @author.FirstName
                 </a>
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@author.AuthorId"
+                <a asp-action="Details" asp-route-id="@author.TeacherId"
                    asp-route-slug="@author.FullName.Slug()">
                     @author.LastName
                 </a>
             </td>
             <td>
-                @foreach (var ba in author.BookAuthors)
+                @foreach (var ba in author.ClassTeachers)
                 {
                     <p>
-                        <a asp-action="Details" asp-controller="Book"
-                           asp-route-id="@ba.BookId"
-                           asp-route-slug="@ba.Book.Title.Slug()">
-                            @ba.Book.Title
+                        <a asp-action="Details" asp-controller="Class"
+                           asp-route-id="@ba.ClassId"
+                           asp-route-slug="@ba.Class.ClassName.Slug()">
+                            @ba.Class.ClassName
                         </a>
                     </p>
                 }

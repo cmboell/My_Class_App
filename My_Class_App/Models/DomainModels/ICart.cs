@@ -4,7 +4,7 @@ namespace My_Classes_App.Models
 {
     public interface ICart
     {
-        void Load(IRepository<Book> data);
+        void Load(IRepository<Class> data);
         double Subtotal { get; }
         int? Count { get; }
         IEnumerable<CartItem> List { get; }

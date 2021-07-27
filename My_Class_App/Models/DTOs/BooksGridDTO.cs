@@ -7,8 +7,8 @@ namespace My_Classes_App.Models
         [JsonIgnore]
         public const string DefaultFilter = "all";
 
-        public string Author { get; set; } = DefaultFilter;
-        public string Genre { get; set; } = DefaultFilter;
-        public string Price { get; set; } = DefaultFilter;
+        public string Teacher { get; set; } = DefaultFilter;
+        public string ClassType { get; set; } = DefaultFilter;
+        public string StartDate { get; set; } = DefaultFilter;
     }
 }

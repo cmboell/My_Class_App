@@ -2,13 +2,13 @@
 {
     public interface IBookstoreUnitOfWork
     {
-        IRepository<Book> Books { get; }
-        IRepository<Author> Authors { get; }
-        IRepository<BookAuthor> BookAuthors { get; }
-        IRepository<Genre> Genres { get; }
+        IRepository<Class> Classes { get; }
+        IRepository<Teacher> Teachers { get; }
+        IRepository<ClassTeacher> ClassTeachers { get; }
+        IRepository<ClassType> Genres { get; }
 
-        void DeleteCurrentBookAuthors(Book book);
-        void AddNewBookAuthors(Book book, int[] authorids);
+        void DeleteCurrentBookAuthors(Class book);
+        void AddNewBookAuthors(Class book, int[] authorids);
         void Save();
     }
 }

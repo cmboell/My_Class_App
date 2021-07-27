@@ -40,7 +40,7 @@ namespace My_Classes_App.Tests
         {
             // arrange
             Cart cart = GetCart();
-            cart.Add(new CartItem { Book = new BookDTO() });
+            cart.Add(new CartItem { Class = new BookDTO() });
 
             // act
             var result = cart.Subtotal;
@@ -61,7 +61,7 @@ namespace My_Classes_App.Tests
             {
                 var item = new CartItem
                 {
-                    Book = new BookDTO { BookId = i, Price = prices[i] },
+                    Class = new BookDTO { ClassId = i, StartDate = prices[i] },
                     Quantity = 1
                 };
                 cart.Add(item);

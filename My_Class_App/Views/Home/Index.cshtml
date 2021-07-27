@@ -1,15 +1,15 @@
-﻿@model Book
+﻿@model Class
 
 <div class="text-center">
     <h1>Our Staff Pick!</h1>
     <ul class="list-group">
         <li class="list-group-item list-group-item-heading list-group-item-success">
             <h5>
-                <a asp-controller="Book" 
+                <a asp-controller="Class" 
                    asp-action="Details"                   
-                   asp-route-id="@Model.BookId" 
-                   asp-route-slug="@Model.Title.Slug()">
-                    @Model.Title
+                   asp-route-id="@Model.ClassId" 
+                   asp-route-slug="@Model.ClassName.Slug()">
+                    @Model.ClassName
                 </a>
             </h5>
         </li>

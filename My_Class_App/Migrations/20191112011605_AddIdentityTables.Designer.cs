@@ -21,9 +21,9 @@ namespace Ch16Ex1Bookstore.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("My_Classes_App.Models.Author", b =>
+            modelBuilder.Entity("My_Classes_App.Models.Teacher", b =>
                 {
-                    b.Property<int>("AuthorId")
+                    b.Property<int>("TeacherId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -38,564 +38,564 @@ namespace Ch16Ex1Bookstore.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.HasKey("AuthorId");
+                    b.HasKey("TeacherId");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Teachers");
 
                     b.HasData(
                         new
                         {
-                            AuthorId = 1,
+                            TeacherId = 1,
                             FirstName = "Michelle",
                             LastName = "Alexander"
                         },
                         new
                         {
-                            AuthorId = 2,
+                            TeacherId = 2,
                             FirstName = "Stephen E.",
                             LastName = "Ambrose"
                         },
                         new
                         {
-                            AuthorId = 3,
+                            TeacherId = 3,
                             FirstName = "Margaret",
                             LastName = "Atwood"
                         },
                         new
                         {
-                            AuthorId = 4,
+                            TeacherId = 4,
                             FirstName = "Jane",
                             LastName = "Austen"
                         },
                         new
                         {
-                            AuthorId = 5,
+                            TeacherId = 5,
                             FirstName = "James",
                             LastName = "Baldwin"
                         },
                         new
                         {
-                            AuthorId = 6,
+                            TeacherId = 6,
                             FirstName = "Emily",
                             LastName = "Bronte"
                         },
                         new
                         {
-                            AuthorId = 7,
+                            TeacherId = 7,
                             FirstName = "Agatha",
                             LastName = "Christie"
                         },
                         new
                         {
-                            AuthorId = 8,
+                            TeacherId = 8,
                             FirstName = "Ta-Nehisi",
                             LastName = "Coates"
                         },
                         new
                         {
-                            AuthorId = 9,
+                            TeacherId = 9,
                             FirstName = "Jared",
                             LastName = "Diamond"
                         },
                         new
                         {
-                            AuthorId = 10,
+                            TeacherId = 10,
                             FirstName = "Joan",
                             LastName = "Didion"
                         },
                         new
                         {
-                            AuthorId = 11,
+                            TeacherId = 11,
                             FirstName = "Daphne",
                             LastName = "Du Maurier"
                         },
                         new
                         {
-                            AuthorId = 12,
+                            TeacherId = 12,
                             FirstName = "Tina",
                             LastName = "Fey"
                         },
                         new
                         {
-                            AuthorId = 13,
+                            TeacherId = 13,
                             FirstName = "Roxane",
                             LastName = "Gay"
                         },
                         new
                         {
-                            AuthorId = 14,
+                            TeacherId = 14,
                             FirstName = "Dashiel",
                             LastName = "Hammett"
                         },
                         new
                         {
-                            AuthorId = 15,
+                            TeacherId = 15,
                             FirstName = "Frank",
                             LastName = "Herbert"
                         },
                         new
                         {
-                            AuthorId = 16,
+                            TeacherId = 16,
                             FirstName = "Aldous",
                             LastName = "Huxley"
                         },
                         new
                         {
-                            AuthorId = 17,
+                            TeacherId = 17,
                             FirstName = "Stieg",
                             LastName = "Larsson"
                         },
                         new
                         {
-                            AuthorId = 18,
+                            TeacherId = 18,
                             FirstName = "David",
                             LastName = "McCullough"
                         },
                         new
                         {
-                            AuthorId = 19,
+                            TeacherId = 19,
                             FirstName = "Toni",
                             LastName = "Morrison"
                         },
                         new
                         {
-                            AuthorId = 20,
+                            TeacherId = 20,
                             FirstName = "George",
                             LastName = "Orwell"
                         },
                         new
                         {
-                            AuthorId = 21,
+                            TeacherId = 21,
                             FirstName = "Mary",
                             LastName = "Shelley"
                         },
                         new
                         {
-                            AuthorId = 22,
+                            TeacherId = 22,
                             FirstName = "Sun",
                             LastName = "Tzu"
                         },
                         new
                         {
-                            AuthorId = 23,
+                            TeacherId = 23,
                             FirstName = "Augusten",
                             LastName = "Burroughs"
                         },
                         new
                         {
-                            AuthorId = 25,
+                            TeacherId = 25,
                             FirstName = "JK",
                             LastName = "Rowling"
                         },
                         new
                         {
-                            AuthorId = 26,
+                            TeacherId = 26,
                             FirstName = "Seth",
                             LastName = "Grahame-Smith"
                         });
                 });
 
-            modelBuilder.Entity("My_Classes_App.Models.Book", b =>
+            modelBuilder.Entity("My_Classes_App.Models.Class", b =>
                 {
-                    b.Property<int>("BookId")
+                    b.Property<int>("ClassId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("GenreId")
+                    b.Property<string>("ClassTypeId")
                         .IsRequired()
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<double>("Price")
+                    b.Property<double>("StartDate")
                         .HasColumnType("float");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("ClassName")
                         .IsRequired()
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.HasKey("BookId");
+                    b.HasKey("ClassId");
 
-                    b.HasIndex("GenreId");
+                    b.HasIndex("ClassTypeId");
 
-                    b.ToTable("Books");
-
-                    b.HasData(
-                        new
-                        {
-                            BookId = 1,
-                            GenreId = "history",
-                            Price = 18.0,
-                            Title = "1776"
-                        },
-                        new
-                        {
-                            BookId = 2,
-                            GenreId = "scifi",
-                            Price = 5.5,
-                            Title = "1984"
-                        },
-                        new
-                        {
-                            BookId = 3,
-                            GenreId = "mystery",
-                            Price = 4.5,
-                            Title = "And Then There Were None"
-                        },
-                        new
-                        {
-                            BookId = 4,
-                            GenreId = "history",
-                            Price = 11.5,
-                            Title = "Band of Brothers"
-                        },
-                        new
-                        {
-                            BookId = 5,
-                            GenreId = "novel",
-                            Price = 10.99,
-                            Title = "Beloved"
-                        },
-                        new
-                        {
-                            BookId = 6,
-                            GenreId = "memoir",
-                            Price = 13.5,
-                            Title = "Between the World and Me"
-                        },
-                        new
-                        {
-                            BookId = 7,
-                            GenreId = "memoir",
-                            Price = 4.25,
-                            Title = "Bossypants"
-                        },
-                        new
-                        {
-                            BookId = 8,
-                            GenreId = "scifi",
-                            Price = 16.25,
-                            Title = "Brave New World"
-                        },
-                        new
-                        {
-                            BookId = 9,
-                            GenreId = "history",
-                            Price = 15.0,
-                            Title = "D-Day"
-                        },
-                        new
-                        {
-                            BookId = 10,
-                            GenreId = "memoir",
-                            Price = 12.5,
-                            Title = "Down and Out in Paris and London"
-                        },
-                        new
-                        {
-                            BookId = 11,
-                            GenreId = "scifi",
-                            Price = 8.75,
-                            Title = "Dune"
-                        },
-                        new
-                        {
-                            BookId = 12,
-                            GenreId = "novel",
-                            Price = 9.0,
-                            Title = "Emma"
-                        },
-                        new
-                        {
-                            BookId = 13,
-                            GenreId = "scifi",
-                            Price = 6.5,
-                            Title = "Frankenstein"
-                        },
-                        new
-                        {
-                            BookId = 14,
-                            GenreId = "novel",
-                            Price = 10.25,
-                            Title = "Go Tell it on the Mountain"
-                        },
-                        new
-                        {
-                            BookId = 15,
-                            GenreId = "history",
-                            Price = 15.5,
-                            Title = "Guns, Germs, and Steel"
-                        },
-                        new
-                        {
-                            BookId = 16,
-                            GenreId = "memoir",
-                            Price = 14.5,
-                            Title = "Hunger"
-                        },
-                        new
-                        {
-                            BookId = 17,
-                            GenreId = "mystery",
-                            Price = 6.75,
-                            Title = "Murder on the Orient Express"
-                        },
-                        new
-                        {
-                            BookId = 18,
-                            GenreId = "novel",
-                            Price = 8.5,
-                            Title = "Pride and Prejudice"
-                        },
-                        new
-                        {
-                            BookId = 19,
-                            GenreId = "mystery",
-                            Price = 10.99,
-                            Title = "Rebecca"
-                        },
-                        new
-                        {
-                            BookId = 20,
-                            GenreId = "history",
-                            Price = 5.75,
-                            Title = "The Art of War"
-                        },
-                        new
-                        {
-                            BookId = 21,
-                            GenreId = "mystery",
-                            Price = 8.5,
-                            Title = "The Girl with the Dragon Tattoo"
-                        },
-                        new
-                        {
-                            BookId = 22,
-                            GenreId = "scifi",
-                            Price = 12.5,
-                            Title = "The Handmaid's Tale"
-                        },
-                        new
-                        {
-                            BookId = 23,
-                            GenreId = "mystery",
-                            Price = 10.99,
-                            Title = "The Maltese Falcon"
-                        },
-                        new
-                        {
-                            BookId = 24,
-                            GenreId = "history",
-                            Price = 13.75,
-                            Title = "The New Jim Crow"
-                        },
-                        new
-                        {
-                            BookId = 25,
-                            GenreId = "memoir",
-                            Price = 13.5,
-                            Title = "The Year of Magical Thinking"
-                        },
-                        new
-                        {
-                            BookId = 26,
-                            GenreId = "novel",
-                            Price = 9.0,
-                            Title = "Wuthering Heights"
-                        },
-                        new
-                        {
-                            BookId = 27,
-                            GenreId = "memoir",
-                            Price = 11.0,
-                            Title = "Running With Scissors"
-                        },
-                        new
-                        {
-                            BookId = 28,
-                            GenreId = "novel",
-                            Price = 8.75,
-                            Title = "Pride and Prejudice and Zombies"
-                        },
-                        new
-                        {
-                            BookId = 29,
-                            GenreId = "novel",
-                            Price = 9.75,
-                            Title = "Harry Potter and the Sorcerer's Stone"
-                        });
-                });
-
-            modelBuilder.Entity("My_Classes_App.Models.BookAuthor", b =>
-                {
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookId", "AuthorId");
-
-                    b.HasIndex("AuthorId");
-
-                    b.ToTable("BookAuthors");
+                    b.ToTable("Classes");
 
                     b.HasData(
                         new
                         {
-                            BookId = 1,
-                            AuthorId = 18
+                            ClassId = 1,
+                            ClassTypeId = "history",
+                            StartDate = 18.0,
+                            ClassName = "1776"
                         },
                         new
                         {
-                            BookId = 2,
-                            AuthorId = 20
+                            ClassId = 2,
+                            ClassTypeId = "scifi",
+                            StartDate = 5.5,
+                            ClassName = "1984"
                         },
                         new
                         {
-                            BookId = 3,
-                            AuthorId = 7
+                            ClassId = 3,
+                            ClassTypeId = "mystery",
+                            StartDate = 4.5,
+                            ClassName = "And Then There Were None"
                         },
                         new
                         {
-                            BookId = 4,
-                            AuthorId = 2
+                            ClassId = 4,
+                            ClassTypeId = "history",
+                            StartDate = 11.5,
+                            ClassName = "Band of Brothers"
                         },
                         new
                         {
-                            BookId = 5,
-                            AuthorId = 19
+                            ClassId = 5,
+                            ClassTypeId = "novel",
+                            StartDate = 10.99,
+                            ClassName = "Beloved"
                         },
                         new
                         {
-                            BookId = 6,
-                            AuthorId = 8
+                            ClassId = 6,
+                            ClassTypeId = "memoir",
+                            StartDate = 13.5,
+                            ClassName = "Between the World and Me"
                         },
                         new
                         {
-                            BookId = 7,
-                            AuthorId = 12
+                            ClassId = 7,
+                            ClassTypeId = "memoir",
+                            StartDate = 4.25,
+                            ClassName = "Bossypants"
                         },
                         new
                         {
-                            BookId = 8,
-                            AuthorId = 16
+                            ClassId = 8,
+                            ClassTypeId = "scifi",
+                            StartDate = 16.25,
+                            ClassName = "Brave New World"
                         },
                         new
                         {
-                            BookId = 9,
-                            AuthorId = 2
+                            ClassId = 9,
+                            ClassTypeId = "history",
+                            StartDate = 15.0,
+                            ClassName = "D-Day"
                         },
                         new
                         {
-                            BookId = 10,
-                            AuthorId = 20
+                            ClassId = 10,
+                            ClassTypeId = "memoir",
+                            StartDate = 12.5,
+                            ClassName = "Down and Out in Paris and London"
                         },
                         new
                         {
-                            BookId = 11,
-                            AuthorId = 15
+                            ClassId = 11,
+                            ClassTypeId = "scifi",
+                            StartDate = 8.75,
+                            ClassName = "Dune"
                         },
                         new
                         {
-                            BookId = 12,
-                            AuthorId = 4
+                            ClassId = 12,
+                            ClassTypeId = "novel",
+                            StartDate = 9.0,
+                            ClassName = "Emma"
                         },
                         new
                         {
-                            BookId = 13,
-                            AuthorId = 21
+                            ClassId = 13,
+                            ClassTypeId = "scifi",
+                            StartDate = 6.5,
+                            ClassName = "Frankenstein"
                         },
                         new
                         {
-                            BookId = 14,
-                            AuthorId = 5
+                            ClassId = 14,
+                            ClassTypeId = "novel",
+                            StartDate = 10.25,
+                            ClassName = "Go Tell it on the Mountain"
                         },
                         new
                         {
-                            BookId = 15,
-                            AuthorId = 9
+                            ClassId = 15,
+                            ClassTypeId = "history",
+                            StartDate = 15.5,
+                            ClassName = "Guns, Germs, and Steel"
                         },
                         new
                         {
-                            BookId = 16,
-                            AuthorId = 13
+                            ClassId = 16,
+                            ClassTypeId = "memoir",
+                            StartDate = 14.5,
+                            ClassName = "Hunger"
                         },
                         new
                         {
-                            BookId = 17,
-                            AuthorId = 7
+                            ClassId = 17,
+                            ClassTypeId = "mystery",
+                            StartDate = 6.75,
+                            ClassName = "Murder on the Orient Express"
                         },
                         new
                         {
-                            BookId = 18,
-                            AuthorId = 4
+                            ClassId = 18,
+                            ClassTypeId = "novel",
+                            StartDate = 8.5,
+                            ClassName = "Pride and Prejudice"
                         },
                         new
                         {
-                            BookId = 19,
-                            AuthorId = 11
+                            ClassId = 19,
+                            ClassTypeId = "mystery",
+                            StartDate = 10.99,
+                            ClassName = "Rebecca"
                         },
                         new
                         {
-                            BookId = 20,
-                            AuthorId = 22
+                            ClassId = 20,
+                            ClassTypeId = "history",
+                            StartDate = 5.75,
+                            ClassName = "The Art of War"
                         },
                         new
                         {
-                            BookId = 21,
-                            AuthorId = 17
+                            ClassId = 21,
+                            ClassTypeId = "mystery",
+                            StartDate = 8.5,
+                            ClassName = "The Girl with the Dragon Tattoo"
                         },
                         new
                         {
-                            BookId = 22,
-                            AuthorId = 3
+                            ClassId = 22,
+                            ClassTypeId = "scifi",
+                            StartDate = 12.5,
+                            ClassName = "The Handmaid's Tale"
                         },
                         new
                         {
-                            BookId = 23,
-                            AuthorId = 14
+                            ClassId = 23,
+                            ClassTypeId = "mystery",
+                            StartDate = 10.99,
+                            ClassName = "The Maltese Falcon"
                         },
                         new
                         {
-                            BookId = 24,
-                            AuthorId = 1
+                            ClassId = 24,
+                            ClassTypeId = "history",
+                            StartDate = 13.75,
+                            ClassName = "The New Jim Crow"
                         },
                         new
                         {
-                            BookId = 25,
-                            AuthorId = 10
+                            ClassId = 25,
+                            ClassTypeId = "memoir",
+                            StartDate = 13.5,
+                            ClassName = "The Year of Magical Thinking"
                         },
                         new
                         {
-                            BookId = 26,
-                            AuthorId = 6
+                            ClassId = 26,
+                            ClassTypeId = "novel",
+                            StartDate = 9.0,
+                            ClassName = "Wuthering Heights"
                         },
                         new
                         {
-                            BookId = 27,
-                            AuthorId = 23
+                            ClassId = 27,
+                            ClassTypeId = "memoir",
+                            StartDate = 11.0,
+                            ClassName = "Running With Scissors"
                         },
                         new
                         {
-                            BookId = 28,
-                            AuthorId = 4
+                            ClassId = 28,
+                            ClassTypeId = "novel",
+                            StartDate = 8.75,
+                            ClassName = "Pride and Prejudice and Zombies"
                         },
                         new
                         {
-                            BookId = 28,
-                            AuthorId = 26
-                        },
-                        new
-                        {
-                            BookId = 29,
-                            AuthorId = 25
+                            ClassId = 29,
+                            ClassTypeId = "novel",
+                            StartDate = 9.75,
+                            ClassName = "Harry Potter and the Sorcerer's Stone"
                         });
                 });
 
-            modelBuilder.Entity("My_Classes_App.Models.Genre", b =>
+            modelBuilder.Entity("My_Classes_App.Models.ClassTeacher", b =>
                 {
-                    b.Property<string>("GenreId")
+                    b.Property<int>("ClassId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClassId", "TeacherId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("ClassTeachers");
+
+                    b.HasData(
+                        new
+                        {
+                            ClassId = 1,
+                            TeacherId = 18
+                        },
+                        new
+                        {
+                            ClassId = 2,
+                            TeacherId = 20
+                        },
+                        new
+                        {
+                            ClassId = 3,
+                            TeacherId = 7
+                        },
+                        new
+                        {
+                            ClassId = 4,
+                            TeacherId = 2
+                        },
+                        new
+                        {
+                            ClassId = 5,
+                            TeacherId = 19
+                        },
+                        new
+                        {
+                            ClassId = 6,
+                            TeacherId = 8
+                        },
+                        new
+                        {
+                            ClassId = 7,
+                            TeacherId = 12
+                        },
+                        new
+                        {
+                            ClassId = 8,
+                            TeacherId = 16
+                        },
+                        new
+                        {
+                            ClassId = 9,
+                            TeacherId = 2
+                        },
+                        new
+                        {
+                            ClassId = 10,
+                            TeacherId = 20
+                        },
+                        new
+                        {
+                            ClassId = 11,
+                            TeacherId = 15
+                        },
+                        new
+                        {
+                            ClassId = 12,
+                            TeacherId = 4
+                        },
+                        new
+                        {
+                            ClassId = 13,
+                            TeacherId = 21
+                        },
+                        new
+                        {
+                            ClassId = 14,
+                            TeacherId = 5
+                        },
+                        new
+                        {
+                            ClassId = 15,
+                            TeacherId = 9
+                        },
+                        new
+                        {
+                            ClassId = 16,
+                            TeacherId = 13
+                        },
+                        new
+                        {
+                            ClassId = 17,
+                            TeacherId = 7
+                        },
+                        new
+                        {
+                            ClassId = 18,
+                            TeacherId = 4
+                        },
+                        new
+                        {
+                            ClassId = 19,
+                            TeacherId = 11
+                        },
+                        new
+                        {
+                            ClassId = 20,
+                            TeacherId = 22
+                        },
+                        new
+                        {
+                            ClassId = 21,
+                            TeacherId = 17
+                        },
+                        new
+                        {
+                            ClassId = 22,
+                            TeacherId = 3
+                        },
+                        new
+                        {
+                            ClassId = 23,
+                            TeacherId = 14
+                        },
+                        new
+                        {
+                            ClassId = 24,
+                            TeacherId = 1
+                        },
+                        new
+                        {
+                            ClassId = 25,
+                            TeacherId = 10
+                        },
+                        new
+                        {
+                            ClassId = 26,
+                            TeacherId = 6
+                        },
+                        new
+                        {
+                            ClassId = 27,
+                            TeacherId = 23
+                        },
+                        new
+                        {
+                            ClassId = 28,
+                            TeacherId = 4
+                        },
+                        new
+                        {
+                            ClassId = 28,
+                            TeacherId = 26
+                        },
+                        new
+                        {
+                            ClassId = 29,
+                            TeacherId = 25
+                        });
+                });
+
+            modelBuilder.Entity("My_Classes_App.Models.ClassType", b =>
+                {
+                    b.Property<string>("ClassTypeId")
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
@@ -604,34 +604,34 @@ namespace Ch16Ex1Bookstore.Migrations
                         .HasColumnType("nvarchar(25)")
                         .HasMaxLength(25);
 
-                    b.HasKey("GenreId");
+                    b.HasKey("ClassTypeId");
 
                     b.ToTable("Genres");
 
                     b.HasData(
                         new
                         {
-                            GenreId = "novel",
+                            ClassTypeId = "novel",
                             Name = "Novel"
                         },
                         new
                         {
-                            GenreId = "memoir",
+                            ClassTypeId = "memoir",
                             Name = "Memoir"
                         },
                         new
                         {
-                            GenreId = "mystery",
+                            ClassTypeId = "mystery",
                             Name = "Mystery"
                         },
                         new
                         {
-                            GenreId = "scifi",
+                            ClassTypeId = "scifi",
                             Name = "Science Fiction"
                         },
                         new
                         {
-                            GenreId = "history",
+                            ClassTypeId = "history",
                             Name = "History"
                         });
                 });
@@ -832,26 +832,26 @@ namespace Ch16Ex1Bookstore.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("My_Classes_App.Models.Book", b =>
+            modelBuilder.Entity("My_Classes_App.Models.Class", b =>
                 {
-                    b.HasOne("My_Classes_App.Models.Genre", "Genre")
-                        .WithMany("Books")
-                        .HasForeignKey("GenreId")
+                    b.HasOne("My_Classes_App.Models.ClassType", "ClassType")
+                        .WithMany("Classes")
+                        .HasForeignKey("ClassTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("My_Classes_App.Models.BookAuthor", b =>
+            modelBuilder.Entity("My_Classes_App.Models.ClassTeacher", b =>
                 {
-                    b.HasOne("My_Classes_App.Models.Author", "Author")
-                        .WithMany("BookAuthors")
-                        .HasForeignKey("AuthorId")
+                    b.HasOne("My_Classes_App.Models.Teacher", "Teacher")
+                        .WithMany("ClassTeachers")
+                        .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("My_Classes_App.Models.Book", "Book")
-                        .WithMany("BookAuthors")
-                        .HasForeignKey("BookId")
+                    b.HasOne("My_Classes_App.Models.Class", "Class")
+                        .WithMany("ClassTeachers")
+                        .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

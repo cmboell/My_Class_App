@@ -3,36 +3,36 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace My_Classes_App.Models
 {
-    internal class SeedAuthors : IEntityTypeConfiguration<Author>
+    internal class SeedAuthors : IEntityTypeConfiguration<Teacher>
     {
-        public void Configure(EntityTypeBuilder<Author> entity)
+        public void Configure(EntityTypeBuilder<Teacher> entity)
         {
             entity.HasData(
-                new Author { AuthorId = 1, FirstName = "Michelle", LastName = "Alexander" },
-                new Author { AuthorId = 2, FirstName = "Stephen E.", LastName = "Ambrose" },
-                new Author { AuthorId = 3, FirstName = "Margaret", LastName = "Atwood" },
-                new Author { AuthorId = 4, FirstName = "Jane", LastName = "Austen" },
-                new Author { AuthorId = 5, FirstName = "James", LastName = "Baldwin" },
-                new Author { AuthorId = 6, FirstName = "Emily", LastName = "Bronte" },
-                new Author { AuthorId = 7, FirstName = "Agatha", LastName = "Christie" },
-                new Author { AuthorId = 8, FirstName = "Ta-Nehisi", LastName = "Coates" },
-                new Author { AuthorId = 9, FirstName = "Jared", LastName = "Diamond" },
-                new Author { AuthorId = 10, FirstName = "Joan", LastName = "Didion" },
-                new Author { AuthorId = 11, FirstName = "Daphne", LastName = "Du Maurier" },
-                new Author { AuthorId = 12, FirstName = "Tina", LastName = "Fey" },
-                new Author { AuthorId = 13, FirstName = "Roxane", LastName = "Gay" },
-                new Author { AuthorId = 14, FirstName = "Dashiel", LastName = "Hammett" },
-                new Author { AuthorId = 15, FirstName = "Frank", LastName = "Herbert" },
-                new Author { AuthorId = 16, FirstName = "Aldous", LastName = "Huxley" },
-                new Author { AuthorId = 17, FirstName = "Stieg", LastName = "Larsson" },
-                new Author { AuthorId = 18, FirstName = "David", LastName = "McCullough" },
-                new Author { AuthorId = 19, FirstName = "Toni", LastName = "Morrison" },
-                new Author { AuthorId = 20, FirstName = "George", LastName = "Orwell" },
-                new Author { AuthorId = 21, FirstName = "Mary", LastName = "Shelley" },
-                new Author { AuthorId = 22, FirstName = "Sun", LastName = "Tzu" },
-                new Author { AuthorId = 23, FirstName = "Augusten", LastName = "Burroughs" },
-                new Author { AuthorId = 25, FirstName = "JK", LastName = "Rowling" },
-                new Author { AuthorId = 26, FirstName = "Seth", LastName = "Grahame-Smith" }
+                new Teacher { TeacherId = 1, FirstName = "Michelle", LastName = "Alexander" },
+                new Teacher { TeacherId = 2, FirstName = "Stephen E.", LastName = "Ambrose" },
+                new Teacher { TeacherId = 3, FirstName = "Margaret", LastName = "Atwood" },
+                new Teacher { TeacherId = 4, FirstName = "Jane", LastName = "Austen" },
+                new Teacher { TeacherId = 5, FirstName = "James", LastName = "Baldwin" },
+                new Teacher { TeacherId = 6, FirstName = "Emily", LastName = "Bronte" },
+                new Teacher { TeacherId = 7, FirstName = "Agatha", LastName = "Christie" },
+                new Teacher { TeacherId = 8, FirstName = "Ta-Nehisi", LastName = "Coates" },
+                new Teacher { TeacherId = 9, FirstName = "Jared", LastName = "Diamond" },
+                new Teacher { TeacherId = 10, FirstName = "Joan", LastName = "Didion" },
+                new Teacher { TeacherId = 11, FirstName = "Daphne", LastName = "Du Maurier" },
+                new Teacher { TeacherId = 12, FirstName = "Tina", LastName = "Fey" },
+                new Teacher { TeacherId = 13, FirstName = "Roxane", LastName = "Gay" },
+                new Teacher { TeacherId = 14, FirstName = "Dashiel", LastName = "Hammett" },
+                new Teacher { TeacherId = 15, FirstName = "Frank", LastName = "Herbert" },
+                new Teacher { TeacherId = 16, FirstName = "Aldous", LastName = "Huxley" },
+                new Teacher { TeacherId = 17, FirstName = "Stieg", LastName = "Larsson" },
+                new Teacher { TeacherId = 18, FirstName = "David", LastName = "McCullough" },
+                new Teacher { TeacherId = 19, FirstName = "Toni", LastName = "Morrison" },
+                new Teacher { TeacherId = 20, FirstName = "George", LastName = "Orwell" },
+                new Teacher { TeacherId = 21, FirstName = "Mary", LastName = "Shelley" },
+                new Teacher { TeacherId = 22, FirstName = "Sun", LastName = "Tzu" },
+                new Teacher { TeacherId = 23, FirstName = "Augusten", LastName = "Burroughs" },
+                new Teacher { TeacherId = 25, FirstName = "JK", LastName = "Rowling" },
+                new Teacher { TeacherId = 26, FirstName = "Seth", LastName = "Grahame-Smith" }
             );
         }
     }

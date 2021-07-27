@@ -1,34 +1,34 @@
-﻿@model Genre
+﻿@model ClassType
 
 @{
     // this view is used for add, edit, and delete. 
     // Which one is determined by the action method name.
     var action = ViewContext.RouteData.Values["action"].ToString().Capitalize();
 
-    ViewData["Title"] = $" | {action} Genre";
+    ViewData["ClassName"] = $" | {action} ClassType";
 }
 
-<h1>@action Genre</h1>
+<h1>@action ClassType</h1>
 
 <form asp-action="@action" asp-area="Admin" method="post">
 
     <div class="form-group row">
-        <div class="col-sm-2"><label>GenreId:</label></div>
+        <div class="col-sm-2"><label>ClassTypeId:</label></div>
 
         @* if adding, provide a text box. Otherwise, display genreId in a label. *@
         @if (Operation.IsAdd(action))
         {
             <div class="col-sm-4">
-                <input type="text" asp-for="GenreId" class="form-control" />
+                <input type="text" asp-for="ClassTypeId" class="form-control" />
             </div>
             <div class="col-sm-6">
-                <span asp-validation-for="GenreId" class="text-danger"></span>
+                <span asp-validation-for="ClassTypeId" class="text-danger"></span>
             </div>
         }
         else
         {
-            <div class="col-sm-4"><label>@Model.GenreId</label></div>
-            <input type="hidden" asp-for="GenreId" />
+            <div class="col-sm-4"><label>@Model.ClassTypeId</label></div>
+            <input type="hidden" asp-for="ClassTypeId" />
         }
     </div>
 

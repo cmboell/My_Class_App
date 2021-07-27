@@ -1,22 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace My_Classes_App.Controllers
 {
-    public class BookController : Controller
+    [Authorize] //makes it so you have to sign in to view 
+    public class ClassController : Controller
     {
         private IBookstoreUnitOfWork data { get; set; }
-        public BookController(IBookstoreUnitOfWork unit) => data = unit;
+        public ClassController(IBookstoreUnitOfWork unit) => data = unit;
 
         public RedirectToActionResult Index() => RedirectToAction("List");
 
         public ViewResult List(BooksGridDTO values)
         {
             var builder = new BooksGridBuilder(HttpContext.Session, values, 
-                defaultSortField: nameof(Book.Title));
+                defaultSortField: nameof(Class.ClassName));
 
             var options = new BookQueryOptions {
-                Includes = "BookAuthors.Author, Genre",
+                Includes = "ClassTeachers.Teacher, ClassType",
                 OrderByDirection = builder.CurrentRoute.SortDirection,
                 PageNumber = builder.CurrentRoute.PageNumber,
                 PageSize = builder.CurrentRoute.PageSize
@@ -24,13 +25,13 @@ namespace My_Classes_App.Controllers
             options.SortFilter(builder);
 
             var vm = new BookListViewModel {
-                Books = data.Books.List(options),
-                Authors = data.Authors.List(new QueryOptions<Author> {
+                Classes = data.Classes.List(options),
+                Teachers = data.Teachers.List(new QueryOptions<Teacher> {
                     OrderBy = a => a.FirstName }),
-                Genres = data.Genres.List(new QueryOptions<Genre> {
+                Genres = data.Genres.List(new QueryOptions<ClassType> {
                     OrderBy = g => g.Name }),
                 CurrentRoute = builder.CurrentRoute,
-                TotalPages = builder.GetTotalPages(data.Books.Count)
+                TotalPages = builder.GetTotalPages(data.Classes.Count)
             };
 
             return View(vm);
@@ -38,9 +39,9 @@ namespace My_Classes_App.Controllers
 
         public ViewResult Details(int id)
         {
-            var book = data.Books.Get(new QueryOptions<Book> {
-                Includes = "BookAuthors.Author, Genre",
-                Where = b => b.BookId == id
+            var book = data.Classes.Get(new QueryOptions<Class> {
+                Includes = "ClassTeachers.Teacher, ClassType",
+                Where = b => b.ClassId == id
             });
             return View(book);
         }
@@ -54,7 +55,7 @@ namespace My_Classes_App.Controllers
                 builder.ClearFilterSegments();
             }
             else {
-                var author = data.Authors.Get(filter[0].ToInt());
+                var author = data.Teachers.Get(filter[0].ToInt());
                 builder.CurrentRoute.PageNumber = 1;
                 builder.LoadFilterSegments(filter, author);
             }

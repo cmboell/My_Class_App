@@ -4,10 +4,10 @@ namespace My_Classes_App.Models
 {
     public class CartItem
     {
-        public BookDTO Book { get; set; }
+        public BookDTO Class { get; set; }
         public int Quantity { get; set; }
 
         [JsonIgnore]
-        public double Subtotal => Book.Price * Quantity;
+        public double Subtotal => Class.StartDate * Quantity;
     }
 }

@@ -1,32 +1,32 @@
 ﻿@model BookListViewModel
 
 @{
-    ViewData["Title"] = " | Book Catalog";
+    ViewData["ClassName"] = " | Class Catalog";
 
     // aliases to make paging, sorting, and filtering code shorter
     RouteDictionary current = Model.CurrentRoute;
     RouteDictionary routes = Model.CurrentRoute.Clone();
 }
 
-<h1>Book Catalog</h1>
+<h1>Class Catalog</h1>
 
 @* filter form *@
 <form asp-action="Filter" method="post" class="form-inline">
-    <label>Author: </label>
+    <label>Teacher: </label>
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
-            Model.Authors, "AuthorId", "FullName", current.AuthorFilter))">
+            Model.Teachers, "TeacherId", "FullName", current.AuthorFilter))">
         <option value="@BooksGridDTO.DefaultFilter">All</option>
     </select>
 
-    <label>Genre: </label>
+    <label>ClassType: </label>
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
-            Model.Genres, "GenreId", "Name", current.GenreFilter))">
+            Model.Genres, "ClassTypeId", "Name", current.GenreFilter))">
         <option value="@BooksGridDTO.DefaultFilter">All</option>
     </select>
 
-    <label>Price: </label>
+    <label>StartDate: </label>
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
             Model.Prices, "Key", "Value", current.PriceFilter))">
@@ -48,53 +48,53 @@
         <thead class="thead-dark">
             <tr>
                 <th>
-                    @{ routes.SetSortAndDirection(nameof(Book.Title), current); }
+                    @{ routes.SetSortAndDirection(nameof(Class.ClassName), current); }
                     <a asp-action="List" asp-all-route-data="@routes"
-                       class="text-white">Title</a>
+                       class="text-white">ClassName</a>
                 </th>
                 <th>
-                    Author(s)
+                    Teacher(s)
                 </th>
                 <th>
-                    @{ routes.SetSortAndDirection(nameof(Genre), current); }
+                    @{ routes.SetSortAndDirection(nameof(ClassType), current); }
                     <a asp-action="List" asp-all-route-data="@routes"
-                       class="text-white">Genre</a>
+                       class="text-white">ClassType</a>
                 </th>
                 <th>
-                    @{ routes.SetSortAndDirection(nameof(Book.Price), current); }
+                    @{ routes.SetSortAndDirection(nameof(Class.StartDate), current); }
                     <a asp-action="List" asp-all-route-data="@routes"
-                       class="text-white">Price</a>
+                       class="text-white">StartDate</a>
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (Book book in Model.Books)
+            @foreach (Class book in Model.Classes)
             {
                 <tr>
                     <td>
-                        <a asp-action="Details" asp-route-id="@book.BookId"
-                           asp-route-slug="@book.Title.Slug()">
-                            @book.Title
+                        <a asp-action="Details" asp-route-id="@book.ClassId"
+                           asp-route-slug="@book.ClassName.Slug()">
+                            @book.ClassName
                         </a>
                     </td>
                     <td>
-                        @foreach (var ba in book.BookAuthors)
+                        @foreach (var ba in book.ClassTeachers)
                         {
                             <p>
-                                <a asp-action="Details" asp-controller="Author"
-                                   asp-route-id="@ba.AuthorId"
-                                   asp-route-slug="@ba.Author.FullName.Slug()">
-                                    @ba.Author.FullName
+                                <a asp-action="Details" asp-controller="Teacher"
+                                   asp-route-id="@ba.TeacherId"
+                                   asp-route-slug="@ba.Teacher.FullName.Slug()">
+                                    @ba.Teacher.FullName
                                 </a>
                             </p>
                         }
                     </td>
-                    <td>@book.Genre?.Name</td>
-                    <td>@book.Price.ToString("c")</td>
+                    <td>@book.ClassType?.Name</td>
+                    <td>@book.StartDate.ToString("c")</td>
                     <td>
                         
-                        <button type="submit" name="id" value="@book.BookId"
+                        <button type="submit" name="id" value="@book.ClassId"
                                 class="btn btn-primary">
                             Add To Cart
                         </button>

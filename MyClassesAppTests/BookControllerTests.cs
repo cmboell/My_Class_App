@@ -14,7 +14,7 @@ namespace My_Classes_App.Tests
         {
             // arrange
             var unit = new Mock<IBookstoreUnitOfWork>();
-            var controller = new BookController(unit.Object);
+            var controller = new ClassController(unit.Object);
 
             // act
             var result = controller.Index();
@@ -28,7 +28,7 @@ namespace My_Classes_App.Tests
         {
             // arrange
             var unit = new Mock<IBookstoreUnitOfWork>();
-            var controller = new BookController(unit.Object);
+            var controller = new ClassController(unit.Object);
 
             // act
             var result = controller.Index();
@@ -41,20 +41,20 @@ namespace My_Classes_App.Tests
         public void Details_ModelIsABookObject()
         {
             // arrange
-            var bookRep = new Mock<IRepository<Book>>();
-            bookRep.Setup(m => m.Get(It.IsAny<QueryOptions<Book>>()))
-                .Returns(new Book { BookAuthors = new List<BookAuthor>() });
+            var bookRep = new Mock<IRepository<Class>>();
+            bookRep.Setup(m => m.Get(It.IsAny<QueryOptions<Class>>()))
+                .Returns(new Class { ClassTeachers = new List<ClassTeacher>() });
 
             var unit = new Mock<IBookstoreUnitOfWork>();
-            unit.Setup(m => m.Books).Returns(bookRep.Object);
+            unit.Setup(m => m.Classes).Returns(bookRep.Object);
 
-            var controller = new BookController(unit.Object);
+            var controller = new ClassController(unit.Object);
 
             // act
-            var model = controller.Details(1).ViewData.Model as Book;
+            var model = controller.Details(1).ViewData.Model as Class;
 
             // assert
-            Assert.IsType<Book>(model);
+            Assert.IsType<Class>(model);
         }
 
     }

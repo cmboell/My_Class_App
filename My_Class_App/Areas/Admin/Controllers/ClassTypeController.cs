@@ -6,33 +6,33 @@ namespace My_Classes_App.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
     [Area("Admin")]
-    public class GenreController : Controller
+    public class ClassTypeController : Controller
     {
-        private Repository<Genre> data { get; set; }
-        public GenreController(BookstoreContext ctx) => data = new Repository<Genre>(ctx);
+        private Repository<ClassType> data { get; set; }
+        public ClassTypeController(BookstoreContext ctx) => data = new Repository<ClassType>(ctx);
 
         public ViewResult Index()
         {
             var search = new SearchData(TempData);
             search.Clear();
 
-            var genres = data.List(new QueryOptions<Genre> {
+            var genres = data.List(new QueryOptions<ClassType> {
                 OrderBy = g => g.Name
             });
             return View(genres);
         }
 
         [HttpGet]
-        public ViewResult Add() => View("Genre", new Genre());
+        public ViewResult Add() => View("ClassType", new ClassType());
 
         [HttpPost]
-        public IActionResult Add(Genre genre)
+        public IActionResult Add(ClassType genre)
         {
             var validate = new Validate(TempData);
             if (!validate.IsGenreChecked) {
-                validate.CheckGenre(genre.GenreId, data);
+                validate.CheckGenre(genre.ClassTypeId, data);
                 if (!validate.IsValid) {
-                    ModelState.AddModelError(nameof(genre.GenreId), validate.ErrorMessage);
+                    ModelState.AddModelError(nameof(genre.ClassTypeId), validate.ErrorMessage);
                 }     
             }
 
@@ -44,15 +44,15 @@ namespace My_Classes_App.Areas.Admin.Controllers
                 return RedirectToAction("Index");  
             }
             else {
-                return View("Genre", genre);
+                return View("ClassType", genre);
             }
         }
 
         [HttpGet]
-        public ViewResult Edit(string id) => View("Genre", data.Get(id));
+        public ViewResult Edit(string id) => View("ClassType", data.Get(id));
 
         [HttpPost]
-        public IActionResult Edit(Genre genre)
+        public IActionResult Edit(ClassType genre)
         {
             if (ModelState.IsValid) {
                 data.Update(genre);
@@ -61,29 +61,29 @@ namespace My_Classes_App.Areas.Admin.Controllers
                 return RedirectToAction("Index");  
             }
             else {
-                return View("Genre", genre);
+                return View("ClassType", genre);
             }
         }
 
         [HttpGet]
         public IActionResult Delete(string id) {
-            var genre = data.Get(new QueryOptions<Genre> {
-                Includes = "Books",
-                Where = g => g.GenreId == id
+            var genre = data.Get(new QueryOptions<ClassType> {
+                Includes = "Classes",
+                Where = g => g.ClassTypeId == id
             });
 
-            if (genre.Books.Count > 0) {
+            if (genre.Classes.Count > 0) {
                 TempData["message"] = $"Can't delete genre {genre.Name} " 
                                     + "because it's associated with these books.";
                 return GoToBookSearchResults(id);
             }
             else {
-                return View("Genre", genre);
+                return View("ClassType", genre);
             }
         }
 
         [HttpPost]
-        public IActionResult Delete(Genre genre)
+        public IActionResult Delete(ClassType genre)
         {
             data.Delete(genre);
             data.Save();
@@ -99,7 +99,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
                 SearchTerm = id,
                 Type = "genre"
             };
-            return RedirectToAction("Search", "Book");
+            return RedirectToAction("Search", "Class");
         }
 
     }

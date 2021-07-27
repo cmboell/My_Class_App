@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace My_Classes_App.Models
 {
-    public class Author
+    public class Teacher
     {
-        public int AuthorId { get; set; }
+        public int TeacherId { get; set; }
 
         [Required(ErrorMessage = "Please enter a first name.")]
         [MaxLength(200)]
@@ -14,12 +14,12 @@ namespace My_Classes_App.Models
 
         [Required(ErrorMessage = "Please enter a last name.")]
         [MaxLength(200)]
-        [Remote("CheckAuthor", "Validation", "Admin", 
+        [Remote("CheckTeacher", "Validation", "Admin", 
             AdditionalFields = "FirstName, Operation")] 
         public string LastName { get; set; }
 
         public string FullName => $"{FirstName} {LastName}";
 
-        public ICollection<BookAuthor> BookAuthors { get; set; }
+        public ICollection<ClassTeacher> ClassTeachers { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace My_Classes_App.Models
     {
         public static List<CartItemDTO> ToDTO(this List<CartItem> list) =>
             list.Select(ci => new CartItemDTO {
-                BookId = ci.Book.BookId,
+                ClassId = ci.Class.ClassId,
                 Quantity = ci.Quantity
             }).ToList();
     }

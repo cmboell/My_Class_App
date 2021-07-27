@@ -4,39 +4,39 @@ using System.Collections.Generic;
 
 namespace My_Classes_App.Tests
 {
-    class FakeAuthorRepository : IRepository<Author>
+    class FakeAuthorRepository : IRepository<Teacher>
     {
-        public void Update(Author entity) { }  // does nothing
+        public void Update(Teacher entity) { }  // does nothing
         public void Save() { }  // does nothing
 
         public int Count => throw new NotImplementedException();
 
-        public void Delete(Author entity)
+        public void Delete(Teacher entity)
         {
             throw new NotImplementedException();
         }
 
-        public Author Get(QueryOptions<Author> options)
+        public Teacher Get(QueryOptions<Teacher> options)
         {
             throw new NotImplementedException();
         }
 
-        public Author Get(int id)
+        public Teacher Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Author Get(string id)
+        public Teacher Get(string id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Author entity)
+        public void Insert(Teacher entity)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Author> List(QueryOptions<Author> options)
+        public IEnumerable<Teacher> List(QueryOptions<Teacher> options)
         {
             throw new NotImplementedException();
         }
