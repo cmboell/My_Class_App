@@ -23,7 +23,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
             switch (operation.ToLower())
             {
                 case "view books":
-                    return RedirectToAction("ViewBooks", new { id });
+                    return RedirectToAction("ViewClasses", new { id });
                 case "edit":
                     return RedirectToAction("Edit", new { id });
                 case "delete":
@@ -103,7 +103,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
             return RedirectToAction("Index");  
         }
 
-        public RedirectToActionResult ViewBooks(int id)
+        public RedirectToActionResult ViewClasses(int id)
         {
             var author = data.Get(id);
             return GoToAuthorSearch(author);

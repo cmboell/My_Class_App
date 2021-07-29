@@ -14,7 +14,7 @@ namespace My_Classes_App.Controllers
         public ViewResult List(ClassesGridDTO values)
         {
             var builder = new ClassesGridBuilder(HttpContext.Session, values, 
-                defaultSortField: nameof(Class.ClassName));
+                defaultSortField: nameof(Class.ClassTitle));
 
             var options = new ClassQueryOptions {
                 Includes = "ClassTeachers.Teacher, ClassType",
@@ -39,11 +39,11 @@ namespace My_Classes_App.Controllers
 
         public ViewResult Details(int id)
         {
-            var book = data.Classes.Get(new QueryOptions<Class> {
+            var class1 = data.Classes.Get(new QueryOptions<Class> {
                 Includes = "ClassTeachers.Teacher, ClassType",
                 Where = b => b.ClassId == id
             });
-            return View(book);
+            return View(class1);
         }
 
         [HttpPost]

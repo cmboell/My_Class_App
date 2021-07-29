@@ -1,7 +1,7 @@
 ﻿@model  SearchViewModel
 
 @{
-    ViewData["ClassName"] = " | Search Results";
+    ViewData["ClassTitle"] = " | Search Results";
 }
 
 <div class="row">
@@ -17,25 +17,25 @@
 
 <table class="table">
     <tbody>
-        @foreach (var book in Model.Classes) {
+        @foreach (var class1 in Model.Classes) {
         <tr>
             <td>
                 <a asp-action="Details" asp-controller="Class"
-                   asp-area="" asp-route-id="@book.ClassId"
-                   asp-route-slug="@book.ClassName.Slug()">@book.ClassName</a>
+                   asp-area="" asp-route-id="@class1.ClassId"
+                   asp-route-slug="@class1.ClassTitle.Slug()">@class1.ClassTitle</a>
             </td>
-            <td>@book.ClassType.Name</td>
+            <td>@class1.ClassType.Name</td>
             <td>
-                @foreach(ClassTeacher ba in book.ClassTeachers)
+                @foreach(ClassTeacher ba in class1.ClassTeachers)
                 {
                     <div>@ba.Teacher.FullName</div>
                 }
             </td>
             <td>
                 <div class="float-right">
-                    <a asp-action="Edit" asp-route-id="@book.ClassId"
+                    <a asp-action="Edit" asp-route-id="@class1.ClassId"
                        class="btn btn-primary">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@book.ClassId"
+                    <a asp-action="Delete" asp-route-id="@class1.ClassId"
                        class="btn btn-primary">Delete</a>
                 </div>
             </td>

@@ -243,7 +243,7 @@
     CLOSED: "closed" + EVENT_KEY,
     CLICK_DATA_API: "click" + EVENT_KEY + DATA_API_KEY
   };
-  var ClassName = {
+  var ClassTitle = {
     ALERT: 'alert',
     FADE: 'fade',
     SHOW: 'show'
@@ -297,7 +297,7 @@
       }
 
       if (!parent) {
-        parent = $(element).closest("." + ClassName.ALERT)[0];
+        parent = $(element).closest("." + ClassTitle.ALERT)[0];
       }
 
       return parent;
@@ -312,9 +312,9 @@
     _proto._removeElement = function _removeElement(element) {
       var _this = this;
 
-      $(element).removeClass(ClassName.SHOW);
+      $(element).removeClass(ClassTitle.SHOW);
 
-      if (!$(element).hasClass(ClassName.FADE)) {
+      if (!$(element).hasClass(ClassTitle.FADE)) {
         this._destroyElement(element);
 
         return;

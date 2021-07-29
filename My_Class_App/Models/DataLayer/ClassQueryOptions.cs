@@ -11,11 +11,11 @@ namespace My_Classes_App.Models
             }
             if (builder.IsFilterByStartDate) {
                 if (builder.CurrentRoute.StartDateFilter == "under7")
-                    Where = b => b.StartDate < 7;
+                    Where = b => b.NumberOfCredits < 7;
                 else if (builder.CurrentRoute.StartDateFilter == "7to14")
-                    Where = b => b.StartDate >= 7 && b.StartDate <= 14;
+                    Where = b => b.NumberOfCredits >= 7 && b.NumberOfCredits <= 14;
                 else
-                    Where = b => b.StartDate > 14;
+                    Where = b => b.NumberOfCredits > 14;
             }
             if (builder.IsFilterByTeacher) {
                 int id = builder.CurrentRoute.TeacherFilter.ToInt();
@@ -27,10 +27,10 @@ namespace My_Classes_App.Models
                 OrderBy = b => b.ClassType.Name;
             }
             else if (builder.IsSortByPrice) {
-                OrderBy = b => b.StartDate;
+                OrderBy = b => b.NumberOfCredits;
             }
             else  {
-                OrderBy = b => b.ClassName;
+                OrderBy = b => b.ClassTitle;
             }
         }
     }

@@ -33,13 +33,13 @@ namespace My_Classes_App.Models
             }
             if (storedItems?.Count > items?.Count) {
                 foreach (ClassItemDTO storedItem in storedItems) {
-                    var book = data.Get(new QueryOptions<Class> {
+                    var class1 = data.Get(new QueryOptions<Class> {
                         Includes = "ClassTeachers.Teacher, ClassType",
                         Where = b => b.ClassId == storedItem.ClassId
                     });
-                    if (book != null) {
+                    if (class1 != null) {
                         var dto = new ClassDTO();
-                        dto.Load(book);
+                        dto.Load(class1);
 
                         ClassItem item = new ClassItem {
                             Class = dto,

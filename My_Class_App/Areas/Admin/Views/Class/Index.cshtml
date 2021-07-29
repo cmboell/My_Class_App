@@ -1,23 +1,23 @@
 ﻿@model SearchViewModel
 
 @{
-    ViewData["ClassName"] = " | Manage Classes";
+    ViewData["ClassTitle"] = " | Manage Classes";
 }
 
 <h1 class="mb-2">Manage Classes</h1>
 <ul class="list-group">
     <li class="list-group-item">
-        <h5 class="mt-1"><a asp-action="Add">Add a book</a></h5>
+        <h5 class="mt-1"><a asp-action="Add">Add a class1</a></h5>
     </li>
     <li class="list-group-item">
         <form asp-action="Search" method="post" class="form-inline">
-            <h5 class="mt-1 mr-5">Find a book</h5>
+            <h5 class="mt-1 mr-5">Find a class1</h5>
             <label>Search Term:</label>
             <input type="text" asp-for="SearchTerm" class="form-control ml-2 mr-2">
             Search By:
             <label class="radio-inline">
                 <input type="radio" class="form-control ml-2 mr-2"
-                       asp-for="Type" value="book" checked>ClassName
+                       asp-for="Type" value="class1" checked>ClassTitle
             </label>
             <label class="radio-inline">
                 <input type="radio" class="form-control ml-2 mr-2"
@@ -25,7 +25,7 @@
             </label>
             <label class="radio-inline">
                 <input type="radio" class="form-control ml-2 mr-2"
-                       asp-for="Type" value="genre">ClassType
+                       asp-for="Type" value="classtype">ClassType
             </label>
             <button type="submit" class="btn btn-primary ml-2 mr-2">Find</button>
             <span asp-validation-for="SearchTerm" class="text-danger"></span>

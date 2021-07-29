@@ -8,14 +8,14 @@ namespace My_Classes_App.Models
         public Class Class { get; set; }
         public IEnumerable<ClassType> ClassTypes { get; set; }
         public IEnumerable<Teacher> Teachers { get; set; }
-        public int[] SelectedAuthors { get; set; }
+        public int[] SelectedTeachers { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext ctx) {
-            if (SelectedAuthors == null)
+            if (SelectedTeachers == null)
             {
                 yield return new ValidationResult(
                   "Please select at least one author.",
-                  new[] { nameof(SelectedAuthors) });
+                  new[] { nameof(SelectedTeachers) });
             }
         }
 

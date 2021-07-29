@@ -9,6 +9,6 @@ namespace My_Classes_App.Models
 
         public string Teacher { get; set; } = DefaultFilter;
         public string ClassType { get; set; } = DefaultFilter;
-        public string StartDate { get; set; } = DefaultFilter;
+        public string NumberOfCredits { get; set; } = DefaultFilter;
     }
 }

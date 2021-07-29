@@ -1,7 +1,7 @@
 ﻿@model Class
 
 @{
-    ViewData["ClassName"] = " | Class Details";
+    ViewData["ClassTitle"] = " | Class Details";
   
 }
 
@@ -10,7 +10,7 @@
 <table class="table table-bordered table-sm">
     <thead>
         <tr class="thead-dark">
-            <th>ClassName:</th><th>@Model.ClassName</th>
+            <th>ClassTitle:</th><th>@Model.ClassTitle</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
                 }
             </td>
         </tr>
-        <tr><td>StartDate:</td><td>@Model.StartDate.ToString("c")</td></tr>
+        <tr><td>NumberOfCredits:</td><td>@Model.NumberOfCredits.ToString("c")</td></tr>
         <tr><td>ClassType:</td><td>@Model.ClassType.Name</td></tr>
     </tbody>
 </table>

@@ -23,9 +23,9 @@ namespace My_Classes_App.Models
         }
 
         public bool HasSearchTerm => !string.IsNullOrEmpty(SearchTerm);
-        public bool IsBook => Type.EqualsNoCase("book");
-        public bool IsAuthor => Type.EqualsNoCase("author");
-        public bool IsGenre => Type.EqualsNoCase("genre");
+        public bool isClass => Type.EqualsNoCase("class1");
+        public bool IsTeacher => Type.EqualsNoCase("author");
+        public bool IsClassType => Type.EqualsNoCase("classtype");
 
         public void Clear()
         {

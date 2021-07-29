@@ -24,19 +24,19 @@ namespace My_Classes_App.Models
             base.OnModelCreating(modelBuilder);
 
             // ClassTeacher: set primary key 
-            modelBuilder.Entity<ClassTeacher>().HasKey(ba => new { ba.ClassId, ba.TeacherId });
+            modelBuilder.Entity<ClassTeacher>().HasKey(ct => new { ct.ClassId, ct.TeacherId });
 
             // ClassTeacher: set foreign keys 
-            modelBuilder.Entity<ClassTeacher>().HasOne(ba => ba.Class)
-                .WithMany(b => b.ClassTeachers)
-                .HasForeignKey(ba => ba.ClassId);
-            modelBuilder.Entity<ClassTeacher>().HasOne(ba => ba.Teacher)
-                .WithMany(a => a.ClassTeachers)
-                .HasForeignKey(ba => ba.TeacherId);
+            modelBuilder.Entity<ClassTeacher>().HasOne(ct => ct.Class)
+                .WithMany(c => c.ClassTeachers)
+                .HasForeignKey(ct => ct.ClassId);
+            modelBuilder.Entity<ClassTeacher>().HasOne(ct => ct.Teacher)
+                .WithMany(t => t.ClassTeachers)
+                .HasForeignKey(ct => ct.TeacherId);
 
             // Class: remove cascading delete with ClassType
-            modelBuilder.Entity<Class>().HasOne(b => b.ClassType)
-                .WithMany(g => g.Classes)
+            modelBuilder.Entity<Class>().HasOne(c => c.ClassType)
+                .WithMany(ct => ct.Classes)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // seed initial data

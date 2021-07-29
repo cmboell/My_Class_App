@@ -1,6 +1,6 @@
 ﻿@model TeacherListViewModel
 @{
-    ViewData["ClassName"] = " | Teacher Catalog";
+    ViewData["ClassTitle"] = " | Teacher Catalog";
 
     // aliases to make paging and sorting code shorter
     RouteDictionary current = Model.CurrentRoute;
@@ -49,8 +49,8 @@
                     <p>
                         <a asp-action="Details" asp-controller="Class"
                            asp-route-id="@ba.ClassId"
-                           asp-route-slug="@ba.Class.ClassName.Slug()">
-                            @ba.Class.ClassName
+                           asp-route-slug="@ba.Class.ClassTitle.Slug()">
+                            @ba.Class.ClassTitle
                         </a>
                     </p>
                 }

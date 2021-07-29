@@ -12,7 +12,7 @@ namespace My_Classes_App.Models
         public bool IsValid { get; private set; }
         public string ErrorMessage { get; private set; }
 
-        public void CheckGenre(string genreId, IRepository<ClassType> data)
+        public void CheckClassType(string genreId, IRepository<ClassType> data)
         {
             ClassType entity = data.Get(genreId);
             IsValid = (entity == null) ? true : false;
@@ -20,8 +20,8 @@ namespace My_Classes_App.Models
                 $"ClassType id {genreId} is already in the database.";
         }
         public void MarkGenreChecked() => tempData[GenreKey] = true;
-        public void ClearGenre() => tempData.Remove(GenreKey);
-        public bool IsGenreChecked => tempData.Keys.Contains(GenreKey);
+        public void ClearClassType() => tempData.Remove(GenreKey);
+        public bool IsClassTypeChecked => tempData.Keys.Contains(GenreKey);
 
         public void CheckTeacher(string firstName, string lastName, string operation, IRepository<Teacher> data)
         {

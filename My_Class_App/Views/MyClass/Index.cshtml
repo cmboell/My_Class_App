@@ -1,7 +1,7 @@
 ﻿@model MyClassViewModel
 
 @{
-    ViewData["ClassName"] = " | MyClass";
+    ViewData["ClassTitle"] = " | MyClass";
 }
 
 <h1>Your MyClass</h1>
@@ -30,9 +30,9 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th>ClassName</th>
+                <th>ClassTitle</th>
                 <th>Teacher(s)</th>
-                <th>StartDate</th>
+                <th>NumberOfCredits</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
                 <th></th>
@@ -44,8 +44,8 @@
                     <td>
                         <a asp-action="Details" asp-controller="Class"
                            asp-route-id="@item.Class.ClassId"
-                           asp-route-slug="@item.Class.ClassName.Slug()">
-                            @item.Class.ClassName
+                           asp-route-slug="@item.Class.ClassTitle.Slug()">
+                            @item.Class.ClassTitle
                         </a>
                     </td>
                     <td>
@@ -59,14 +59,14 @@
                             </p>
                         }
                     </td>
-                    <td>@item.Class.StartDate.ToString("c")</td>
+                    <td>@item.Class.NumberOfCredits.ToString("c")</td>
                     <td>@item.Quantity</td>
                     <td>@item.Subtotal.ToString("c")</td>
                     <td>
                         <div class="float-right">
                             <a asp-action="Edit" asp-controller="MyClass"
                                asp-route-id="@item.Class.ClassId"
-                               asp-route-slug="@item.Class.ClassName.Slug()"
+                               asp-route-slug="@item.Class.ClassTitle.Slug()"
                                class="btn btn-primary">Edit</a>
                             <button type="submit" name="id" value="@item.Class.ClassId"
                                     class="btn btn-primary">Remove</button>

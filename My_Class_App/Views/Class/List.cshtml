@@ -1,7 +1,7 @@
 ﻿@model ClassListViewModel
 
 @{
-    ViewData["ClassName"] = " | Class Catalog";
+    ViewData["ClassTitle"] = " | Class Catalog";
 
     // aliases to make paging, sorting, and filtering code shorter
     RouteDictionary current = Model.CurrentRoute;
@@ -26,7 +26,7 @@
         <option value="@ClassesGridDTO.DefaultFilter">All</option>
     </select>
 
-    <label>StartDate: </label>
+    <label>NumberOfCredits: </label>
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
             Model.Prices, "Key", "Value", current.StartDateFilter))">
@@ -48,9 +48,9 @@
         <thead class="thead-dark">
             <tr>
                 <th>
-                    @{ routes.SetSortAndDirection(nameof(Class.ClassName), current); }
+                    @{ routes.SetSortAndDirection(nameof(Class.ClassTitle), current); }
                     <a asp-action="List" asp-all-route-data="@routes"
-                       class="text-white">ClassName</a>
+                       class="text-white">ClassTitle</a>
                 </th>
                 <th>
                     Teacher(s)
@@ -61,25 +61,25 @@
                        class="text-white">ClassType</a>
                 </th>
                 <th>
-                    @{ routes.SetSortAndDirection(nameof(Class.StartDate), current); }
+                    @{ routes.SetSortAndDirection(nameof(Class.NumberOfCredits), current); }
                     <a asp-action="List" asp-all-route-data="@routes"
-                       class="text-white">StartDate</a>
+                       class="text-white">NumberOfCredits</a>
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (Class book in Model.Classes)
+            @foreach (Class class1 in Model.Classes)
             {
                 <tr>
                     <td>
-                        <a asp-action="Details" asp-route-id="@book.ClassId"
-                           asp-route-slug="@book.ClassName.Slug()">
-                            @book.ClassName
+                        <a asp-action="Details" asp-route-id="@class1.ClassId"
+                           asp-route-slug="@class1.ClassTitle.Slug()">
+                            @class1.ClassTitle
                         </a>
                     </td>
                     <td>
-                        @foreach (var ba in book.ClassTeachers)
+                        @foreach (var ba in class1.ClassTeachers)
                         {
                             <p>
                                 <a asp-action="Details" asp-controller="Teacher"
@@ -90,11 +90,11 @@
                             </p>
                         }
                     </td>
-                    <td>@book.ClassType?.Name</td>
-                    <td>@book.StartDate.ToString("c")</td>
+                    <td>@class1.ClassType?.Name</td>
+                    <td>@class1.NumberOfCredits.ToString("c")</td>
                     <td>
                         
-                        <button type="submit" name="id" value="@book.ClassId"
+                        <button type="submit" name="id" value="@class1.ClassId"
                                 class="btn btn-primary">
                             Add To MyClass
                         </button>

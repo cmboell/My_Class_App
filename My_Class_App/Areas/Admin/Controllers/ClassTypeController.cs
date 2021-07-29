@@ -16,35 +16,35 @@ namespace My_Classes_App.Areas.Admin.Controllers
             var search = new SearchData(TempData);
             search.Clear();
 
-            var genres = data.List(new QueryOptions<ClassType> {
-                OrderBy = g => g.Name
+            var classtypes = data.List(new QueryOptions<ClassType> {
+                OrderBy = ct => ct.Name
             });
-            return View(genres);
+            return View(classtypes);
         }
 
         [HttpGet]
         public ViewResult Add() => View("ClassType", new ClassType());
 
         [HttpPost]
-        public IActionResult Add(ClassType genre)
+        public IActionResult Add(ClassType classtype)
         {
             var validate = new Validate(TempData);
-            if (!validate.IsGenreChecked) {
-                validate.CheckGenre(genre.ClassTypeId, data);
+            if (!validate.IsClassTypeChecked) {
+                validate.CheckClassType(classtype.ClassTypeId, data);
                 if (!validate.IsValid) {
-                    ModelState.AddModelError(nameof(genre.ClassTypeId), validate.ErrorMessage);
+                    ModelState.AddModelError(nameof(classtype.ClassTypeId), validate.ErrorMessage);
                 }     
             }
 
             if (ModelState.IsValid) {
-                data.Insert(genre);
+                data.Insert(classtype);
                 data.Save();
-                validate.ClearGenre();
-                TempData["message"] = $"{genre.Name} added to ClassTypes.";
+                validate.ClearClassType();
+                TempData["message"] = $"{classtype.Name} added to ClassTypes.";
                 return RedirectToAction("Index");  
             }
             else {
-                return View("ClassType", genre);
+                return View("ClassType", classtype);
             }
         }
 
@@ -52,52 +52,52 @@ namespace My_Classes_App.Areas.Admin.Controllers
         public ViewResult Edit(string id) => View("ClassType", data.Get(id));
 
         [HttpPost]
-        public IActionResult Edit(ClassType genre)
+        public IActionResult Edit(ClassType classtype)
         {
             if (ModelState.IsValid) {
-                data.Update(genre);
+                data.Update(classtype);
                 data.Save();
-                TempData["message"] = $"{genre.Name} updated.";
+                TempData["message"] = $"{classtype.Name} updated.";
                 return RedirectToAction("Index");  
             }
             else {
-                return View("ClassType", genre);
+                return View("ClassType", classtype);
             }
         }
 
         [HttpGet]
         public IActionResult Delete(string id) {
-            var genre = data.Get(new QueryOptions<ClassType> {
+            var classtype = data.Get(new QueryOptions<ClassType> {
                 Includes = "Classes",
-                Where = g => g.ClassTypeId == id
+                Where = ct => ct.ClassTypeId == id
             });
 
-            if (genre.Classes.Count > 0) {
-                TempData["message"] = $"Can't delete genre {genre.Name} " 
-                                    + "because it's associated with these books.";
-                return GoToBookSearchResults(id);
+            if (classtype.Classes.Count > 0) {
+                TempData["message"] = $"Can't delete classtype {classtype.Name} " 
+                                    + "because it's associated with these classes.";
+                return GoToClassSearchResults(id);
             }
             else {
-                return View("ClassType", genre);
+                return View("ClassType", classtype);
             }
         }
 
         [HttpPost]
-        public IActionResult Delete(ClassType genre)
+        public IActionResult Delete(ClassType classtype)
         {
-            data.Delete(genre);
+            data.Delete(classtype);
             data.Save();
-            TempData["message"] = $"{genre.Name} removed from ClassTypes.";
+            TempData["message"] = $"{classtype.Name} removed from ClassTypes.";
             return RedirectToAction("Index");  // PRG pattern
         }
 
-        public RedirectToActionResult ViewBooks(string id) => GoToBookSearchResults(id);
+        public RedirectToActionResult ViewClasses(string id) => GoToClassSearchResults(id);
 
-        private RedirectToActionResult GoToBookSearchResults(string id)
+        private RedirectToActionResult GoToClassSearchResults(string id)
         {
             var search = new SearchData(TempData) {
                 SearchTerm = id,
-                Type = "genre"
+                Type = "classtype"
             };
             return RedirectToAction("Search", "Class");
         }

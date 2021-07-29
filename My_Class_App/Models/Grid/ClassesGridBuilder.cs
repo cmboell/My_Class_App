@@ -12,7 +12,7 @@ namespace My_Classes_App.Models
             bool isInitial = values.ClassType.IndexOf(FilterPrefix.ClassType) == -1;
             routes.TeacherFilter = (isInitial) ? FilterPrefix.Teacher + values.Teacher : values.Teacher;
             routes.ClassTypeFilter = (isInitial) ? FilterPrefix.ClassType + values.ClassType : values.ClassType;
-            routes.StartDateFilter = (isInitial) ? FilterPrefix.StartDate + values.StartDate : values.StartDate;
+            routes.StartDateFilter = (isInitial) ? FilterPrefix.NumberOfCredits + values.NumberOfCredits : values.NumberOfCredits;
         }
 
         public void LoadFilterSegments(string[] filter, Teacher author)
@@ -24,7 +24,7 @@ namespace My_Classes_App.Models
                     + "-" + author.FullName.Slug();
             }
             routes.ClassTypeFilter = FilterPrefix.ClassType + filter[1];
-            routes.StartDateFilter = FilterPrefix.StartDate + filter[2];
+            routes.StartDateFilter = FilterPrefix.NumberOfCredits + filter[2];
         }
         public void ClearFilterSegments() => routes.ClearFilters();
 
@@ -36,6 +36,6 @@ namespace My_Classes_App.Models
         public bool IsSortByGenre =>
             routes.SortField.EqualsNoCase(nameof(ClassType));
         public bool IsSortByPrice =>
-            routes.SortField.EqualsNoCase(nameof(Class.StartDate));
+            routes.SortField.EqualsNoCase(nameof(Class.NumberOfCredits));
     }
 }

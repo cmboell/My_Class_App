@@ -6,11 +6,11 @@ namespace My_Classes_App.Areas.Admin.Controllers
     [Area("Admin")]
     public class ValidationController : Controller
     {
-        public JsonResult CheckGenre(string genreId,
+        public JsonResult CheckClassType(string genreId,
             [FromServices] IRepository<ClassType> data)
         {
             var validate = new Validate(TempData);
-            validate.CheckGenre(genreId, data);
+            validate.CheckClassType(genreId, data);
             if (validate.IsValid) {
                 validate.MarkGenreChecked();
                 return Json(true);

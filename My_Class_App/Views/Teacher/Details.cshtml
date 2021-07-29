@@ -1,7 +1,7 @@
 ﻿@model Teacher
 
 @{
-    ViewData["ClassName"] = " | Teacher";
+    ViewData["ClassTitle"] = " | Teacher";
 }
 
 <h1>Teacher</h1>
@@ -20,8 +20,8 @@
                     <p>
                         <a asp-action="Details" asp-controller="Class"
                            asp-route-id="@ba.ClassId"
-                           asp-route-slug="@ba.Class.ClassName.Slug()">
-                            @ba.Class.ClassName
+                           asp-route-slug="@ba.Class.ClassTitle.Slug()">
+                            @ba.Class.ClassTitle
                         </a>
                     </p>
                 }

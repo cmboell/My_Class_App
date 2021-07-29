@@ -1,20 +1,20 @@
 ﻿@model ClassItem
 
 @{
-    ViewData["ClassName"] = " | Edit MyClass";
+    ViewData["ClassTitle"] = " | Edit MyClass";
 }
 
 <h1>Edit MyClass Item</h1>
 <form asp-action="Edit" method="post">
     <ul class="list-group mb-2">
-        <li class="list-group-item">@Model.Class.ClassName</li>
+        <li class="list-group-item">@Model.Class.ClassTitle</li>
         <li class="list-group-item">
             <div class="row">
                 <div class="col-1">
-                    <label>StartDate:</label>
+                    <label>NumberOfCredits:</label>
                 </div>
                 <div class="col">
-                    @Model.Class.StartDate.ToString("c")
+                    @Model.Class.NumberOfCredits.ToString("c")
                 </div>
             </div>
         </li>
@@ -35,7 +35,7 @@
         </li>
     </ul>
     <input type="hidden" asp-for="Class.ClassId" />
-    <input type="hidden" asp-for="Class.ClassName" />
+    <input type="hidden" asp-for="Class.ClassTitle" />
 
     <button type="submit" class="btn btn-primary">Save</button>
     <a asp-action="Index" asp-controller="MyClass" class="btn btn-primary">Cancel</a>

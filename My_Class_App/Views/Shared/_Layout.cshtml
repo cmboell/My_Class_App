@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>College Class Store @ViewBag.ClassName</title>
+    <title>College Class Store @ViewBag.ClassTitle</title>
     <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -39,7 +39,7 @@
                     </li>
                     <li class="nav-item @Nav.Active("Class", current)">
                         <a class="nav-link" asp-action="List" asp-controller="Class" asp-area="">
-                            <span class="fas fa-book-open"></span>&nbsp;Classes
+                            <span class="fas fa-class1-open"></span>&nbsp;Classes
                         </a>
                     </li>
                     <li class="nav-item @Nav.Active("Teacher", current)">

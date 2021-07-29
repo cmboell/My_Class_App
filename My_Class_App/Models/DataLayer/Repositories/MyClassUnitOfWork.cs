@@ -5,60 +5,60 @@
         private MyClassContext context { get; set; }
         public MyClassUnitOfWork(MyClassContext ctx) => context = ctx;
 
-        private IRepository<Class> bookData;
+        private IRepository<Class> classData;
         public IRepository<Class> Classes {
             get {
-                if (bookData == null)
-                    bookData = new Repository<Class>(context);
-                return bookData;
+                if (classData == null)
+                    classData = new Repository<Class>(context);
+                return classData;
             }
         }
 
-        private IRepository<Teacher> authorData;
+        private IRepository<Teacher> teacherData;
         public IRepository<Teacher> Teachers {
             get {
-                if (authorData == null)
-                    authorData = new Repository<Teacher>(context);
-                return authorData;
+                if (teacherData == null)
+                    teacherData = new Repository<Teacher>(context);
+                return teacherData;
             }
         }
 
-        private IRepository<ClassTeacher> bookauthorData;
+        private IRepository<ClassTeacher> classTeacherData;
         public IRepository<ClassTeacher> ClassTeachers {
             get {
-                if (bookauthorData == null)
-                    bookauthorData = new Repository<ClassTeacher>(context);
-                return bookauthorData;
+                if (classTeacherData == null)
+                    classTeacherData = new Repository<ClassTeacher>(context);
+                return classTeacherData;
             }
         }
 
-        private IRepository<ClassType> genreData;
+        private IRepository<ClassType> classTypeData;
         public IRepository<ClassType> ClassTypes
         {
             get {
-                if (genreData == null)
-                    genreData = new Repository<ClassType>(context);
-                return genreData;
+                if (classTypeData == null)
+                    classTypeData = new Repository<ClassType>(context);
+                return classTypeData;
             }
         }
 
-        public void DeleteCurrentBookAuthors(Class book)
+        public void DeleteCurrentClassTeachers(Class class1)
         {
-            var currentAuthors = ClassTeachers.List(new QueryOptions<ClassTeacher> {
-                Where = ba => ba.ClassId == book.ClassId
+            var currentTeachers = ClassTeachers.List(new QueryOptions<ClassTeacher> {
+                Where = ct => ct.ClassId == ct.ClassId
             });
-            foreach (ClassTeacher ba in currentAuthors) {
-                ClassTeachers.Delete(ba);
+            foreach (ClassTeacher ct in currentTeachers) {
+                ClassTeachers.Delete(ct);
             }
         }
 
-        public void AddNewBookAuthors(Class book, int[] authorids)
+        public void AddNewClassTeachers(Class class1, int[] teacherids)
         {
-            foreach (int id in authorids)
+            foreach (int id in teacherids)
             {
-                ClassTeacher ba =
-                    new ClassTeacher { ClassId = book.ClassId, TeacherId = id };
-                ClassTeachers.Insert(ba);
+                ClassTeacher ct =
+                    new ClassTeacher { ClassId = class1.ClassId, TeacherId = id };
+                ClassTeachers.Insert(ct);
             }
         }
 

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ClassType>
 
 @{
-    ViewData["ClassName"] = " | Manage ClassTypes";
+    ViewData["ClassTitle"] = " | Manage ClassTypes";
 }
 
 <h1 class="mb-2">Manage ClassTypes</h1>
@@ -13,17 +13,17 @@
         <tr><th>ClassTypeId</th><th>Name</th><th></th></tr>
     </thead>
     <tbody>
-        @foreach (ClassType genre in Model)
+        @foreach (ClassType classtype in Model)
         {
             <tr>
-                <td>@genre.ClassTypeId</td>
-                <td>@genre.Name</td>
+                <td>@classtype.ClassTypeId</td>
+                <td>@classtype.Name</td>
                 <td>
-                    <a asp-action="ViewBooks" asp-area="Admin" asp-route-id="@genre.ClassTypeId"
+                    <a asp-action="ViewClasses" asp-area="Admin" asp-route-id="@classtype.ClassTypeId"
                         class="btn btn-primary">View Classes</a>
-                    <a asp-action="Edit" asp-area="Admin" asp-route-id="@genre.ClassTypeId"
+                    <a asp-action="Edit" asp-area="Admin" asp-route-id="@classtype.ClassTypeId"
                         class="btn btn-primary">Edit</a>
-                    <a asp-action="Delete" asp-area="Admin" asp-route-id="@genre.ClassTypeId"
+                    <a asp-action="Delete" asp-area="Admin" asp-route-id="@classtype.ClassTypeId"
                         class="btn btn-primary">Delete</a>
                 </td>
             </tr>

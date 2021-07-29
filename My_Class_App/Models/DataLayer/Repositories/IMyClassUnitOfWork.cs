@@ -7,8 +7,8 @@
         IRepository<ClassTeacher> ClassTeachers { get; }
         IRepository<ClassType> ClassTypes { get; }
 
-        void DeleteCurrentBookAuthors(Class book);
-        void AddNewBookAuthors(Class book, int[] authorids);
+        void DeleteCurrentClassTeachers(Class class1);
+        void AddNewClassTeachers(Class class1, int[] teacherids);
         void Save();
     }
 }

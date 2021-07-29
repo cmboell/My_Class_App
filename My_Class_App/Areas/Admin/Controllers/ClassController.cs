@@ -47,29 +47,29 @@ namespace My_Classes_App.Areas.Admin.Controllers
                 var options = new QueryOptions<Class> {
                     Includes = "ClassType, ClassTeachers.Teacher"
                 };
-                if (search.IsBook) { 
-                    options.Where = b => b.ClassName.Contains(vm.SearchTerm);
-                    vm.Header = $"Search results for book title '{vm.SearchTerm}'";
+                if (search.isClass) { 
+                    options.Where = c => c.ClassTitle.Contains(vm.SearchTerm);
+                    vm.Header = $"Search results for class name '{vm.SearchTerm}'";
                 }
-                if (search.IsAuthor) {
+                if (search.IsTeacher) {
                     int index = vm.SearchTerm.LastIndexOf(' ');
                     if (index == -1) {
-                        options.Where = b => b.ClassTeachers.Any(
-                            ba => ba.Teacher.FirstName.Contains(vm.SearchTerm) || 
-                            ba.Teacher.LastName.Contains(vm.SearchTerm));
+                        options.Where = c => c.ClassTeachers.Any(
+                            ct => ct.Teacher.FirstName.Contains(vm.SearchTerm) || 
+                            ct.Teacher.LastName.Contains(vm.SearchTerm));
                     }
                     else {
                         string first = vm.SearchTerm.Substring(0, index);
                         string last = vm.SearchTerm.Substring(index + 1); 
-                        options.Where = b => b.ClassTeachers.Any(
-                            ba => ba.Teacher.FirstName.Contains(first) && 
-                            ba.Teacher.LastName.Contains(last));
+                        options.Where = c => c.ClassTeachers.Any(
+                            ct => ct.Teacher.FirstName.Contains(first) && 
+                            ct.Teacher.LastName.Contains(last));
                     }
-                    vm.Header = $"Search results for author '{vm.SearchTerm}'";
+                    vm.Header = $"Search results for teacher '{vm.SearchTerm}'";
                 }
-                if (search.IsGenre) {                  
-                    options.Where = b => b.ClassTypeId.Contains(vm.SearchTerm);
-                    vm.Header = $"Search results for genre ID '{vm.SearchTerm}'";
+                if (search.IsClassType) {                  
+                    options.Where = c => c.ClassTypeId.Contains(vm.SearchTerm);
+                    vm.Header = $"Search results for class type ID '{vm.SearchTerm}'";
                 }
                 vm.Classes = data.Classes.List(options);
                 return View("SearchResults", vm);
@@ -80,17 +80,17 @@ namespace My_Classes_App.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ViewResult Add(int id) => GetBook(id, "Add");
+        public ViewResult Add(int id) => GetClass(id, "Add");
 
         [HttpPost]
         public IActionResult Add(ClassViewModel vm)
         {
             if (ModelState.IsValid) {
-                data.AddNewBookAuthors(vm.Class, vm.SelectedAuthors);
+                data.AddNewClassTeachers(vm.Class, vm.SelectedTeachers);
                 data.Classes.Insert(vm.Class);
                 data.Save();
 
-                TempData["message"] = $"{vm.Class.ClassName} added to Classes.";
+                TempData["message"] = $"{vm.Class.ClassTitle} added to Classes.";
                 return RedirectToAction("Index");  
             }
             else {
@@ -100,18 +100,18 @@ namespace My_Classes_App.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ViewResult Edit(int id) => GetBook(id, "Edit");
+        public ViewResult Edit(int id) => GetClass(id, "Edit");
         
         [HttpPost]
         public IActionResult Edit(ClassViewModel vm)
         {
             if (ModelState.IsValid) {
-                data.DeleteCurrentBookAuthors(vm.Class);
-                data.AddNewBookAuthors(vm.Class, vm.SelectedAuthors);
+                data.DeleteCurrentClassTeachers(vm.Class);
+                data.AddNewClassTeachers(vm.Class, vm.SelectedTeachers);
                 data.Classes.Update(vm.Class);
                 data.Save(); 
                 
-                TempData["message"] = $"{vm.Class.ClassName} updated.";
+                TempData["message"] = $"{vm.Class.ClassTitle} updated.";
                 return RedirectToAction("Search");  
             }
             else {
@@ -121,22 +121,22 @@ namespace My_Classes_App.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ViewResult Delete(int id) => GetBook(id, "Delete");
+        public ViewResult Delete(int id) => GetClass(id, "Delete");
 
         [HttpPost]
         public IActionResult Delete(ClassViewModel vm)
         {
             data.Classes.Delete(vm.Class); 
             data.Save();
-            TempData["message"] = $"{vm.Class.ClassName} removed from Classes.";
+            TempData["message"] = $"{vm.Class.ClassTitle} removed from Classes.";
             return RedirectToAction("Search");  
         }
 
-        private ViewResult GetBook(int id, string operation)
+        private ViewResult GetClass(int id, string operation)
         {
-            var book = new ClassViewModel();
-            Load(book, operation, id);
-            return View("Class", book);
+            var class1 = new ClassViewModel();
+            Load(class1, operation, id);
+            return View("Class", class1);
         }
         private void Load(ClassViewModel vm, string op, int? id = null)
         {
@@ -147,16 +147,16 @@ namespace My_Classes_App.Areas.Admin.Controllers
                 vm.Class = data.Classes.Get(new QueryOptions<Class>
                 {
                     Includes = "ClassTeachers.Teacher, ClassType",
-                    Where = b => b.ClassId == (id ?? vm.Class.ClassId)
+                    Where = c => c.ClassId == (id ?? vm.Class.ClassId)
                 });
             }
 
-            vm.SelectedAuthors = vm.Class.ClassTeachers?.Select(
-                ba => ba.Teacher.TeacherId).ToArray();
+            vm.SelectedTeachers = vm.Class.ClassTeachers?.Select(
+                ct => ct.Teacher.TeacherId).ToArray();
             vm.Teachers = data.Teachers.List(new QueryOptions<Teacher> {
-                OrderBy = a => a.FirstName });
+                OrderBy = t => t.FirstName });
             vm.ClassTypes = data.ClassTypes.List(new QueryOptions<ClassType> {
-                    OrderBy = g => g.Name });
+                    OrderBy = ct => ct.Name });
         }
 
     }

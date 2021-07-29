@@ -32,16 +32,16 @@ namespace My_Classes_App.Controllers
         [HttpPost]
         public RedirectToActionResult Add(int id)
         {
-            var book = data.Get(new QueryOptions<Class> {
+            var class1 = data.Get(new QueryOptions<Class> {
                 Includes = "ClassTeachers.Teacher, ClassType",
                 Where = b => b.ClassId == id
             });
-            if (book == null){
-                TempData["message"] = "Unable to add book to cart.";   
+            if (class1 == null){
+                TempData["message"] = "Unable to add class1 to cart.";   
             }
             else {
                 var dto = new ClassDTO();
-                dto.Load(book);
+                dto.Load(class1);
                 ClassItem item = new ClassItem {
                     Class = dto,
                     Quantity = 1  // default value
@@ -50,7 +50,7 @@ namespace My_Classes_App.Controllers
                 cart.Add(item);
                 cart.Save();
 
-                TempData["message"] = $"{book.ClassName} added to cart";
+                TempData["message"] = $"{class1.ClassTitle} added to cart";
             }
 
             var builder = new ClassesGridBuilder(HttpContext.Session);
@@ -64,7 +64,7 @@ namespace My_Classes_App.Controllers
             cart.Remove(item);
             cart.Save();
 
-            TempData["message"] = $"{item.Class.ClassName} removed from cart.";
+            TempData["message"] = $"{item.Class.ClassTitle} removed from cart.";
             return RedirectToAction("Index");
         }
                 
@@ -99,7 +99,7 @@ namespace My_Classes_App.Controllers
             cart.Edit(item);
             cart.Save();
 
-            TempData["message"] = $"{item.Class.ClassName} updated";
+            TempData["message"] = $"{item.Class.ClassTitle} updated";
             return RedirectToAction("Index");
         }
 
