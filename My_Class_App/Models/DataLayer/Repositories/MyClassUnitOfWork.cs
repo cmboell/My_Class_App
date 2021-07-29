@@ -51,7 +51,7 @@
                 ClassTeachers.Delete(ct);
             }
         }
-
+        //to add new class
         public void AddNewClassTeachers(Class class1, int[] teacherids)
         {
             foreach (int id in teacherids)
