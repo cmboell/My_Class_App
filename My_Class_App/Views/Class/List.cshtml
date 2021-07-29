@@ -41,7 +41,7 @@
 </form>
 
 @* add to cart form *@
-<form asp-action="Add" asp-controller="MyClass" method="post">
+<form asp-action="Add" asp-controller="MyClasses" method="post">
     <table class="table table-bordered table-striped table-sm">
         @* for each table column, update the route dictionary with the field to sort by, and then use
             that route dictionary and the current route to create route segments for sorting link *@
@@ -96,7 +96,7 @@
                         
                         <button type="submit" name="id" value="@class1.ClassId"
                                 class="btn btn-primary">
-                            Add To MyClass
+                            Add To MyClasses
                         </button>
                     </td>
                 </tr>
