@@ -9,8 +9,8 @@ namespace My_Classes_App.Areas.Admin.Controllers
     [Area("Admin")]
     public class ClassController : Controller
     {
-        private IBookstoreUnitOfWork data { get; set; }
-        public ClassController(IBookstoreUnitOfWork unit) => data = unit;
+        private IMyClassUnitOfWork data { get; set; }
+        public ClassController(IMyClassUnitOfWork unit) => data = unit;
 
         public ViewResult Index() {
             var search = new SearchData(TempData);
@@ -83,7 +83,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
         public ViewResult Add(int id) => GetBook(id, "Add");
 
         [HttpPost]
-        public IActionResult Add(BookViewModel vm)
+        public IActionResult Add(ClassViewModel vm)
         {
             if (ModelState.IsValid) {
                 data.AddNewBookAuthors(vm.Class, vm.SelectedAuthors);
@@ -103,7 +103,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
         public ViewResult Edit(int id) => GetBook(id, "Edit");
         
         [HttpPost]
-        public IActionResult Edit(BookViewModel vm)
+        public IActionResult Edit(ClassViewModel vm)
         {
             if (ModelState.IsValid) {
                 data.DeleteCurrentBookAuthors(vm.Class);
@@ -124,7 +124,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
         public ViewResult Delete(int id) => GetBook(id, "Delete");
 
         [HttpPost]
-        public IActionResult Delete(BookViewModel vm)
+        public IActionResult Delete(ClassViewModel vm)
         {
             data.Classes.Delete(vm.Class); 
             data.Save();
@@ -134,11 +134,11 @@ namespace My_Classes_App.Areas.Admin.Controllers
 
         private ViewResult GetBook(int id, string operation)
         {
-            var book = new BookViewModel();
+            var book = new ClassViewModel();
             Load(book, operation, id);
             return View("Class", book);
         }
-        private void Load(BookViewModel vm, string op, int? id = null)
+        private void Load(ClassViewModel vm, string op, int? id = null)
         {
             if (Operation.IsAdd(op)) { 
                 vm.Class = new Class();

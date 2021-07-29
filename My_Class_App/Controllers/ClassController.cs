@@ -6,17 +6,17 @@ namespace My_Classes_App.Controllers
     [Authorize] //makes it so you have to sign in to view 
     public class ClassController : Controller
     {
-        private IBookstoreUnitOfWork data { get; set; }
-        public ClassController(IBookstoreUnitOfWork unit) => data = unit;
+        private IMyClassUnitOfWork data { get; set; }
+        public ClassController(IMyClassUnitOfWork unit) => data = unit;
 
         public RedirectToActionResult Index() => RedirectToAction("List");
 
-        public ViewResult List(BooksGridDTO values)
+        public ViewResult List(ClassesGridDTO values)
         {
-            var builder = new BooksGridBuilder(HttpContext.Session, values, 
+            var builder = new ClassesGridBuilder(HttpContext.Session, values, 
                 defaultSortField: nameof(Class.ClassName));
 
-            var options = new BookQueryOptions {
+            var options = new ClassQueryOptions {
                 Includes = "ClassTeachers.Teacher, ClassType",
                 OrderByDirection = builder.CurrentRoute.SortDirection,
                 PageNumber = builder.CurrentRoute.PageNumber,
@@ -24,7 +24,7 @@ namespace My_Classes_App.Controllers
             };
             options.SortFilter(builder);
 
-            var vm = new BookListViewModel {
+            var vm = new ClassListViewModel{
                 Classes = data.Classes.List(options),
                 Teachers = data.Teachers.List(new QueryOptions<Teacher> {
                     OrderBy = a => a.FirstName }),
@@ -49,7 +49,7 @@ namespace My_Classes_App.Controllers
         [HttpPost]
         public RedirectToActionResult Filter(string[] filter, bool clear = false)
         {
-            var builder = new BooksGridBuilder(HttpContext.Session);
+            var builder = new ClassesGridBuilder(HttpContext.Session);
 
             if (clear) {
                 builder.ClearFilterSegments();

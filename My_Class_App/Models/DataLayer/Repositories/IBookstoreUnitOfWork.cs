@@ -1,6 +1,6 @@
 ﻿namespace My_Classes_App.Models
 {
-    public interface IBookstoreUnitOfWork
+    public interface IMyClassUnitOfWork
     {
         IRepository<Class> Classes { get; }
         IRepository<Teacher> Teachers { get; }

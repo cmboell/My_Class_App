@@ -6,9 +6,9 @@ namespace My_Classes_App.Models
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected BookstoreContext context { get; set; }
+        protected MyClassContext context { get; set; }
         private DbSet<T> dbset { get; set; }
-        public Repository(BookstoreContext ctx) {
+        public Repository(MyClassContext ctx) {
             context = ctx;
             dbset = context.Set<T>();
         }

@@ -29,20 +29,20 @@ namespace My_Classes_App
             
             services.AddControllersWithViews().AddNewtonsoftJson();
 
-            services.AddDbContext<BookstoreContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("BookstoreContext")));
+            services.AddDbContext<MyClassContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("MyClassContext")));
 
             services.AddHttpContextAccessor();
             // services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient<IBookstoreUnitOfWork, BookstoreUnitOfWork>();
-            services.AddTransient<ICart, Cart>();
+            services.AddTransient<IMyClassUnitOfWork, MyClassUnitOfWork>();
+            services.AddTransient<IClass, MyClass>();
             // add this
             services.AddIdentity<User, IdentityRole>(options => {
                 options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = false;
-            }).AddEntityFrameworkStores<BookstoreContext>()
+            }).AddEntityFrameworkStores<MyClassContext>()
               .AddDefaultTokenProviders();
            
         }
@@ -85,7 +85,7 @@ namespace My_Classes_App
                     pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
             });
 
-            BookstoreContext.CreateAdminUser(app.ApplicationServices).Wait();
+            MyClassContext.CreateAdminUser(app.ApplicationServices).Wait();
         }
     }
 }

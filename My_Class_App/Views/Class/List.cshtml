@@ -1,4 +1,4 @@
-﻿@model BookListViewModel
+﻿@model ClassListViewModel
 
 @{
     ViewData["ClassName"] = " | Class Catalog";
@@ -16,21 +16,21 @@
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
             Model.Teachers, "TeacherId", "FullName", current.AuthorFilter))">
-        <option value="@BooksGridDTO.DefaultFilter">All</option>
+        <option value="@ClassesGridDTO.DefaultFilter">All</option>
     </select>
 
     <label>ClassType: </label>
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
             Model.Genres, "ClassTypeId", "Name", current.GenreFilter))">
-        <option value="@BooksGridDTO.DefaultFilter">All</option>
+        <option value="@ClassesGridDTO.DefaultFilter">All</option>
     </select>
 
     <label>StartDate: </label>
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
             Model.Prices, "Key", "Value", current.PriceFilter))">
-        <option value="@BooksGridDTO.DefaultFilter">All</option>
+        <option value="@ClassesGridDTO.DefaultFilter">All</option>
     </select>
 
     <button type="submit" class="btn btn-primary mr-2">Filter</button>
@@ -41,7 +41,7 @@
 </form>
 
 @* add to cart form *@
-<form asp-action="Add" asp-controller="Cart" method="post">
+<form asp-action="Add" asp-controller="MyClass" method="post">
     <table class="table table-bordered table-striped table-sm">
         @* for each table column, update the route dictionary with the field to sort by, and then use
             that route dictionary and the current route to create route segments for sorting link *@
@@ -96,7 +96,7 @@
                         
                         <button type="submit" name="id" value="@book.ClassId"
                                 class="btn btn-primary">
-                            Add To Cart
+                            Add To MyClass
                         </button>
                     </td>
                 </tr>

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace My_Classes_App.Models
 {
-    public class BookViewModel : IValidatableObject
+    public class ClassViewModel : IValidatableObject
     {
         public Class Class { get; set; }
         public IEnumerable<ClassType> Genres { get; set; }

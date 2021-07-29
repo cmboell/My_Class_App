@@ -7,9 +7,9 @@ using My_Classes_App.Models;
 
 namespace My_Classes_App.Tests
 {
-    public class CartTests
+    public class MyClassTests
     {
-        private Cart GetCart()
+        private MyClass GetCart()
         {
             // create accessor
             var accessor = new Mock<IHttpContextAccessor>();
@@ -32,15 +32,15 @@ namespace My_Classes_App.Tests
             accessor.Setup(m => m.HttpContext.Session)
                 .Returns(session.Object);
 
-            return new Cart(accessor.Object);
+            return new MyClass(accessor.Object);
         }
 
         [Fact]
         public void Subtotal_ReturnsADouble()
         {
             // arrange
-            Cart cart = GetCart();
-            cart.Add(new CartItem { Class = new BookDTO() });
+            MyClass cart = GetCart();
+            cart.Add(new ClassItem { Class = new ClassDTO() });
 
             // act
             var result = cart.Subtotal;
@@ -49,30 +49,6 @@ namespace My_Classes_App.Tests
             Assert.IsType<double>(result);
         }
 
-        [Theory]
-        [InlineData(9.99, 6.89, 12.99)]
-        [InlineData(8.97, 45.00, 9.99, 15.00)]
-        public void
-        Subtotal_ReturnsCorrectCalculation(params double[] prices)
-        {
-            // arrange
-            Cart cart = GetCart();
-            for (int i = 0; i < prices.Length; i++)
-            {
-                var item = new CartItem
-                {
-                    Class = new BookDTO { ClassId = i, StartDate = prices[i] },
-                    Quantity = 1
-                };
-                cart.Add(item);
-            }
-            double expected = prices.Sum();
-
-            // act
-            var result = cart.Subtotal;
-
-            // assert
-            Assert.Equal(Math.Round(expected, 2), Math.Round(result, 2));
-        }
+  
     }
 }

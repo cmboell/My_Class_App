@@ -9,7 +9,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
     public class ClassTypeController : Controller
     {
         private Repository<ClassType> data { get; set; }
-        public ClassTypeController(BookstoreContext ctx) => data = new Repository<ClassType>(ctx);
+        public ClassTypeController(MyClassContext ctx) => data = new Repository<ClassType>(ctx);
 
         public ViewResult Index()
         {

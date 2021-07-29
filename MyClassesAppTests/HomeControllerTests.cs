@@ -11,10 +11,10 @@ namespace My_Classes_App.Tests
         [Fact]
         public void IndexActionMethod_ReturnsViewResult()
         {
-            // FakeBookRepository - not used
+            // FakeClassRepository - not used
             // arrange
             /*
-            var rep = new FakeBookRepository();
+            var rep = new FakeClassRepository();
             var controller = new HomeController(rep);
             */
 
@@ -34,7 +34,7 @@ namespace My_Classes_App.Tests
         public void IndexActionMethod_ModelIsABookObject()
         {
             // arrange
-            var rep = new FakeBookRepository();
+            var rep = new FakeClassRepository();
             var controller = new HomeController(rep);
 
             // act

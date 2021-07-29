@@ -28,7 +28,7 @@ namespace My_Classes_App.Controllers
             else
                 options.OrderBy = a => a.LastName;
 
-            var vm = new AuthorListViewModel {
+            var vm = new TeacherListViewModel {
                 Teachers = data.List(options),
                 CurrentRoute = builder.CurrentRoute,
                 TotalPages = builder.GetTotalPages(data.Count)

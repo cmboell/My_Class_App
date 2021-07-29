@@ -44,27 +44,27 @@ namespace My_Classes_App.Models
         }
 
         public string GenreFilter {
-            get => Get(nameof(BooksGridDTO.ClassType))?.Replace(FilterPrefix.ClassType, "");
-            set => this[nameof(BooksGridDTO.ClassType)] = value;
+            get => Get(nameof(ClassesGridDTO.ClassType))?.Replace(FilterPrefix.ClassType, "");
+            set => this[nameof(ClassesGridDTO.ClassType)] = value;
         }
 
         public string PriceFilter {
-            get => Get(nameof(BooksGridDTO.StartDate))?.Replace(FilterPrefix.StartDate, "");
-            set => this[nameof(BooksGridDTO.StartDate)] = value;
+            get => Get(nameof(ClassesGridDTO.StartDate))?.Replace(FilterPrefix.StartDate, "");
+            set => this[nameof(ClassesGridDTO.StartDate)] = value;
         }
 
         public string AuthorFilter {
             get
             {
-                string s = Get(nameof(BooksGridDTO.Teacher))?.Replace(FilterPrefix.Teacher, "");
+                string s = Get(nameof(ClassesGridDTO.Teacher))?.Replace(FilterPrefix.Teacher, "");
                 int index = s?.IndexOf('-') ?? -1;
                 return (index == -1) ? s : s.Substring(0, index);
             }
-            set => this[nameof(BooksGridDTO.Teacher)] = value;
+            set => this[nameof(ClassesGridDTO.Teacher)] = value;
         }
 
         public void ClearFilters() =>
-            GenreFilter = PriceFilter = AuthorFilter = BooksGridDTO.DefaultFilter;
+            GenreFilter = PriceFilter = AuthorFilter = ClassesGridDTO.DefaultFilter;
 
         private string Get(string key) => Keys.Contains(key) ? this[key] : null;
 

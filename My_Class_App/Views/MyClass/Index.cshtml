@@ -1,0 +1,79 @@
+﻿@model MyClassViewModel
+
+@{
+    ViewData["ClassName"] = " | MyClass";
+}
+
+<h1>Your MyClass</h1>
+
+<form asp-action="Clear" method="post">
+    <ul class="list-group mb-4">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col">
+                    Subtotal: @Model.Subtotal.ToString("c")
+                </div>
+                <div class="col">
+                    <div class="float-right">
+                        <a asp-action="Checkout" class="btn btn-primary">Checkout</a>
+                        <button type="submit" class="btn btn-primary">Clear MyClass</button>
+                        <a asp-action="List" asp-controller="Class"
+                           asp-all-route-data="@Model.BookGridRoute">Back to Shopping</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+    </ul>
+</form>
+<form asp-action="Remove" method="post">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>ClassName</th>
+                <th>Teacher(s)</th>
+                <th>StartDate</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ClassItem item in Model.List)  {
+                <tr>
+                    <td>
+                        <a asp-action="Details" asp-controller="Class"
+                           asp-route-id="@item.Class.ClassId"
+                           asp-route-slug="@item.Class.ClassName.Slug()">
+                            @item.Class.ClassName
+                        </a>
+                    </td>
+                    <td>
+                        @foreach (var keyValuePair in item.Class.Teachers) {
+                            <p>
+                                <a asp-action="Details" asp-controller="Teacher"
+                                   asp-route-id="@keyValuePair.Key"
+                                   asp-route-slug="@keyValuePair.Value.Slug()">
+                                    @keyValuePair.Value
+                                </a>
+                            </p>
+                        }
+                    </td>
+                    <td>@item.Class.StartDate.ToString("c")</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Subtotal.ToString("c")</td>
+                    <td>
+                        <div class="float-right">
+                            <a asp-action="Edit" asp-controller="MyClass"
+                               asp-route-id="@item.Class.ClassId"
+                               asp-route-slug="@item.Class.ClassName.Slug()"
+                               class="btn btn-primary">Edit</a>
+                            <button type="submit" name="id" value="@item.Class.ClassId"
+                                    class="btn btn-primary">Remove</button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
