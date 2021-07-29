@@ -57,7 +57,7 @@
             foreach (int id in teacherids)
             {
                 ClassTeacher ct =
-                    new ClassTeacher { ClassId = class1.ClassId, TeacherId = id };
+                    new ClassTeacher { Class = class1, TeacherId = id };
                 ClassTeachers.Insert(ct);
             }
         }
