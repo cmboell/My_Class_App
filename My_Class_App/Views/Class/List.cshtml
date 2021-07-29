@@ -15,21 +15,21 @@
     <label>Teacher: </label>
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
-            Model.Teachers, "TeacherId", "FullName", current.AuthorFilter))">
+            Model.Teachers, "TeacherId", "FullName", current.TeacherFilter))">
         <option value="@ClassesGridDTO.DefaultFilter">All</option>
     </select>
 
     <label>ClassType: </label>
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
-            Model.Genres, "ClassTypeId", "Name", current.GenreFilter))">
+            Model.ClassTypes, "ClassTypeId", "Name", current.ClassTypeFilter))">
         <option value="@ClassesGridDTO.DefaultFilter">All</option>
     </select>
 
     <label>StartDate: </label>
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
-            Model.Prices, "Key", "Value", current.PriceFilter))">
+            Model.Prices, "Key", "Value", current.StartDateFilter))">
         <option value="@ClassesGridDTO.DefaultFilter">All</option>
     </select>
 

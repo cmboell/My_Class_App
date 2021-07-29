@@ -10,8 +10,8 @@ using My_Classes_App.Models;
 namespace My_Classes_App.Migrations
 {
     [DbContext(typeof(MyClassContext))]
-    [Migration("20210729040830_test")]
-    partial class test
+    [Migration("20210729043633_newwww")]
+    partial class newwww
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -563,7 +563,7 @@ namespace My_Classes_App.Migrations
 
                     b.HasKey("ClassTypeId");
 
-                    b.ToTable("Genres");
+                    b.ToTable("ClassTypes");
 
                     b.HasData(
                         new

@@ -28,7 +28,7 @@ namespace My_Classes_App.Controllers
                 Classes = data.Classes.List(options),
                 Teachers = data.Teachers.List(new QueryOptions<Teacher> {
                     OrderBy = a => a.FirstName }),
-                Genres = data.Genres.List(new QueryOptions<ClassType> {
+                ClassTypes = data.ClassTypes.List(new QueryOptions<ClassType> {
                     OrderBy = g => g.Name }),
                 CurrentRoute = builder.CurrentRoute,
                 TotalPages = builder.GetTotalPages(data.Classes.Count)

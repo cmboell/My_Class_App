@@ -5,15 +5,15 @@ namespace My_Classes_App.Models
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "Please enter a username.")]
-        [StringLength(255)]
+        [StringLength(55)]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Please enter a first name.")]
-        [StringLength(255)]
+        [StringLength(55)]
         public string Firstname { get; set; }
 
         [Required(ErrorMessage = "Please enter a last name.")]
-        [StringLength(255)]
+        [StringLength(55)]
         public string Lastname { get; set; }
 
         [Required(ErrorMessage = "Please enter an email address.")]

@@ -155,7 +155,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
                 ba => ba.Teacher.TeacherId).ToArray();
             vm.Teachers = data.Teachers.List(new QueryOptions<Teacher> {
                 OrderBy = a => a.FirstName });
-            vm.Genres = data.Genres.List(new QueryOptions<ClassType> {
+            vm.ClassTypes = data.ClassTypes.List(new QueryOptions<ClassType> {
                     OrderBy = g => g.Name });
         }
 

@@ -6,19 +6,19 @@ namespace My_Classes_App.Models
     {
         public void SortFilter(ClassesGridBuilder builder)
         {
-            if (builder.IsFilterByGenre) {
-                Where = b => b.ClassTypeId == builder.CurrentRoute.GenreFilter;
+            if (builder.IsFilterByClassType) {
+                Where = b => b.ClassTypeId == builder.CurrentRoute.ClassTypeFilter;
             }
-            if (builder.IsFilterByPrice) {
-                if (builder.CurrentRoute.PriceFilter == "under7")
+            if (builder.IsFilterByStartDate) {
+                if (builder.CurrentRoute.StartDateFilter == "under7")
                     Where = b => b.StartDate < 7;
-                else if (builder.CurrentRoute.PriceFilter == "7to14")
+                else if (builder.CurrentRoute.StartDateFilter == "7to14")
                     Where = b => b.StartDate >= 7 && b.StartDate <= 14;
                 else
                     Where = b => b.StartDate > 14;
             }
-            if (builder.IsFilterByAuthor) {
-                int id = builder.CurrentRoute.AuthorFilter.ToInt();
+            if (builder.IsFilterByTeacher) {
+                int id = builder.CurrentRoute.TeacherFilter.ToInt();
                 if (id > 0)
                     Where = b => b.ClassTeachers.Any(ba => ba.Teacher.TeacherId == id);
             }

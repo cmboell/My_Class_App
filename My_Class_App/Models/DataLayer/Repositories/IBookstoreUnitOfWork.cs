@@ -5,7 +5,7 @@
         IRepository<Class> Classes { get; }
         IRepository<Teacher> Teachers { get; }
         IRepository<ClassTeacher> ClassTeachers { get; }
-        IRepository<ClassType> Genres { get; }
+        IRepository<ClassType> ClassTypes { get; }
 
         void DeleteCurrentBookAuthors(Class book);
         void AddNewBookAuthors(Class book, int[] authorids);

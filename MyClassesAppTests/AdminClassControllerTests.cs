@@ -34,7 +34,7 @@ namespace My_Classes_App.Tests
             var unit = new Mock<IMyClassUnitOfWork>();
             unit.Setup(m => m.Classes).Returns(bookRep.Object);
             unit.Setup(m => m.Teachers).Returns(authorRep.Object);
-            unit.Setup(m => m.Genres).Returns(genreRep.Object);
+            unit.Setup(m => m.ClassTypes).Returns(genreRep.Object);
 
             return unit.Object;
         }

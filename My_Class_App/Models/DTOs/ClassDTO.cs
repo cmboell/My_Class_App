@@ -15,8 +15,8 @@ namespace My_Classes_App.Models
             ClassName = book.ClassName;
             StartDate = book.StartDate;
             Teachers = new Dictionary<int, string>();
-            foreach (ClassTeacher ba in book.ClassTeachers) {
-                Teachers.Add(ba.Teacher.TeacherId, ba.Teacher.FullName);
+            foreach (ClassTeacher ca in book.ClassTeachers) {
+                Teachers.Add(ca.Teacher.TeacherId, ca.Teacher.FullName);
             }
         }
     }

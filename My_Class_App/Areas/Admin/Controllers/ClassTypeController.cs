@@ -40,7 +40,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
                 data.Insert(genre);
                 data.Save();
                 validate.ClearGenre();
-                TempData["message"] = $"{genre.Name} added to Genres.";
+                TempData["message"] = $"{genre.Name} added to ClassTypes.";
                 return RedirectToAction("Index");  
             }
             else {
@@ -87,7 +87,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
         {
             data.Delete(genre);
             data.Save();
-            TempData["message"] = $"{genre.Name} removed from Genres.";
+            TempData["message"] = $"{genre.Name} removed from ClassTypes.";
             return RedirectToAction("Index");  // PRG pattern
         }
 

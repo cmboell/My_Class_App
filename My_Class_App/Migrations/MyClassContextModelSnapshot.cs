@@ -561,7 +561,7 @@ namespace My_Classes_App.Migrations
 
                     b.HasKey("ClassTypeId");
 
-                    b.ToTable("Genres");
+                    b.ToTable("ClassTypes");
 
                     b.HasData(
                         new

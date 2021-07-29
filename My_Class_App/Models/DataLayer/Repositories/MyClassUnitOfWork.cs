@@ -33,7 +33,7 @@
         }
 
         private IRepository<ClassType> genreData;
-        public IRepository<ClassType> Genres
+        public IRepository<ClassType> ClassTypes
         {
             get {
                 if (genreData == null)

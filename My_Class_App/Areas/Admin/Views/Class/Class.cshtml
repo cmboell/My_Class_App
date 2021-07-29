@@ -49,7 +49,7 @@
             <div class="col-sm-2"><label>ClassType:</label></div>
             <div class="col-sm-4">
                 <select asp-for="Class.ClassTypeId" class="form-control"
-                    asp-items='@new SelectList(Model.Genres, "ClassTypeId", "Name", Model.Class.ClassTypeId)'>
+                    asp-items='@new SelectList(Model.ClassTypes, "ClassTypeId", "Name", Model.Class.ClassTypeId)'>
                 </select>
             </div>
             <div class="col-sm-6">

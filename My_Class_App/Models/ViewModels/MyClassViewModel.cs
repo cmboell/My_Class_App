@@ -6,6 +6,6 @@ namespace My_Classes_App.Models
     {
         public IEnumerable<ClassItem> List { get; set; }
         public double Subtotal { get; set; }
-        public RouteDictionary BookGridRoute { get; set; }
+        public RouteDictionary ClassGridRoute { get; set; }
     }
 }

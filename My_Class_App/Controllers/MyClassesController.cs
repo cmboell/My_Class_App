@@ -24,7 +24,7 @@ namespace My_Classes_App.Controllers
             var vm = new MyClassViewModel {
                 List = cart.List,
                 Subtotal = cart.Subtotal,
-                BookGridRoute = builder.CurrentRoute
+                ClassGridRoute = builder.CurrentRoute
             };
             return View(vm);
         }

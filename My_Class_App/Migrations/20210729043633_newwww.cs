@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace My_Classes_App.Migrations
 {
-    public partial class test : Migration
+    public partial class newwww : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,7 +49,7 @@ namespace My_Classes_App.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Genres",
+                name: "ClassTypes",
                 columns: table => new
                 {
                     ClassTypeId = table.Column<string>(maxLength: 10, nullable: false),
@@ -57,7 +57,7 @@ namespace My_Classes_App.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Genres", x => x.ClassTypeId);
+                    table.PrimaryKey("PK_ClassTypes", x => x.ClassTypeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -194,9 +194,9 @@ namespace My_Classes_App.Migrations
                 {
                     table.PrimaryKey("PK_Classes", x => x.ClassId);
                     table.ForeignKey(
-                        name: "FK_Classes_Genres_ClassTypeId",
+                        name: "FK_Classes_ClassTypes_ClassTypeId",
                         column: x => x.ClassTypeId,
-                        principalTable: "Genres",
+                        principalTable: "ClassTypes",
                         principalColumn: "ClassTypeId",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -226,7 +226,7 @@ namespace My_Classes_App.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Genres",
+                table: "ClassTypes",
                 columns: new[] { "ClassTypeId", "Name" },
                 values: new object[,]
                 {
@@ -425,7 +425,7 @@ namespace My_Classes_App.Migrations
                 name: "Teachers");
 
             migrationBuilder.DropTable(
-                name: "Genres");
+                name: "ClassTypes");
         }
     }
 }

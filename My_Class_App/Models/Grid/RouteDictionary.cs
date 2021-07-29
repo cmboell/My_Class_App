@@ -6,8 +6,8 @@ namespace My_Classes_App.Models
 {
     public static class FilterPrefix
     {
-        public const string ClassType = "genre-";
-        public const string StartDate = "price-";
+        public const string ClassType = "classtype-";
+        public const string StartDate = "startdate-";
         public const string Teacher = "author-";
     }
 
@@ -43,17 +43,17 @@ namespace My_Classes_App.Models
                 this[nameof(GridDTO.SortDirection)] = "asc";
         }
 
-        public string GenreFilter {
+        public string ClassTypeFilter {
             get => Get(nameof(ClassesGridDTO.ClassType))?.Replace(FilterPrefix.ClassType, "");
             set => this[nameof(ClassesGridDTO.ClassType)] = value;
         }
 
-        public string PriceFilter {
+        public string StartDateFilter {
             get => Get(nameof(ClassesGridDTO.StartDate))?.Replace(FilterPrefix.StartDate, "");
             set => this[nameof(ClassesGridDTO.StartDate)] = value;
         }
 
-        public string AuthorFilter {
+        public string TeacherFilter {
             get
             {
                 string s = Get(nameof(ClassesGridDTO.Teacher))?.Replace(FilterPrefix.Teacher, "");
@@ -64,7 +64,7 @@ namespace My_Classes_App.Models
         }
 
         public void ClearFilters() =>
-            GenreFilter = PriceFilter = AuthorFilter = ClassesGridDTO.DefaultFilter;
+            ClassTypeFilter = StartDateFilter = TeacherFilter = ClassesGridDTO.DefaultFilter;
 
         private string Get(string key) => Keys.Contains(key) ? this[key] : null;
 

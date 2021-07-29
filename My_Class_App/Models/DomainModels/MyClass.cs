@@ -6,7 +6,7 @@ namespace My_Classes_App.Models
 {
     public class MyClass : IClass
     {
-        private const string CartKey = "mycart";
+        private const string ClassKey = "myclass";
         private const string CountKey = "mycount";
 
         private List<ClassItem> items { get; set; }
@@ -26,10 +26,10 @@ namespace My_Classes_App.Models
 
         public void Load(IRepository<Class> data)
         {
-            items = session.GetObject<List<ClassItem>>(CartKey);
+            items = session.GetObject<List<ClassItem>>(ClassKey);
             if (items == null) {
                 items = new List<ClassItem>();
-                storedItems = requestCookies.GetObject<List<ClassItemDTO>>(CartKey);
+                storedItems = requestCookies.GetObject<List<ClassItemDTO>>(ClassKey);
             }
             if (storedItems?.Count > items?.Count) {
                 foreach (ClassItemDTO storedItem in storedItems) {
@@ -83,15 +83,15 @@ namespace My_Classes_App.Models
         
         public void Save() {
             if (items.Count == 0) {
-                session.Remove(CartKey);
+                session.Remove(ClassKey);
                 session.Remove(CountKey);
-                responseCookies.Delete(CartKey);
+                responseCookies.Delete(ClassKey);
                 responseCookies.Delete(CountKey);
             }
             else {
-                session.SetObject<List<ClassItem>>(CartKey, items);
+                session.SetObject<List<ClassItem>>(ClassKey, items);
                 session.SetInt32(CountKey, items.Count);
-                responseCookies.SetObject<List<ClassItemDTO>>(CartKey, items.ToDTO());
+                responseCookies.SetObject<List<ClassItemDTO>>(ClassKey, items.ToDTO());
                 responseCookies.SetInt32(CountKey, items.Count);
             }
         }

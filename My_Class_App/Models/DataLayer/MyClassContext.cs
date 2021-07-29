@@ -17,7 +17,7 @@ namespace My_Classes_App.Models
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<ClassTeacher> ClassTeachers { get; set; }
-        public DbSet<ClassType> Genres { get; set; }
+        public DbSet<ClassType> ClassTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
