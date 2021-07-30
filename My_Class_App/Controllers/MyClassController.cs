@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Authorization;
 namespace My_Classes_App.Controllers
 {
     [Authorize] //makes it so have to sign in to view
-    public class MyClassesController : Controller
+    public class MyClassController : Controller
     {
         private IRepository<Class> data { get; set; }
         private IClass cart { get; set; }
 
-        public MyClassesController(IRepository<Class> rep, IClass c)
+        public MyClassController(IRepository<Class> rep, IClass c)
         {
             data = rep;
             cart = c;
