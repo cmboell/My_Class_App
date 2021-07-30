@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
-
+//search data model
 namespace My_Classes_App.Models
 {
     public class SearchData
@@ -24,7 +24,7 @@ namespace My_Classes_App.Models
 
         public bool HasSearchTerm => !string.IsNullOrEmpty(SearchTerm);
         public bool isClass => Type.EqualsNoCase("class1");
-        public bool IsTeacher => Type.EqualsNoCase("author");
+        public bool IsTeacher => Type.EqualsNoCase("teacher");
         public bool IsClassType => Type.EqualsNoCase("classtype");
 
         public void Clear()

@@ -1,21 +1,19 @@
 ﻿@model ClassType
 
 @{
-    // this view is used for add, edit, and delete. 
-    // Which one is determined by the action method name.
+    //add, edit, and delete. determined by the action method name.
     var action = ViewContext.RouteData.Values["action"].ToString().Capitalize();
 
     ViewData["ClassTitle"] = $" | {action} ClassType";
 }
 
-<h1>@action ClassType</h1>
+<h1>@action Class Type</h1>
 
 <form asp-action="@action" asp-area="Admin" method="post">
 
     <div class="form-group row">
         <div class="col-sm-2"><label>ClassTypeId:</label></div>
-
-        @* if adding, provide a text box. Otherwise, display genreId in a label. *@
+        <!--add-->
         @if (Operation.IsAdd(action))
         {
             <div class="col-sm-4">
@@ -31,12 +29,9 @@
             <input type="hidden" asp-for="ClassTypeId" />
         }
     </div>
-
     <div class="form-group row">
         <div class="col-sm-2"><label>Name:</label></div>
-
-        @* if deleting, put Name value in label and hidden field for delete message. 
-           Otherwise, provide text box. *@
+         <!--delete-->
         @if (Operation.IsDelete(action))
         {
             <div class="col-sm-4"><label>@Model.Name</label></div>
@@ -52,11 +47,10 @@
             </div>
         }
     </div>
-
     <div class="row">
         <div class="col-sm-4 offset-sm-2">
-            <button type="submit" class="btn btn-primary">@action</button>
-            <a asp-action="Index" class="btn btn-primary">Cancel</a>
+            <button type="submit" class="btn btn-primary">@action</button><!--submit button-->
+            <a asp-action="Index" class="btn btn-primary">Cancel</a><!--camcel button-->
         </div>
     </div>
 </form>

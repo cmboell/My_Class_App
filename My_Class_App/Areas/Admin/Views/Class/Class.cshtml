@@ -1,8 +1,8 @@
 ﻿@model  ClassViewModel
-
+<!--admin class view-->
 @{
-    // this view is used for add, edit, and delete. 
-    // Which one is determined by the action method name.
+    //add, edit, and delete. 
+    //determined by the action method name.
     var action = ViewContext.RouteData.Values["action"].ToString().Capitalize();
 
     ViewData["ClassTitle"] = $" | {action} Class";
@@ -15,10 +15,7 @@
     <input type="hidden" asp-for="Class.ClassId" />
 
     <div class="form-group row">
-        <div class="col-sm-2"><label>ClassTitle:</label></div>
-
-        @* if deleting, display title in a label and put value in hidden field
-           for delete message. Otherwise, provide a text box*@
+        <div class="col-sm-2"><label>Class Title:</label></div>
         @if (Operation.IsDelete(action)) {
             <div class="col-sm-4"><label>@Model.Class.ClassTitle</label></div>
             <input type="hidden" asp-for="Class.ClassTitle" />
@@ -32,12 +29,10 @@
             </div>
         }
     </div>
-
-    @* if not deleting, display text boxes and drop-downs for rest of fields*@
     @if (!Operation.IsDelete(action))
     {
         <div class="form-group row">
-            <div class="col-sm-2"><label>NumberOfCredits:</label></div>
+            <div class="col-sm-2"><label>Number Of Credits:</label></div>
             <div class="col-sm-4">
                 <input type="text" asp-for="Class.NumberOfCredits" class="form-control" />
             </div>
@@ -46,7 +41,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-2"><label>ClassType:</label></div>
+            <div class="col-sm-2"><label>Class Type:</label></div>
             <div class="col-sm-4">
                 <select asp-for="Class.ClassTypeId" class="form-control"
                     asp-items='@new SelectList(Model.ClassTypes, "ClassTypeId", "Name", Model.Class.ClassTypeId)'>
@@ -58,13 +53,12 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-2">
-                <label>Teacher(s):</label><br />
+                <label>Teacher:</label><br />
             </div>
             <div class="col-sm-4">
                 <select asp-for="SelectedTeachers" class="form-control"
                     asp-items='@new MultiSelectList(Model.Teachers, "TeacherId", "FullName", Model.SelectedTeachers)'>
                 </select>
-                (Hold down CTRL or CMD key to select multiple)
             </div>
             <div class="col-sm-6">
                 <span asp-validation-for="SelectedTeachers" class="text-danger"></span>
@@ -73,11 +67,9 @@
     }
     <div class="row">
         <div class="col-sm-4 offset-sm-2">
-            <button type="submit" class="btn btn-primary">@action</button>
-
-            @* return user to main admin page after add, or to search page otherwise *@
+            <button type="submit" class="btn btn-primary">@action</button><!--submit button-->
             <a asp-action="@(Operation.IsAdd(action) ? "Index" : "Search")"
-               class="btn btn-primary">Cancel</a>
+               class="btn btn-primary">Cancel</a><!--cancel button-->
         </div>
     </div>
 </form>

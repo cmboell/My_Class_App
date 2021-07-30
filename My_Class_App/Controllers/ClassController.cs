@@ -55,9 +55,9 @@ namespace My_Classes_App.Controllers
                 builder.ClearFilterSegments();
             }
             else {
-                var author = data.Teachers.Get(filter[0].ToInt());
+                var teacher = data.Teachers.Get(filter[0].ToInt());
                 builder.CurrentRoute.PageNumber = 1;
-                builder.LoadFilterSegments(filter, author);
+                builder.LoadFilterSegments(filter, teacher);
             }
 
             builder.SaveRouteSegments();

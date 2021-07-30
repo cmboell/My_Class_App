@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
-
+//user view model
 namespace My_Classes_App.Models
 {
     public class UserViewModel

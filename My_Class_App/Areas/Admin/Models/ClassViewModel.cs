@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
+//admin class view model
 namespace My_Classes_App.Models
 {
     public class ClassViewModel : IValidatableObject
@@ -14,7 +14,7 @@ namespace My_Classes_App.Models
             if (SelectedTeachers == null)
             {
                 yield return new ValidationResult(
-                  "Please select at least one author.",
+                  "Please select a teacher.",
                   new[] { nameof(SelectedTeachers) });
             }
         }

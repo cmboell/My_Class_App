@@ -28,23 +28,23 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Teacher author in Model.Teachers)
+        @foreach (Teacher teacher in Model.Teachers)
         {
         <tr>
             <td>
-                <a asp-action="Details" asp-route-id="@author.TeacherId"
-                   asp-route-slug="@author.FullName.Slug()">
-                    @author.FirstName
+                <a asp-action="Details" asp-route-id="@teacher.TeacherId"
+                   asp-route-slug="@teacher.FullName.Slug()">
+                    @teacher.FirstName
                 </a>
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@author.TeacherId"
-                   asp-route-slug="@author.FullName.Slug()">
-                    @author.LastName
+                <a asp-action="Details" asp-route-id="@teacher.TeacherId"
+                   asp-route-slug="@teacher.FullName.Slug()">
+                    @teacher.LastName
                 </a>
             </td>
             <td>
-                @foreach (var ba in author.ClassTeachers)
+                @foreach (var ba in teacher.ClassTeachers)
                 {
                     <p>
                         <a asp-action="Details" asp-controller="Class"

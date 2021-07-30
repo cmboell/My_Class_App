@@ -8,7 +8,7 @@ namespace My_Classes_App.Models
     {
         public const string ClassType = "classtype-";
         public const string NumberOfCredits = "startdate-";
-        public const string Teacher = "author-";
+        public const string Teacher = "teacher-";
     }
 
     public class RouteDictionary : Dictionary<string, string>

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using My_Classes_App.Models;
-
+//admin user controller
 namespace My_Classes_App.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
@@ -91,8 +91,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
             IdentityRole adminRole = await roleManager.FindByNameAsync("Admin");
             if (adminRole == null)
             {
-                TempData["message"] = "Admin role does not exist. "
-                    + "Click 'Create Admin Role' button to create it.";
+                TempData["message"] = "Admin role does not exist. Click 'Create Admin Role' button to create it.";
             }
             else
             {

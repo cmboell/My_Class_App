@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Authorization;
-
+using Microsoft.AspNetCore.Authorization; //adds authorization
+//admin class controller 
 namespace My_Classes_App.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    [Area("Admin")]
+    [Authorize(Roles = "Admin")]//authorization for admin
+    [Area("Admin")] //admin area
     public class ClassController : Controller
     {
         private IMyClassUnitOfWork data { get; set; }
@@ -33,7 +33,6 @@ namespace My_Classes_App.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }   
         }
-
         [HttpGet]
         public ViewResult Search()
         {
@@ -89,7 +88,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
                 data.AddNewClassTeachers(vm.Class, vm.SelectedTeachers);
                 data.Classes.Insert(vm.Class);
                 data.Save();
-
+                //message when a class is added
                 TempData["message"] = $"{vm.Class.ClassTitle} added to Classes.";
                 return RedirectToAction("Index");  
             }
@@ -109,9 +108,8 @@ namespace My_Classes_App.Areas.Admin.Controllers
                 data.DeleteCurrentClassTeachers(vm.Class);
                 data.AddNewClassTeachers(vm.Class, vm.SelectedTeachers);
                 data.Classes.Update(vm.Class);
-                data.Save(); 
-                
-                TempData["message"] = $"{vm.Class.ClassTitle} updated.";
+                data.Save();                 
+                TempData["message"] = $"{vm.Class.ClassTitle} updated.";//message when update class
                 return RedirectToAction("Search");  
             }
             else {
@@ -128,6 +126,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
         {
             data.Classes.Delete(vm.Class); 
             data.Save();
+            //message when delete a class
             TempData["message"] = $"{vm.Class.ClassTitle} removed from Classes.";
             return RedirectToAction("Search");  
         }

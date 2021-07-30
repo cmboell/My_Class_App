@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-
+//admin validation controller
 namespace My_Classes_App.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin")]//admin area
     public class ValidationController : Controller
     {
-        public JsonResult CheckClassType(string genreId,
+        public JsonResult CheckClassType(string classTypeId,
             [FromServices] IRepository<ClassType> data)
         {
             var validate = new Validate(TempData);
-            validate.CheckClassType(genreId, data);
+            validate.CheckClassType(classTypeId, data);
             if (validate.IsValid) {
-                validate.MarkGenreChecked();
+                validate.MarkClassTypeChecked();
                 return Json(true);
             }
             else {
@@ -26,7 +26,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
             var validate = new Validate(TempData);
             validate.CheckTeacher(firstName, lastName, operation, data);
             if (validate.IsValid) {
-                validate.MarkAuthorChecked();
+                validate.MarkTeacherChecked();
                 return Json(true);
             }
             else {

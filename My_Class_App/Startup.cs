@@ -72,7 +72,7 @@ namespace My_Classes_App
                 // route for paging, sorting, and filtering
                 endpoints.MapControllerRoute(
                     name: "",
-                    pattern: "{controller}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}/filter/{author}/{classtype}/{price}");
+                    pattern: "{controller}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}/filter/{teacher}/{classtype}/{price}");
 
                 // route for paging and sorting only
                 endpoints.MapControllerRoute(

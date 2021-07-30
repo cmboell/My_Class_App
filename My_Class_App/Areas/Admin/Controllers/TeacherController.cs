@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using My_Classes_App.Models;
+//admin teacher controller
 namespace My_Classes_App.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    [Area("Admin")]
+    [Authorize(Roles = "Admin")]//authorize admin
+    [Area("Admin")]//admin area
     public class TeacherController : Controller
     {
         private IRepository<Teacher> data { get; set; }
@@ -12,17 +13,17 @@ namespace My_Classes_App.Areas.Admin.Controllers
 
         public ViewResult Index()
         {
-            var authors = data.List(new QueryOptions<Teacher> {
+            var teachers = data.List(new QueryOptions<Teacher> {
                 OrderBy = a => a.FirstName
             });
-            return View(authors);
+            return View(teachers);
         }
 
         public RedirectToActionResult Select(int id, string operation)
         {
             switch (operation.ToLower())
             {
-                case "view books":
+                case "view classes":
                     return RedirectToAction("ViewClasses", new { id });
                 case "edit":
                     return RedirectToAction("Edit", new { id });
@@ -37,25 +38,25 @@ namespace My_Classes_App.Areas.Admin.Controllers
         public ViewResult Add() => View("Teacher", new Teacher());
 
         [HttpPost]
-        public IActionResult Add(Teacher author, string operation)
+        public IActionResult Add(Teacher teacher, string operation)
         {
             var validate = new Validate(TempData);
-            if (!validate.IsAuthorChecked) {
-                validate.CheckTeacher(author.FirstName, author.LastName, operation, data);
+            if (!validate.IsTeacherChecked) {
+                validate.CheckTeacher(teacher.FirstName, teacher.LastName, operation, data);
                 if (!validate.IsValid) {
-                    ModelState.AddModelError(nameof(author.LastName), validate.ErrorMessage);
+                    ModelState.AddModelError(nameof(teacher.LastName), validate.ErrorMessage);
                 }    
             }
             
             if (ModelState.IsValid) {
-                data.Insert(author);
+                data.Insert(teacher);
                 data.Save();
-                validate.ClearAuthor();
-                TempData["message"] = $"{author.FullName} added to Teachers.";
+                validate.ClearTeacher();
+                TempData["message"] = $"{teacher.FullName} added to Teachers.";//message when teacher is added
                 return RedirectToAction("Index");  
             }
             else {
-                return View("Teacher", author);
+                return View("Teacher", teacher);
             }
         }
 
@@ -63,57 +64,58 @@ namespace My_Classes_App.Areas.Admin.Controllers
         public ViewResult Edit(int id) => View("Teacher", data.Get(id));
 
         [HttpPost]
-        public IActionResult Edit(Teacher author)
+        public IActionResult Edit(Teacher teacher)
         {
-            // no remote validation of author on edit
+            // no remote validation of teacher on edit
             if (ModelState.IsValid) {
-                data.Update(author);
+                data.Update(teacher);
                 data.Save();
-                TempData["message"] = $"{author.FullName} updated.";
+                TempData["message"] = $"{teacher.FullName} updated.";
                 return RedirectToAction("Index");  
             }
             else {
-                return View("Teacher", author);
+                return View("Teacher", teacher);
             }
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var author = data.Get(new QueryOptions<Teacher> {
+            var teacher = data.Get(new QueryOptions<Teacher> {
                 Includes = "ClassTeachers",
                 Where = a => a.TeacherId == id
             });
 
-            if (author.ClassTeachers.Count > 0) {
-                TempData["message"] = $"Can't delete author {author.FullName} because they are associated with these books.";
-                return GoToAuthorSearch(author);
+            if (teacher.ClassTeachers.Count > 0) {                          
+                //message when a teacher can't be deleted because of association
+                TempData["message"] = $"Can't delete teacher {teacher.FullName} because they are associated with these classes.";
+                return GoToTeacherSearch(teacher);
             }
             else {
-                return View("Teacher", author);
+                return View("Teacher", teacher);
             }
         }
 
         [HttpPost]
-        public RedirectToActionResult Delete(Teacher author)
+        public RedirectToActionResult Delete(Teacher teacher)
         {
-            data.Delete(author);
+            data.Delete(teacher);
             data.Save();
-            TempData["message"] = $"{author.FullName} removed from Teachers.";
+            TempData["message"] = $"{teacher.FullName} removed from Teachers."; //temp data message when teacher is removed
             return RedirectToAction("Index");  
         }
 
         public RedirectToActionResult ViewClasses(int id)
         {
-            var author = data.Get(id);
-            return GoToAuthorSearch(author);
+            var teacher = data.Get(id);
+            return GoToTeacherSearch(teacher);
         }
 
-        private RedirectToActionResult GoToAuthorSearch(Teacher author)
+        private RedirectToActionResult GoToTeacherSearch(Teacher teacher)
         {
             var search = new SearchData(TempData) {
-                SearchTerm = author.FullName,
-                Type = "author"
+                SearchTerm = teacher.FullName,
+                Type = "teacher"
             };
             return RedirectToAction("Search", "Class");
         }

@@ -15,13 +15,13 @@ namespace My_Classes_App.Models
             routes.StartDateFilter = (isInitial) ? FilterPrefix.NumberOfCredits + values.NumberOfCredits : values.NumberOfCredits;
         }
 
-        public void LoadFilterSegments(string[] filter, Teacher author)
+        public void LoadFilterSegments(string[] filter, Teacher teacher)
         {
-            if (author == null) { 
+            if (teacher == null) { 
                 routes.TeacherFilter = FilterPrefix.Teacher + filter[0];
             } else {
                 routes.TeacherFilter = FilterPrefix.Teacher + filter[0]
-                    + "-" + author.FullName.Slug();
+                    + "-" + teacher.FullName.Slug();
             }
             routes.ClassTypeFilter = FilterPrefix.ClassType + filter[1];
             routes.StartDateFilter = FilterPrefix.NumberOfCredits + filter[2];

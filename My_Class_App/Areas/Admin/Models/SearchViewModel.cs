@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
+//search view model
 namespace My_Classes_App.Models
 {
     public class SearchViewModel

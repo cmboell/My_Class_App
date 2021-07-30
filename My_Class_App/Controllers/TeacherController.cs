@@ -39,11 +39,11 @@ namespace My_Classes_App.Controllers
 
         public IActionResult Details(int id)
         {
-            var author = data.Get(new QueryOptions<Teacher> {
+            var teacher = data.Get(new QueryOptions<Teacher> {
                 Includes = "ClassTeachers.Class",
                 Where = a => a.TeacherId == id
             });
-            return View(author);
+            return View(teacher);
         }
     }
 }

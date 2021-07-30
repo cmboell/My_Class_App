@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Authorization;
-
+using Microsoft.AspNetCore.Authorization;//adds authorization
+//admin class type controller
 namespace My_Classes_App.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    [Area("Admin")]
+    [Authorize(Roles = "Admin")]//admin authorize
+    [Area("Admin")]//admin area
     public class ClassTypeController : Controller
     {
         private Repository<ClassType> data { get; set; }
@@ -40,7 +40,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
                 data.Insert(classtype);
                 data.Save();
                 validate.ClearClassType();
-                TempData["message"] = $"{classtype.Name} added to ClassTypes.";
+                TempData["message"] = $"{classtype.Name} added to Class Types.";//message when add a class type
                 return RedirectToAction("Index");  
             }
             else {
@@ -73,8 +73,8 @@ namespace My_Classes_App.Areas.Admin.Controllers
             });
 
             if (classtype.Classes.Count > 0) {
-                TempData["message"] = $"Can't delete classtype {classtype.Name} " 
-                                    + "because it's associated with these classes.";
+                //message when a class type can't be deleted because of association
+                TempData["message"] = $"Can't delete classtype {classtype.Name} because it's associated with these classes.";
                 return GoToClassSearchResults(id);
             }
             else {
@@ -87,8 +87,8 @@ namespace My_Classes_App.Areas.Admin.Controllers
         {
             data.Delete(classtype);
             data.Save();
-            TempData["message"] = $"{classtype.Name} removed from ClassTypes.";
-            return RedirectToAction("Index");  // PRG pattern
+            TempData["message"] = $"{classtype.Name} removed from ClassTypes."; //message when a class type is deleted
+            return RedirectToAction("Index"); 
         }
 
         public RedirectToActionResult ViewClasses(string id) => GoToClassSearchResults(id);

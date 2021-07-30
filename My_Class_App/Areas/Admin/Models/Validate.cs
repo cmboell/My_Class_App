@@ -3,25 +3,23 @@ namespace My_Classes_App.Models
 {
     public class Validate
     {
-        private const string GenreKey = "validGenre";
-        private const string AuthorKey = "validAuthor";
-
+        private const string ClassTypeKey = "validClassType";
+        private const string TeacherKey = "validTeacher";
         private ITempDataDictionary tempData { get; set; }
         public Validate(ITempDataDictionary temp) => tempData = temp;
-
         public bool IsValid { get; private set; }
         public string ErrorMessage { get; private set; }
 
-        public void CheckClassType(string genreId, IRepository<ClassType> data)
+        public void CheckClassType(string classTypeId, IRepository<ClassType> data)
         {
-            ClassType entity = data.Get(genreId);
+            ClassType entity = data.Get(classTypeId);
             IsValid = (entity == null) ? true : false;
             ErrorMessage = (IsValid) ? "" :
-                $"ClassType id {genreId} is already in the database.";
+                $"ClassType id {classTypeId} is already in the database.";
         }
-        public void MarkGenreChecked() => tempData[GenreKey] = true;
-        public void ClearClassType() => tempData.Remove(GenreKey);
-        public bool IsClassTypeChecked => tempData.Keys.Contains(GenreKey);
+        public void MarkClassTypeChecked() => tempData[ClassTypeKey] = true;
+        public void ClearClassType() => tempData.Remove(ClassTypeKey);
+        public bool IsClassTypeChecked => tempData.Keys.Contains(ClassTypeKey);
 
         public void CheckTeacher(string firstName, string lastName, string operation, IRepository<Teacher> data)
         {
@@ -30,15 +28,15 @@ namespace My_Classes_App.Models
             {
                 entity = data.Get(new QueryOptions<Teacher>
                 {
-                    Where = a => a.FirstName == firstName && a.LastName == lastName
+                    Where = t => t.FirstName == firstName && t.LastName == lastName
                 });
             }
             IsValid = (entity == null) ? true : false;
             ErrorMessage = (IsValid) ? "" :
                 $"Teacher {entity.FullName} is already in the database.";
         }
-        public void MarkAuthorChecked() => tempData[AuthorKey] = true;
-        public void ClearAuthor() => tempData.Remove(AuthorKey);
-        public bool IsAuthorChecked => tempData.Keys.Contains(AuthorKey);
+        public void MarkTeacherChecked() => tempData[TeacherKey] = true;
+        public void ClearTeacher() => tempData.Remove(TeacherKey);
+        public bool IsTeacherChecked => tempData.Keys.Contains(TeacherKey);
     }
 }
