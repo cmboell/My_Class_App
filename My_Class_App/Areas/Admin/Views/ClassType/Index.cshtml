@@ -4,13 +4,14 @@
     ViewData["ClassTitle"] = " | Manage ClassTypes";
 }
 
-<h1 class="mb-2">Manage ClassTypes</h1>
+<h1 class="mb-2">Manage Class Types</h1>
 
-<h5 class="mt-2"><a asp-action="Add" asp-area="Admin">Add a ClassType</a></h5>
+<h5 class="mt-2"><a asp-action="Add" asp-area="Admin">Add a Class Type</a></h5>
 
 <table class="table table-bordered table-striped table-sm">
     <thead>
-        <tr><th>ClassTypeId</th><th>Name</th><th></th></tr>
+        <tr><th>Class Type Id</th>
+        <th>Name</th><th></th></tr>
     </thead>
     <tbody>
         @foreach (ClassType classtype in Model)

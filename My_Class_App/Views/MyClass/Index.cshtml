@@ -1,43 +1,23 @@
 ﻿@model MyClassViewModel
-
+<!--my class index view-->
 @{
     ViewData["ClassTitle"] = " | MyClass";
 }
 
-<h1>Your MyClass</h1>
-
-<form asp-action="Clear" method="post">
-    <ul class="list-group mb-4">
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col">
-                    totalCredits: @Model.totalCredits.ToString("c")
-                </div>
-                <div class="col">
-                    <div class="float-right">
-                        <button type="submit" class="btn btn-primary">Clear MyClass</button>
-                        <a asp-action="List" asp-controller="Class"
-                           asp-all-route-data="@Model.ClassGridRoute">Back to Shopping</a>
-                    </div>
-                    
-                </div>
-            </div>
-        </li>
-    </ul>
-</form>
+<h1>My Classes</h1>
 <form asp-action="Remove" method="post">
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th>ClassTitle</th>
+                <th>Class Title</th>
                 <th>Teacher</th>
-                <th>NumberOfCredits</th>
-                <th>totalCredits</th>
+                <th>Number Of Credits</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (ClassItem item in Model.List)  {
+            @foreach (ClassItem item in Model.List)
+            {
                 <tr>
                     <td>
                         <a asp-action="Details" asp-controller="Class"
@@ -47,7 +27,8 @@
                         </a>
                     </td>
                     <td>
-                        @foreach (var keyValuePair in item.Class.Teachers) {
+                        @foreach (var keyValuePair in item.Class.Teachers)
+                        {
                             <p>
                                 <a asp-action="Details" asp-controller="Teacher"
                                    asp-route-id="@keyValuePair.Key"
@@ -58,15 +39,36 @@
                         }
                     </td>
                     <td>@item.Class.NumberOfCredits.ToString("c")</td>
-                    <td>@item.totalCredits.ToString("c")</td>
                     <td>
                         <div class="float-right">
                             <button type="submit" name="id" value="@item.Class.ClassId"
-                                    class="btn btn-primary">Remove</button>
+                                    class="btn btn-primary">
+                                Remove
+                            </button>
                         </div>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+</form>
+
+<form asp-action="Clear" method="post">
+    <ul class="list-group mb-4">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col">
+                    Total Credits: @Model.totalCredits.ToString("c")
+                </div>
+                <div class="col">
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-primary">Clear My Classes</button>
+                        <a asp-action="Index" asp-controller="Home"
+                           asp-all-route-data="@Model.ClassGridRoute">Back to Home</a>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+    </ul>
 </form>

@@ -2,7 +2,7 @@
 
 @{
     ViewData["ClassTitle"] = " | Class Details";
-  
+
 }
 
 <h1>Class Details</h1>
@@ -10,28 +10,34 @@
 <table class="table table-bordered table-sm">
     <thead>
         <tr class="thead-dark">
-            <th>ClassTitle:</th><th>@Model.ClassTitle</th>
+            <th>Class Title:</th>
+            <th>@Model.ClassTitle</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>@(Model.ClassTeachers.Count > 1 ? "Teachers" : "Teacher")</td>
             <td>
-                @foreach (ClassTeacher ba in Model.ClassTeachers) {
-                    <p><a asp-action="Details" asp-controller="Teacher"
-                        asp-route-id="@ba.TeacherId"
-                        asp-route-slug="@ba.Teacher.FullName.Slug()">
-                        @ba.Teacher.FullName
-                    </a></p>
+                @foreach (ClassTeacher ct in Model.ClassTeachers)
+                {
+                    <p>
+                        <a asp-action="Details" asp-controller="Teacher"
+                           asp-route-id="@ct.TeacherId"
+                           asp-route-slug="@ct.Teacher.FullName.Slug()">
+                            @ct.Teacher.FullName
+                        </a>
+                    </p>
                 }
             </td>
         </tr>
-        <tr><td>NumberOfCredits:</td><td>@Model.NumberOfCredits.ToString("c")</td></tr>
-        <tr><td>ClassType:</td><td>@Model.ClassType.Name</td></tr>
+        <tr><td>Number Of Credits:</td><td>@Model.NumberOfCredits.ToString("c")</td></tr>
+        <tr><td>Class Type:</td><td>@Model.ClassType.Name</td></tr>
     </tbody>
 </table>
 
 <form asp-action="Add" asp-controller="MyClass" method="post">
     <button type="submit" name="id" value="@Model.ClassId"
-        class="btn btn-primary" >Add To MyClass</button>
+            class="btn btn-primary">
+        Add To My Classes
+    </button>
 </form>

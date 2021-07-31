@@ -63,8 +63,7 @@ ViewContext.RouteData.Values["controller"]?.ToString();
                         <li class="nav-item">
                             <form method="post" asp-action="LogOut" asp-controller="Account"
                                   asp-area="">
-                                <input type="submit" value="Log Out"
-                                       class="btn btn-outline-info" />
+                                <input type="submit" value="Log Out" class="btn btn-outline-info" />
                                 <span class="text-info">@User.Identity.Name</span>
                             </form>
                         </li>
