@@ -1,5 +1,6 @@
 ﻿namespace My_Classes_App.Models
 {
+    //model
     public interface IMyClassUnitOfWork
     {
         IRepository<Class> Classes { get; }

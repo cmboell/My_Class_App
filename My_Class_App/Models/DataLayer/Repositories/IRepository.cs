@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace My_Classes_App.Models
-{
+{//model
     public interface IRepository<T> where T : class
     {
         IEnumerable<T> List(QueryOptions<T> options);

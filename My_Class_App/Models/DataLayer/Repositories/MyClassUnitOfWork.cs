@@ -1,5 +1,6 @@
 ﻿namespace My_Classes_App.Models
 {
+    //model
     public class MyClassUnitOfWork : IMyClassUnitOfWork
     {
         private MyClassContext context { get; set; }

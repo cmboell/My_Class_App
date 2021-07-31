@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-
+//model
 namespace My_Classes_App.Models
 {
     public class Repository<T> : IRepository<T> where T : class
