@@ -8,6 +8,6 @@ namespace My_Classes_App.Models
         public int Quantity { get; set; }
 
         [JsonIgnore]
-        public double Subtotal => Class.NumberOfCredits * Quantity;
+        public double totalCredits => Class.NumberOfCredits * Quantity;
     }
 }

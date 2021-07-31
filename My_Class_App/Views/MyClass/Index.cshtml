@@ -11,7 +11,7 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col">
-                    Subtotal: @Model.Subtotal.ToString("c")
+                    totalCredits: @Model.totalCredits.ToString("c")
                 </div>
                 <div class="col">
                     <div class="float-right">
@@ -33,7 +33,7 @@
                 <th>Teacher(s)</th>
                 <th>NumberOfCredits</th>
                 <th>Quantity</th>
-                <th>Subtotal</th>
+                <th>totalCredits</th>
                 <th></th>
             </tr>
         </thead>
@@ -60,7 +60,7 @@
                     </td>
                     <td>@item.Class.NumberOfCredits.ToString("c")</td>
                     <td>@item.Quantity</td>
-                    <td>@item.Subtotal.ToString("c")</td>
+                    <td>@item.totalCredits.ToString("c")</td>
                     <td>
                         <div class="float-right">
                             <a asp-action="Edit" asp-controller="MyClass"

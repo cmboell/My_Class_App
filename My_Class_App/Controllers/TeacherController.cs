@@ -3,6 +3,7 @@ using My_Classes_App.Models;
 using Microsoft.AspNetCore.Authorization;
 namespace My_Classes_App.Controllers
 {
+    //teacher controller
     [Authorize] //makes it so you have to sign in to view
     public class TeacherController : Controller
     {
@@ -24,9 +25,9 @@ namespace My_Classes_App.Controllers
                 OrderByDirection = builder.CurrentRoute.SortDirection
             };
             if (builder.CurrentRoute.SortField.EqualsNoCase(defaultSort))
-                options.OrderBy = a => a.FirstName;
+                options.OrderBy = t => t.FirstName;
             else
-                options.OrderBy = a => a.LastName;
+                options.OrderBy = t => t.LastName;
 
             var vm = new TeacherListViewModel {
                 Teachers = data.List(options),
@@ -41,7 +42,7 @@ namespace My_Classes_App.Controllers
         {
             var teacher = data.Get(new QueryOptions<Teacher> {
                 Includes = "ClassTeachers.Class",
-                Where = a => a.TeacherId == id
+                Where = t => t.TeacherId == id
             });
             return View(teacher);
         }

@@ -14,7 +14,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
         public ViewResult Index()
         {
             var teachers = data.List(new QueryOptions<Teacher> {
-                OrderBy = a => a.FirstName
+                OrderBy = t => t.FirstName
             });
             return View(teachers);
         }
@@ -83,7 +83,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
         {
             var teacher = data.Get(new QueryOptions<Teacher> {
                 Includes = "ClassTeachers",
-                Where = a => a.TeacherId == id
+                Where = t => t.TeacherId == id
             });
 
             if (teacher.ClassTeachers.Count > 0) {                          

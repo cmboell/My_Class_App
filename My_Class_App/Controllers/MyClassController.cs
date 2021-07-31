@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
 using Microsoft.AspNetCore.Authorization;
-
+//my class controller
 namespace My_Classes_App.Controllers
 {
     [Authorize] //makes it so have to sign in to view
     public class MyClassController : Controller
     {
         private IRepository<Class> data { get; set; }
-        private IClass cart { get; set; }
+        private IClass aClass { get; set; }
 
         public MyClassController(IRepository<Class> rep, IClass c)
         {
             data = rep;
-            cart = c;
-            cart.Load(data);
+            aClass = c;
+            aClass.Load(data);
         }
 
         public ViewResult Index() 
@@ -22,8 +22,8 @@ namespace My_Classes_App.Controllers
             var builder = new ClassesGridBuilder(HttpContext.Session);
 
             var vm = new MyClassViewModel {
-                List = cart.List,
-                Subtotal = cart.Subtotal,
+                List = aClass.List,
+                totalCredits = aClass.totalCredits,
                 ClassGridRoute = builder.CurrentRoute
             };
             return View(vm);
@@ -34,10 +34,10 @@ namespace My_Classes_App.Controllers
         {
             var class1 = data.Get(new QueryOptions<Class> {
                 Includes = "ClassTeachers.Teacher, ClassType",
-                Where = b => b.ClassId == id
+                Where = c => c.ClassId == id
             });
             if (class1 == null){
-                TempData["message"] = "Unable to add class1 to cart.";   
+                TempData["message"] = "Unable to add class to Classes.";   //message when cant add to classes
             }
             else {
                 var dto = new ClassDTO();
@@ -47,10 +47,10 @@ namespace My_Classes_App.Controllers
                     Quantity = 1  // default value
                 };
 
-                cart.Add(item);
-                cart.Save();
+                aClass.Add(item);
+                aClass.Save();
 
-                TempData["message"] = $"{class1.ClassTitle} added to cart";
+                TempData["message"] = $"{class1.ClassTitle} added to Classes"; //when added to classes
             }
 
             var builder = new ClassesGridBuilder(HttpContext.Session);
@@ -60,31 +60,31 @@ namespace My_Classes_App.Controllers
         [HttpPost]
         public RedirectToActionResult Remove(int id)
         {
-            ClassItem item = cart.GetById(id);
-            cart.Remove(item);
-            cart.Save();
+            ClassItem item = aClass.GetById(id);
+            aClass.Remove(item);
+            aClass.Save();
 
-            TempData["message"] = $"{item.Class.ClassTitle} removed from cart.";
+            TempData["message"] = $"{item.Class.ClassTitle} removed from Classes."; //when removed from classes
             return RedirectToAction("Index");
         }
                 
         [HttpPost]
         public RedirectToActionResult Clear()
         {
-            cart.Clear();
-            cart.Save();
+            aClass.Clear();
+            aClass.Save();
 
-            TempData["message"] = "MyClass cleared.";
+            TempData["message"] = "My Classes cleared."; //when clear all classes
             return RedirectToAction("Index");
         }
 
 
         public IActionResult Edit(int id)
         {
-            ClassItem item = cart.GetById(id);
+            ClassItem item = aClass.GetById(id);
             if (item == null)
             {
-                TempData["message"] = "Unable to locate cart item";
+                TempData["message"] = "Unable to locate Class";//when can't find class
                 return RedirectToAction("List");
             }
             else
@@ -96,10 +96,10 @@ namespace My_Classes_App.Controllers
         [HttpPost]
         public RedirectToActionResult Edit(ClassItem item)
         {
-            cart.Edit(item);
-            cart.Save();
+            aClass.Edit(item);
+            aClass.Save();
 
-            TempData["message"] = $"{item.Class.ClassTitle} updated";
+            TempData["message"] = $"{item.Class.ClassTitle} updated";//when updated
             return RedirectToAction("Index");
         }
 

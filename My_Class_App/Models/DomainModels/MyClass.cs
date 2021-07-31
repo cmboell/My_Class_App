@@ -52,7 +52,7 @@ namespace My_Classes_App.Models
             }
         }
 
-        public double Subtotal => items.Sum(i => i.Subtotal);
+        public double totalCredits => items.Sum(i => i.totalCredits);
         public int? Count => session.GetInt32(CountKey) ?? requestCookies.GetInt32(CountKey);
         public IEnumerable<ClassItem> List => items;
 

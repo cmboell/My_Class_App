@@ -5,7 +5,7 @@ namespace My_Classes_App.Models
     public interface IClass
     {
         void Load(IRepository<Class> data);
-        double Subtotal { get; }
+        double totalCredits { get; }
         int? Count { get; }
         IEnumerable<ClassItem> List { get; }
         ClassItem GetById(int id);

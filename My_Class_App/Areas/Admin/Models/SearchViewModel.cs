@@ -9,7 +9,6 @@ namespace My_Classes_App.Models
 
         [Required(ErrorMessage = "Please enter a search term.")]
         public string SearchTerm { get; set; }
-
         public string Type { get; set; }
         public string Header { get; set; }
     }

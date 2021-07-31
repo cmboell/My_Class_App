@@ -4,6 +4,7 @@ using My_Classes_App.Models;
 
 namespace My_Classes_App.Controllers
 {
+    //home controller
     public class HomeController : Controller
     {
         private IRepository<Class> data { get; set; }
@@ -12,16 +13,10 @@ namespace My_Classes_App.Controllers
         public ViewResult Index()
         {
             var random = data.Get(new QueryOptions<Class> {
-                OrderBy = b => Guid.NewGuid()
+                OrderBy = c => Guid.NewGuid()
             });
 
             return View(random);
         }
-
-        public ContentResult Register()
-        {
-            return Content("Registration has not been implemented yet. It is implemented in chapter 16.");
-        }
-
     }
 }

@@ -6,7 +6,6 @@ namespace My_Classes_App.Models
     {
         private const string SearchKey = "search";
         private const string TypeKey = "searchtype";
-
         private ITempDataDictionary tempData { get; set; }
         public SearchData(ITempDataDictionary temp) =>
             tempData = temp;

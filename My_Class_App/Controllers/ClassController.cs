@@ -3,6 +3,7 @@ using My_Classes_App.Models;
 using Microsoft.AspNetCore.Authorization;
 namespace My_Classes_App.Controllers
 {
+    //class controller
     [Authorize] //makes it so you have to sign in to view 
     public class ClassController : Controller
     {
@@ -27,9 +28,9 @@ namespace My_Classes_App.Controllers
             var vm = new ClassListViewModel{
                 Classes = data.Classes.List(options),
                 Teachers = data.Teachers.List(new QueryOptions<Teacher> {
-                    OrderBy = a => a.FirstName }),
+                    OrderBy = t => t.FirstName }),
                 ClassTypes = data.ClassTypes.List(new QueryOptions<ClassType> {
-                    OrderBy = g => g.Name }),
+                    OrderBy = ct => ct.Name }),
                 CurrentRoute = builder.CurrentRoute,
                 TotalPages = builder.GetTotalPages(data.Classes.Count)
             };
@@ -41,7 +42,7 @@ namespace My_Classes_App.Controllers
         {
             var class1 = data.Classes.Get(new QueryOptions<Class> {
                 Includes = "ClassTeachers.Teacher, ClassType",
-                Where = b => b.ClassId == id
+                Where = c => c.ClassId == id
             });
             return View(class1);
         }

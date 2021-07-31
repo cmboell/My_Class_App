@@ -5,6 +5,7 @@ using My_Classes_App.Models;
 using Microsoft.AspNetCore.Session;
 namespace My_Classes_App.Controllers
 {
+    //account controller
     public class AccountController : Controller
     {
         private UserManager<User> userManager;

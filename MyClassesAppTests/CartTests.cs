@@ -39,11 +39,11 @@ namespace My_Classes_App.Tests
         public void Subtotal_ReturnsADouble()
         {
             // arrange
-            MyClass cart = GetCart();
-            cart.Add(new ClassItem { Class = new ClassDTO() });
+            MyClass aClass = GetCart();
+            aClass.Add(new ClassItem { Class = new ClassDTO() });
 
             // act
-            var result = cart.Subtotal;
+            var result = aClass.totalCredits;
 
             // assert
             Assert.IsType<double>(result);
