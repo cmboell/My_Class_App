@@ -1,5 +1,6 @@
 ﻿namespace My_Classes_App.Models
 {
+    //nav model
     public static class Nav
     {
         public static string Active(string value, string current) => 

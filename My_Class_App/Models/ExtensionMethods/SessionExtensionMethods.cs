@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-
+//model
 namespace My_Classes_App.Models
 {
     public static class SessionExtensions

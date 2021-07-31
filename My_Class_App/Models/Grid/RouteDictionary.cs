@@ -7,7 +7,7 @@ namespace My_Classes_App.Models
     public static class FilterPrefix
     {
         public const string ClassType = "classtype-";
-        public const string NumberOfCredits = "startdate-";
+        public const string NumberOfCredits = "credits-";
         public const string Teacher = "teacher-";
     }
 
@@ -48,7 +48,7 @@ namespace My_Classes_App.Models
             set => this[nameof(ClassesGridDTO.ClassType)] = value;
         }
 
-        public string StartDateFilter {
+        public string CreditFilter {
             get => Get(nameof(ClassesGridDTO.NumberOfCredits))?.Replace(FilterPrefix.NumberOfCredits, "");
             set => this[nameof(ClassesGridDTO.NumberOfCredits)] = value;
         }
@@ -64,7 +64,7 @@ namespace My_Classes_App.Models
         }
 
         public void ClearFilters() =>
-            ClassTypeFilter = StartDateFilter = TeacherFilter = ClassesGridDTO.DefaultFilter;
+            ClassTypeFilter = CreditFilter = TeacherFilter = ClassesGridDTO.DefaultFilter;
 
         private string Get(string key) => Keys.Contains(key) ? this[key] : null;
 

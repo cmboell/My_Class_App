@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+//model
 namespace My_Classes_App.Models
 {
     public interface IClass

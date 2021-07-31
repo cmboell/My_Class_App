@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+//register view model
 namespace My_Classes_App.Models
 {
     public class RegisterViewModel

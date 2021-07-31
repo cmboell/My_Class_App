@@ -1,5 +1,5 @@
 ﻿using System.Text;
-
+//model
 namespace My_Classes_App.Models
 {
     public static class StringExtensions

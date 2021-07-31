@@ -29,7 +29,7 @@
     <label>NumberOfCredits: </label>
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
-            Model.Prices, "Key", "Value", current.StartDateFilter))">
+            Model.Credits, "Key", "Value", current.CreditFilter))">
         <option value="@ClassesGridDTO.DefaultFilter">All</option>
     </select>
 
@@ -41,7 +41,7 @@
 </form>
 
 @* add to aClass form *@
-<form asp-action="Add" asp-controller="MyClasses" method="post">
+<form asp-action="Add" asp-controller="MyClass" method="post">
     <table class="table table-bordered table-striped table-sm">
         @* for each table column, update the route dictionary with the field to sort by, and then use
             that route dictionary and the current route to create route segments for sorting link *@

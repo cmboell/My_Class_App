@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-
+//model
 namespace My_Classes_App.Models
 {
     public class ClassDTO
     {
+        //attributes
         public int ClassId { get; set; }
         public string ClassTitle { get; set; }
         public double NumberOfCredits { get; set; }
@@ -15,8 +16,8 @@ namespace My_Classes_App.Models
             ClassTitle = class1.ClassTitle;
             NumberOfCredits = class1.NumberOfCredits;
             Teachers = new Dictionary<int, string>();
-            foreach (ClassTeacher ca in class1.ClassTeachers) {
-                Teachers.Add(ca.Teacher.TeacherId, ca.Teacher.FullName);
+            foreach (ClassTeacher ct in class1.ClassTeachers) {
+                Teachers.Add(ct.Teacher.TeacherId, ct.Teacher.FullName);
             }
         }
     }

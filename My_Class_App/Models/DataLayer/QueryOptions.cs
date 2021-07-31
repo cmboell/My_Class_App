@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-
+//model
 namespace My_Classes_App.Models
 {
     public class QueryOptions<T>
@@ -10,7 +10,6 @@ namespace My_Classes_App.Models
         public string OrderByDirection { get; set; } = "asc";  
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
-
         public WhereClauses<T> WhereClauses { get; set; }
         public Expression<Func<T, bool>> Where {
             set {

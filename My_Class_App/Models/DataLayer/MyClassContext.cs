@@ -4,16 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
-
-
+//my class context model
 namespace My_Classes_App.Models
 {
-    public class MyClassContext : IdentityDbContext<User>
+    public class MyClassContext : IdentityDbContext<User> //extension
     {
         public MyClassContext(DbContextOptions<MyClassContext> options)
             : base(options)
         { }
-
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<ClassTeacher> ClassTeachers { get; set; }
@@ -22,19 +20,16 @@ namespace My_Classes_App.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // ClassTeacher: set primary key 
+            // ClassTeacher set primary key 
             modelBuilder.Entity<ClassTeacher>().HasKey(ct => new { ct.ClassId, ct.TeacherId });
-
-            // ClassTeacher: set foreign keys 
+            // ClassTeacher set foreign keys 
             modelBuilder.Entity<ClassTeacher>().HasOne(ct => ct.Class)
                 .WithMany(c => c.ClassTeachers)
                 .HasForeignKey(ct => ct.ClassId);
             modelBuilder.Entity<ClassTeacher>().HasOne(ct => ct.Teacher)
                 .WithMany(t => t.ClassTeachers)
                 .HasForeignKey(ct => ct.TeacherId);
-
-            // Class: remove cascading delete with ClassType
+            // Class remove cascading delete with ClassType
             modelBuilder.Entity<Class>().HasOne(c => c.ClassType)
                 .WithMany(ct => ct.Classes)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -46,23 +41,22 @@ namespace My_Classes_App.Models
             modelBuilder.ApplyConfiguration(new SeedClassTeachers());
         }
 
-        public static async Task CreateAdminUser(IServiceProvider serviceProvider)
+        public static async Task CreateAdminUser(IServiceProvider serviceProvider) //create admin info
         {
             UserManager<User> userManager =
                 serviceProvider.GetRequiredService<UserManager<User>>();
             RoleManager<IdentityRole> roleManager =
                 serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
+            //admin
             string username = "admin";
             string password = "Admin1";
             string roleName = "Admin";
 
-            // if role doesn't exist, create it
+            //creates if doesnt exist
             if (await roleManager.FindByNameAsync(roleName) == null)
             {
                 await roleManager.CreateAsync(new IdentityRole(roleName));
             }
-
             // if username doesn't exist, create it and add to role
             if (await userManager.FindByNameAsync(username) == null)
             {

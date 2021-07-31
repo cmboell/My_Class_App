@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-
+//model
 namespace My_Classes_App.Models
 {
     public class ClassesGridBuilder : GridBuilder
@@ -12,7 +12,7 @@ namespace My_Classes_App.Models
             bool isInitial = values.ClassType.IndexOf(FilterPrefix.ClassType) == -1;
             routes.TeacherFilter = (isInitial) ? FilterPrefix.Teacher + values.Teacher : values.Teacher;
             routes.ClassTypeFilter = (isInitial) ? FilterPrefix.ClassType + values.ClassType : values.ClassType;
-            routes.StartDateFilter = (isInitial) ? FilterPrefix.NumberOfCredits + values.NumberOfCredits : values.NumberOfCredits;
+            routes.CreditFilter = (isInitial) ? FilterPrefix.NumberOfCredits + values.NumberOfCredits : values.NumberOfCredits;
         }
 
         public void LoadFilterSegments(string[] filter, Teacher teacher)
@@ -24,18 +24,18 @@ namespace My_Classes_App.Models
                     + "-" + teacher.FullName.Slug();
             }
             routes.ClassTypeFilter = FilterPrefix.ClassType + filter[1];
-            routes.StartDateFilter = FilterPrefix.NumberOfCredits + filter[2];
+            routes.CreditFilter = FilterPrefix.NumberOfCredits + filter[2];
         }
         public void ClearFilterSegments() => routes.ClearFilters();
 
         string def = ClassesGridDTO.DefaultFilter;   
         public bool IsFilterByTeacher => routes.TeacherFilter != def;
         public bool IsFilterByClassType => routes.ClassTypeFilter != def;
-        public bool IsFilterByStartDate => routes.StartDateFilter != def;
+        public bool IsFilterByCredits => routes.CreditFilter != def;
 
-        public bool IsSortByGenre =>
+        public bool IsSortByClassType =>
             routes.SortField.EqualsNoCase(nameof(ClassType));
-        public bool IsSortByPrice =>
+        public bool IsSortByCredits =>
             routes.SortField.EqualsNoCase(nameof(Class.NumberOfCredits));
     }
 }

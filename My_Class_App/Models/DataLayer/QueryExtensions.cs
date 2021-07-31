@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-
+//model
 namespace My_Classes_App.Models
 {
     public static class QueryExtensions

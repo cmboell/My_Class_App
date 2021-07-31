@@ -1,7 +1,9 @@
 ﻿namespace My_Classes_App.Models
 {
+    //model
     public class GridDTO
     {
+        //attributes 
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 4;
         public string SortField { get; set; }

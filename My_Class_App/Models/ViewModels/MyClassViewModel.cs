@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+//my class view model
 namespace My_Classes_App.Models
 {
     public class MyClassViewModel 

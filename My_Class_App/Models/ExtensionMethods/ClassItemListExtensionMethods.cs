@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-
+//model
 namespace My_Classes_App.Models
 {
     public static class ClassItemListExtensionMethods

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-
+//model
 namespace My_Classes_App.Models
 {
     public class GridBuilder

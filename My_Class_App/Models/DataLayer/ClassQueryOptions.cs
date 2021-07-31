@@ -1,36 +1,36 @@
 ﻿using System.Linq;
-
+//model
 namespace My_Classes_App.Models
 {
     public class ClassQueryOptions : QueryOptions<Class>
     {
         public void SortFilter(ClassesGridBuilder builder)
         {
-            if (builder.IsFilterByClassType) {
-                Where = b => b.ClassTypeId == builder.CurrentRoute.ClassTypeFilter;
+            if (builder.IsFilterByClassType) {//class type filter
+                Where = c => c.ClassTypeId == builder.CurrentRoute.ClassTypeFilter;
             }
-            if (builder.IsFilterByStartDate) {
-                if (builder.CurrentRoute.StartDateFilter == "under7")
-                    Where = b => b.NumberOfCredits < 7;
-                else if (builder.CurrentRoute.StartDateFilter == "7to14")
-                    Where = b => b.NumberOfCredits >= 7 && b.NumberOfCredits <= 14;
+            if (builder.IsFilterByCredits) {//filter by credits
+                if (builder.CurrentRoute.CreditFilter == "under 2")
+                    Where = c => c.NumberOfCredits < 2;
+                else if (builder.CurrentRoute.CreditFilter == "2 to 3")
+                    Where = c => c.NumberOfCredits >= 2 && c.NumberOfCredits <= 3;
                 else
-                    Where = b => b.NumberOfCredits > 14;
+                    Where = c => c.NumberOfCredits > 3;
             }
-            if (builder.IsFilterByTeacher) {
+            if (builder.IsFilterByTeacher) {//filter by teacher
                 int id = builder.CurrentRoute.TeacherFilter.ToInt();
                 if (id > 0)
-                    Where = b => b.ClassTeachers.Any(ba => ba.Teacher.TeacherId == id);
+                    Where = c => c.ClassTeachers.Any(ct => ct.Teacher.TeacherId == id);
             }
 
-            if (builder.IsSortByGenre) {
-                OrderBy = b => b.ClassType.Name;
+            if (builder.IsSortByClassType) { //sort by class type
+                OrderBy = c => c.ClassType.Name;
             }
-            else if (builder.IsSortByPrice) {
-                OrderBy = b => b.NumberOfCredits;
+            else if (builder.IsSortByCredits) { //sort by credits
+                OrderBy = c => c.NumberOfCredits;
             }
             else  {
-                OrderBy = b => b.ClassTitle;
+                OrderBy = c => c.ClassTitle;//by class title
             }
         }
     }

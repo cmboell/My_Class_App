@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
+//seed class model
 namespace My_Classes_App.Models
 {
     internal class SeedClasses : IEntityTypeConfiguration<Class>

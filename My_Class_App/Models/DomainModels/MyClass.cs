@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
-
+//my class model
 namespace My_Classes_App.Models
 {
     public class MyClass : IClass
