@@ -38,7 +38,7 @@
                             </p>
                         }
                     </td>
-                    <td>@item.Class.NumberOfCredits.ToString("c")</td>
+                    <td>@item.Class.NumberOfCredits.ToString()</td>
                     <td>
                         <div class="float-right">
                             <button type="submit" name="id" value="@item.Class.ClassId"
@@ -58,7 +58,7 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col">
-                    Total Credits: @Model.totalCredits.ToString("c")
+                    Total Credits: @Model.totalCredits.ToString()
                 </div>
                 <div class="col">
                     <div class="float-right">

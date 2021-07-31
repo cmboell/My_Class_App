@@ -8,6 +8,6 @@ namespace My_Classes_App.Models
 
 
         [JsonIgnore]
-        public double totalCredits => Class.NumberOfCredits;
+        public int totalCredits => (int)Class.NumberOfCredits;
     }
 }

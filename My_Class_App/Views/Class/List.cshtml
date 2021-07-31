@@ -47,7 +47,7 @@
                 <th>
                     @{ routes.SetSortAndDirection(nameof(ClassType), current); }
                     <a asp-action="List" asp-all-route-data="@routes"
-                       class="text-white">ClassType</a>
+                       class="text-white">Class Type</a>
                 </th>
                 <th>
                     @{ routes.SetSortAndDirection(nameof(Class.NumberOfCredits), current); }
@@ -80,7 +80,7 @@
                         }
                     </td>
                     <td>@class1.ClassType?.Name</td>
-                    <td>@class1.NumberOfCredits.ToString("c")</td>
+                    <td>@class1.NumberOfCredits.ToString()</td>
                     <td>
                         
                         <button type="submit" name="id" value="@class1.ClassId"class="btn btn-primary">Add To My Classes</button>
