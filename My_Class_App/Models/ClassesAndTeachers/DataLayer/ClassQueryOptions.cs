@@ -6,7 +6,7 @@ namespace My_Classes_App.Models
     {
         public void SortFilter(ClassesGridBuilder builder)
         {
-            if (builder.IsFilterByClassType) {//class type filter
+            if (builder.IsFilterByClassType) {//class type filter..
                 Where = c => c.ClassTypeId == builder.CurrentRoute.ClassTypeFilter;
             }
             if (builder.IsFilterByCredits) {//filter by credits 
