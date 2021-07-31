@@ -7,13 +7,12 @@ namespace My_Classes_App.Models
     public class ClassType
     {
         //attributes
-        [MaxLength(10)]
-        [Required(ErrorMessage = "Please enter a classtype id.")]
+        [Required(ErrorMessage = "Please enter a classtype id.")]//required fields
+        [MaxLength(25)]
         [Remote("CheckClassType", "Validation", "Admin")]
-        public string ClassTypeId { get; set; }
-        
+        public string ClassTypeId { get; set; }//primary key
+        [Required(ErrorMessage = "Please enter a class type name.")]
         [StringLength(25)]
-        [Required(ErrorMessage = "Please enter a classtype name.")]
         public string Name { get; set; }
 
         public ICollection<Class> Classes { get; set; }

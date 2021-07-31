@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using My_Classes_App.Models;
 
 namespace My_Classes_App.Migrations
 {
     [DbContext(typeof(MyClassContext))]
-    partial class MyClassContextModelSnapshot : ModelSnapshot
+    [Migration("20210731041140_hopeful fix")]
+    partial class hopefulfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,8 +217,8 @@ namespace My_Classes_App.Migrations
                         {
                             ClassId = 6,
                             ClassTitle = "Advanced C#",
-                            ClassTypeId = "computerscience",
-                            NumberOfCredits = 5
+                            ClassTypeId = "computerscience ",
+                            NumberOfCredits = 3
                         },
                         new
                         {

@@ -6,14 +6,14 @@ namespace My_Classes_App.Models
 {
     public class Teacher
     {
-        public int TeacherId { get; set; }
+        public int TeacherId { get; set; }//primary key
 
-        [Required(ErrorMessage = "Please enter a first name.")]
-        [MaxLength(200)]
+        [Required(ErrorMessage = "Please enter a first name.")]//required fields
+        [MaxLength(55)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Please enter a last name.")]
-        [MaxLength(200)]
+        [MaxLength(55)]
         [Remote("CheckTeacher", "Validation", "Admin", 
             AdditionalFields = "FirstName, Operation")] 
         public string LastName { get; set; }

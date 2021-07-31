@@ -2,7 +2,7 @@
 
 namespace My_Classes_App.Migrations
 {
-    public partial class fix : Migration
+    public partial class nnn : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

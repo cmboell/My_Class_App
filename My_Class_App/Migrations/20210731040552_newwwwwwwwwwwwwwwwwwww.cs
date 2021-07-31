@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace My_Classes_App.Migrations
 {
-    public partial class @new : Migration
+    public partial class newwwwwwwwwwwwwwwwwwww : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +52,7 @@ namespace My_Classes_App.Migrations
                 name: "ClassTypes",
                 columns: table => new
                 {
-                    ClassTypeId = table.Column<string>(maxLength: 10, nullable: false),
+                    ClassTypeId = table.Column<string>(maxLength: 25, nullable: false),
                     Name = table.Column<string>(maxLength: 25, nullable: false)
                 },
                 constraints: table =>
@@ -66,8 +66,8 @@ namespace My_Classes_App.Migrations
                 {
                     TeacherId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(maxLength: 200, nullable: false),
-                    LastName = table.Column<string>(maxLength: 200, nullable: false)
+                    FirstName = table.Column<string>(maxLength: 55, nullable: false),
+                    LastName = table.Column<string>(maxLength: 55, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -186,8 +186,8 @@ namespace My_Classes_App.Migrations
                 {
                     ClassId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClassTitle = table.Column<string>(maxLength: 200, nullable: false),
-                    NumberOfCredits = table.Column<double>(nullable: false),
+                    ClassTitle = table.Column<string>(maxLength: 55, nullable: false),
+                    NumberOfCredits = table.Column<int>(nullable: false),
                     ClassTypeId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -230,43 +230,14 @@ namespace My_Classes_App.Migrations
                 columns: new[] { "ClassTypeId", "Name" },
                 values: new object[,]
                 {
-                    { "novel", "Novel" },
-                    { "memoir", "Memoir" },
-                    { "mystery", "Mystery" },
-                    { "scifi", "Science Fiction" },
-                    { "history", "History" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Teachers",
-                columns: new[] { "TeacherId", "FirstName", "LastName" },
-                values: new object[,]
-                {
-                    { 23, "Augusten", "Burroughs" },
-                    { 22, "Sun", "Tzu" },
-                    { 21, "Mary", "Shelley" },
-                    { 20, "George", "Orwell" },
-                    { 19, "Toni", "Morrison" },
-                    { 18, "David", "McCullough" },
-                    { 17, "Stieg", "Larsson" },
-                    { 16, "Aldous", "Huxley" },
-                    { 15, "Frank", "Herbert" },
-                    { 14, "Dashiel", "Hammett" },
-                    { 13, "Roxane", "Gay" },
-                    { 10, "Joan", "Didion" },
-                    { 11, "Daphne", "Du Maurier" },
-                    { 25, "JK", "Rowling" },
-                    { 9, "Jared", "Diamond" },
-                    { 8, "Ta-Nehisi", "Coates" },
-                    { 7, "Agatha", "Christie" },
-                    { 6, "Emily", "Bronte" },
-                    { 5, "James", "Baldwin" },
-                    { 4, "Jane", "Austen" },
-                    { 3, "Margaret", "Atwood" },
-                    { 2, "Stephen E.", "Ambrose" },
-                    { 1, "Michelle", "Alexander" },
-                    { 12, "Tina", "Fey" },
-                    { 26, "Seth", "Grahame-Smith" }
+                    { "literature", "Literature" },
+                    { "mathmatics ", "Mathmatics" },
+                    { "economics", "Economics" },
+                    { "computerscience", "Computer Science" },
+                    { "history", "History" },
+                    { "health", "Health" },
+                    { "art", "Art" },
+                    { "other", "Other" }
                 });
 
             migrationBuilder.InsertData(
@@ -274,35 +245,27 @@ namespace My_Classes_App.Migrations
                 columns: new[] { "ClassId", "ClassTitle", "ClassTypeId", "NumberOfCredits" },
                 values: new object[,]
                 {
-                    { 5, "Beloved", "novel", 10.99 },
-                    { 15, "Guns, Germs, and Steel", "history", 15.5 },
-                    { 9, "D-Day", "history", 15.0 },
-                    { 4, "Band of Brothers", "history", 11.5 },
-                    { 1, "1776", "history", 18.0 },
-                    { 22, "The Handmaid's Tale", "scifi", 12.5 },
-                    { 13, "Frankenstein", "scifi", 6.5 },
-                    { 11, "Dune", "scifi", 8.75 },
-                    { 8, "Brave New World", "scifi", 16.25 },
-                    { 2, "1984", "scifi", 5.5 },
-                    { 23, "The Maltese Falcon", "mystery", 10.99 },
-                    { 21, "The Girl with the Dragon Tattoo", "mystery", 8.5 },
-                    { 19, "Rebecca", "mystery", 10.99 },
-                    { 20, "The Art of War", "history", 5.75 },
-                    { 17, "Murder on the Orient Express", "mystery", 6.75 },
-                    { 27, "Running With Scissors", "memoir", 11.0 },
-                    { 25, "The Year of Magical Thinking", "memoir", 13.5 },
-                    { 16, "Hunger", "memoir", 14.5 },
-                    { 10, "Down and Out in Paris and London", "memoir", 12.5 },
-                    { 7, "Bossypants", "memoir", 4.25 },
-                    { 6, "Between the World and Me", "memoir", 13.5 },
-                    { 29, "Harry Potter and the Sorcerer's Stone", "novel", 9.75 },
-                    { 28, "Pride and Prejudice and Zombies", "novel", 8.75 },
-                    { 26, "Wuthering Heights", "novel", 9.0 },
-                    { 18, "Pride and Prejudice", "novel", 8.5 },
-                    { 14, "Go Tell it on the Mountain", "novel", 10.25 },
-                    { 12, "Emma", "novel", 9.0 },
-                    { 3, "And Then There Were None", "mystery", 4.5 },
-                    { 24, "The New Jim Crow", "history", 13.75 }
+                    { 6, "Advanced C#", "computerscience ", 3 },
+                    { 9, "Trigonometry", "mathmatics", 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Teachers",
+                columns: new[] { "TeacherId", "FirstName", "LastName" },
+                values: new object[,]
+                {
+                    { 10, "Brittany", "Lionbridge" },
+                    { 9, "Randy", "Greteman" },
+                    { 8, "Tiffany", "Fitzmagic" },
+                    { 7, "Tyler", "Shera" },
+                    { 6, "Joshua", "Lampshade" },
+                    { 1, "Ron", "Thompson" },
+                    { 4, "Peter", "Peteson" },
+                    { 3, "Margot", "Fan" },
+                    { 2, "Grace", "Beckman" },
+                    { 11, "Michael", "Michaelson" },
+                    { 5, "Nala", "Bean" },
+                    { 12, "Haley", "Buschman" }
                 });
 
             migrationBuilder.InsertData(
@@ -310,36 +273,48 @@ namespace My_Classes_App.Migrations
                 columns: new[] { "ClassId", "TeacherId" },
                 values: new object[,]
                 {
-                    { 5, 19 },
-                    { 15, 9 },
-                    { 9, 2 },
-                    { 4, 2 },
-                    { 1, 18 },
-                    { 22, 3 },
-                    { 13, 21 },
-                    { 11, 15 },
-                    { 8, 16 },
-                    { 2, 20 },
-                    { 23, 14 },
-                    { 21, 17 },
-                    { 19, 11 },
-                    { 17, 7 },
-                    { 3, 7 },
-                    { 27, 23 },
-                    { 25, 10 },
-                    { 16, 13 },
-                    { 10, 20 },
-                    { 7, 12 },
-                    { 6, 8 },
-                    { 29, 25 },
-                    { 28, 26 },
-                    { 28, 4 },
-                    { 26, 6 },
-                    { 18, 4 },
-                    { 14, 5 },
-                    { 12, 4 },
-                    { 20, 22 },
-                    { 24, 1 }
+                    { 6, 5 },
+                    { 9, 8 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Classes",
+                columns: new[] { "ClassId", "ClassTitle", "ClassTypeId", "NumberOfCredits" },
+                values: new object[,]
+                {
+                    { 14, "Intro To Literature", "literature", 4 },
+                    { 15, "Advanced Literature", "literature", 5 },
+                    { 7, "Statistics", "mathmatics ", 4 },
+                    { 10, "Geometry", "mathmatics ", 3 },
+                    { 3, "Intro To Economics", "economics", 3 },
+                    { 5, "Intro To C#", "computerscience", 5 },
+                    { 8, "Java", "computerscience", 3 },
+                    { 4, "American History", "history", 3 },
+                    { 2, "Intro To Occupational Health", "health", 3 },
+                    { 13, "Intro To Nursing", "health", 3 },
+                    { 11, "Intro To Film", "art", 2 },
+                    { 1, "The College Experience", "other", 1 },
+                    { 12, "Elementary French", "other", 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ClassTeachers",
+                columns: new[] { "ClassId", "TeacherId" },
+                values: new object[,]
+                {
+                    { 14, 12 },
+                    { 15, 12 },
+                    { 7, 6 },
+                    { 10, 8 },
+                    { 3, 3 },
+                    { 5, 5 },
+                    { 8, 7 },
+                    { 4, 4 },
+                    { 2, 2 },
+                    { 13, 11 },
+                    { 11, 9 },
+                    { 1, 1 },
+                    { 12, 10 }
                 });
 
             migrationBuilder.CreateIndex(

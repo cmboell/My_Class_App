@@ -2,7 +2,7 @@
 
 namespace My_Classes_App.Migrations
 {
-    public partial class nenweln : Migration
+    public partial class hopefulfix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

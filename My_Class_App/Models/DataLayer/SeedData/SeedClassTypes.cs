@@ -8,11 +8,14 @@ namespace My_Classes_App.Models
         public void Configure(EntityTypeBuilder<ClassType> entity)
         {
             entity.HasData(
-                new ClassType { ClassTypeId = "novel", Name = "Novel" },
-                new ClassType { ClassTypeId = "memoir", Name = "Memoir" },
-                new ClassType { ClassTypeId = "mystery", Name = "Mystery" },
-                new ClassType { ClassTypeId = "scifi", Name = "Science Fiction" },
-                new ClassType { ClassTypeId = "history", Name = "History" }
+                new ClassType { ClassTypeId = "literature", Name = "Literature" },
+                new ClassType { ClassTypeId = "mathmatics ", Name = "Mathmatics" },
+                new ClassType { ClassTypeId = "economics", Name = "Economics" },
+                new ClassType { ClassTypeId = "computerscience", Name ="Computer Science" },
+                new ClassType { ClassTypeId = "history", Name = "History" },
+                new ClassType { ClassTypeId= "health" , Name= "Health"},
+                new ClassType { ClassTypeId ="art", Name="Art"},
+                new ClassType { ClassTypeId = "other", Name ="Other"}
             );
         }
     }

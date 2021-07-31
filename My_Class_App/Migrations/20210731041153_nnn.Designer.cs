@@ -10,8 +10,8 @@ using My_Classes_App.Models;
 namespace My_Classes_App.Migrations
 {
     [DbContext(typeof(MyClassContext))]
-    [Migration("20210729064646_new")]
-    partial class @new
+    [Migration("20210731041153_nnn")]
+    partial class nnn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -161,15 +161,15 @@ namespace My_Classes_App.Migrations
 
                     b.Property<string>("ClassTitle")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(55)")
+                        .HasMaxLength(55);
 
                     b.Property<string>("ClassTypeId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(25)");
 
-                    b.Property<double>("NumberOfCredits")
-                        .HasColumnType("float");
+                    b.Property<int>("NumberOfCredits")
+                        .HasColumnType("int");
 
                     b.HasKey("ClassId");
 
@@ -181,205 +181,107 @@ namespace My_Classes_App.Migrations
                         new
                         {
                             ClassId = 1,
-                            ClassTitle = "1776",
-                            ClassTypeId = "history",
-                            NumberOfCredits = 18.0
+                            ClassTitle = "The College Experience",
+                            ClassTypeId = "other",
+                            NumberOfCredits = 1
                         },
                         new
                         {
                             ClassId = 2,
-                            ClassTitle = "1984",
-                            ClassTypeId = "scifi",
-                            NumberOfCredits = 5.5
+                            ClassTitle = "Intro To Occupational Health",
+                            ClassTypeId = "health",
+                            NumberOfCredits = 3
                         },
                         new
                         {
                             ClassId = 3,
-                            ClassTitle = "And Then There Were None",
-                            ClassTypeId = "mystery",
-                            NumberOfCredits = 4.5
+                            ClassTitle = "Intro To Economics",
+                            ClassTypeId = "economics",
+                            NumberOfCredits = 3
                         },
                         new
                         {
                             ClassId = 4,
-                            ClassTitle = "Band of Brothers",
+                            ClassTitle = "American History",
                             ClassTypeId = "history",
-                            NumberOfCredits = 11.5
+                            NumberOfCredits = 3
                         },
                         new
                         {
                             ClassId = 5,
-                            ClassTitle = "Beloved",
-                            ClassTypeId = "novel",
-                            NumberOfCredits = 10.99
+                            ClassTitle = "Intro To C#",
+                            ClassTypeId = "computerscience",
+                            NumberOfCredits = 5
                         },
                         new
                         {
                             ClassId = 6,
-                            ClassTitle = "Between the World and Me",
-                            ClassTypeId = "memoir",
-                            NumberOfCredits = 13.5
+                            ClassTitle = "Advanced C#",
+                            ClassTypeId = "computerscience ",
+                            NumberOfCredits = 3
                         },
                         new
                         {
                             ClassId = 7,
-                            ClassTitle = "Bossypants",
-                            ClassTypeId = "memoir",
-                            NumberOfCredits = 4.25
+                            ClassTitle = "Statistics",
+                            ClassTypeId = "mathmatics ",
+                            NumberOfCredits = 4
                         },
                         new
                         {
                             ClassId = 8,
-                            ClassTitle = "Brave New World",
-                            ClassTypeId = "scifi",
-                            NumberOfCredits = 16.25
+                            ClassTitle = "Java",
+                            ClassTypeId = "computerscience",
+                            NumberOfCredits = 3
                         },
                         new
                         {
                             ClassId = 9,
-                            ClassTitle = "D-Day",
-                            ClassTypeId = "history",
-                            NumberOfCredits = 15.0
+                            ClassTitle = "Trigonometry",
+                            ClassTypeId = "mathmatics",
+                            NumberOfCredits = 2
                         },
                         new
                         {
                             ClassId = 10,
-                            ClassTitle = "Down and Out in Paris and London",
-                            ClassTypeId = "memoir",
-                            NumberOfCredits = 12.5
+                            ClassTitle = "Geometry",
+                            ClassTypeId = "mathmatics ",
+                            NumberOfCredits = 3
                         },
                         new
                         {
                             ClassId = 11,
-                            ClassTitle = "Dune",
-                            ClassTypeId = "scifi",
-                            NumberOfCredits = 8.75
+                            ClassTitle = "Intro To Film",
+                            ClassTypeId = "art",
+                            NumberOfCredits = 2
                         },
                         new
                         {
                             ClassId = 12,
-                            ClassTitle = "Emma",
-                            ClassTypeId = "novel",
-                            NumberOfCredits = 9.0
+                            ClassTitle = "Elementary French",
+                            ClassTypeId = "other",
+                            NumberOfCredits = 3
                         },
                         new
                         {
                             ClassId = 13,
-                            ClassTitle = "Frankenstein",
-                            ClassTypeId = "scifi",
-                            NumberOfCredits = 6.5
+                            ClassTitle = "Intro To Nursing",
+                            ClassTypeId = "health",
+                            NumberOfCredits = 3
                         },
                         new
                         {
                             ClassId = 14,
-                            ClassTitle = "Go Tell it on the Mountain",
-                            ClassTypeId = "novel",
-                            NumberOfCredits = 10.25
+                            ClassTitle = "Intro To Literature",
+                            ClassTypeId = "literature",
+                            NumberOfCredits = 4
                         },
                         new
                         {
                             ClassId = 15,
-                            ClassTitle = "Guns, Germs, and Steel",
-                            ClassTypeId = "history",
-                            NumberOfCredits = 15.5
-                        },
-                        new
-                        {
-                            ClassId = 16,
-                            ClassTitle = "Hunger",
-                            ClassTypeId = "memoir",
-                            NumberOfCredits = 14.5
-                        },
-                        new
-                        {
-                            ClassId = 17,
-                            ClassTitle = "Murder on the Orient Express",
-                            ClassTypeId = "mystery",
-                            NumberOfCredits = 6.75
-                        },
-                        new
-                        {
-                            ClassId = 18,
-                            ClassTitle = "Pride and Prejudice",
-                            ClassTypeId = "novel",
-                            NumberOfCredits = 8.5
-                        },
-                        new
-                        {
-                            ClassId = 19,
-                            ClassTitle = "Rebecca",
-                            ClassTypeId = "mystery",
-                            NumberOfCredits = 10.99
-                        },
-                        new
-                        {
-                            ClassId = 20,
-                            ClassTitle = "The Art of War",
-                            ClassTypeId = "history",
-                            NumberOfCredits = 5.75
-                        },
-                        new
-                        {
-                            ClassId = 21,
-                            ClassTitle = "The Girl with the Dragon Tattoo",
-                            ClassTypeId = "mystery",
-                            NumberOfCredits = 8.5
-                        },
-                        new
-                        {
-                            ClassId = 22,
-                            ClassTitle = "The Handmaid's Tale",
-                            ClassTypeId = "scifi",
-                            NumberOfCredits = 12.5
-                        },
-                        new
-                        {
-                            ClassId = 23,
-                            ClassTitle = "The Maltese Falcon",
-                            ClassTypeId = "mystery",
-                            NumberOfCredits = 10.99
-                        },
-                        new
-                        {
-                            ClassId = 24,
-                            ClassTitle = "The New Jim Crow",
-                            ClassTypeId = "history",
-                            NumberOfCredits = 13.75
-                        },
-                        new
-                        {
-                            ClassId = 25,
-                            ClassTitle = "The Year of Magical Thinking",
-                            ClassTypeId = "memoir",
-                            NumberOfCredits = 13.5
-                        },
-                        new
-                        {
-                            ClassId = 26,
-                            ClassTitle = "Wuthering Heights",
-                            ClassTypeId = "novel",
-                            NumberOfCredits = 9.0
-                        },
-                        new
-                        {
-                            ClassId = 27,
-                            ClassTitle = "Running With Scissors",
-                            ClassTypeId = "memoir",
-                            NumberOfCredits = 11.0
-                        },
-                        new
-                        {
-                            ClassId = 28,
-                            ClassTitle = "Pride and Prejudice and Zombies",
-                            ClassTypeId = "novel",
-                            NumberOfCredits = 8.75
-                        },
-                        new
-                        {
-                            ClassId = 29,
-                            ClassTitle = "Harry Potter and the Sorcerer's Stone",
-                            ClassTypeId = "novel",
-                            NumberOfCredits = 9.75
+                            ClassTitle = "Advanced Literature",
+                            ClassTypeId = "literature",
+                            NumberOfCredits = 5
                         });
                 });
 
@@ -401,160 +303,85 @@ namespace My_Classes_App.Migrations
                         new
                         {
                             ClassId = 1,
-                            TeacherId = 18
-                        },
-                        new
-                        {
-                            ClassId = 2,
-                            TeacherId = 20
-                        },
-                        new
-                        {
-                            ClassId = 3,
-                            TeacherId = 7
-                        },
-                        new
-                        {
-                            ClassId = 4,
-                            TeacherId = 2
-                        },
-                        new
-                        {
-                            ClassId = 5,
-                            TeacherId = 19
-                        },
-                        new
-                        {
-                            ClassId = 6,
-                            TeacherId = 8
-                        },
-                        new
-                        {
-                            ClassId = 7,
-                            TeacherId = 12
-                        },
-                        new
-                        {
-                            ClassId = 8,
-                            TeacherId = 16
-                        },
-                        new
-                        {
-                            ClassId = 9,
-                            TeacherId = 2
-                        },
-                        new
-                        {
-                            ClassId = 10,
-                            TeacherId = 20
-                        },
-                        new
-                        {
-                            ClassId = 11,
-                            TeacherId = 15
-                        },
-                        new
-                        {
-                            ClassId = 12,
-                            TeacherId = 4
-                        },
-                        new
-                        {
-                            ClassId = 13,
-                            TeacherId = 21
-                        },
-                        new
-                        {
-                            ClassId = 14,
-                            TeacherId = 5
-                        },
-                        new
-                        {
-                            ClassId = 15,
-                            TeacherId = 9
-                        },
-                        new
-                        {
-                            ClassId = 16,
-                            TeacherId = 13
-                        },
-                        new
-                        {
-                            ClassId = 17,
-                            TeacherId = 7
-                        },
-                        new
-                        {
-                            ClassId = 18,
-                            TeacherId = 4
-                        },
-                        new
-                        {
-                            ClassId = 19,
-                            TeacherId = 11
-                        },
-                        new
-                        {
-                            ClassId = 20,
-                            TeacherId = 22
-                        },
-                        new
-                        {
-                            ClassId = 21,
-                            TeacherId = 17
-                        },
-                        new
-                        {
-                            ClassId = 22,
-                            TeacherId = 3
-                        },
-                        new
-                        {
-                            ClassId = 23,
-                            TeacherId = 14
-                        },
-                        new
-                        {
-                            ClassId = 24,
                             TeacherId = 1
                         },
                         new
                         {
-                            ClassId = 25,
-                            TeacherId = 10
+                            ClassId = 2,
+                            TeacherId = 2
                         },
                         new
                         {
-                            ClassId = 26,
-                            TeacherId = 6
+                            ClassId = 3,
+                            TeacherId = 3
                         },
                         new
                         {
-                            ClassId = 27,
-                            TeacherId = 23
-                        },
-                        new
-                        {
-                            ClassId = 28,
+                            ClassId = 4,
                             TeacherId = 4
                         },
                         new
                         {
-                            ClassId = 28,
-                            TeacherId = 26
+                            ClassId = 5,
+                            TeacherId = 5
                         },
                         new
                         {
-                            ClassId = 29,
-                            TeacherId = 25
+                            ClassId = 6,
+                            TeacherId = 5
+                        },
+                        new
+                        {
+                            ClassId = 7,
+                            TeacherId = 6
+                        },
+                        new
+                        {
+                            ClassId = 8,
+                            TeacherId = 7
+                        },
+                        new
+                        {
+                            ClassId = 9,
+                            TeacherId = 8
+                        },
+                        new
+                        {
+                            ClassId = 10,
+                            TeacherId = 8
+                        },
+                        new
+                        {
+                            ClassId = 11,
+                            TeacherId = 9
+                        },
+                        new
+                        {
+                            ClassId = 12,
+                            TeacherId = 10
+                        },
+                        new
+                        {
+                            ClassId = 13,
+                            TeacherId = 11
+                        },
+                        new
+                        {
+                            ClassId = 14,
+                            TeacherId = 12
+                        },
+                        new
+                        {
+                            ClassId = 15,
+                            TeacherId = 12
                         });
                 });
 
             modelBuilder.Entity("My_Classes_App.Models.ClassType", b =>
                 {
                     b.Property<string>("ClassTypeId")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -568,28 +395,43 @@ namespace My_Classes_App.Migrations
                     b.HasData(
                         new
                         {
-                            ClassTypeId = "novel",
-                            Name = "Novel"
+                            ClassTypeId = "literature",
+                            Name = "Literature"
                         },
                         new
                         {
-                            ClassTypeId = "memoir",
-                            Name = "Memoir"
+                            ClassTypeId = "mathmatics ",
+                            Name = "Mathmatics"
                         },
                         new
                         {
-                            ClassTypeId = "mystery",
-                            Name = "Mystery"
+                            ClassTypeId = "economics",
+                            Name = "Economics"
                         },
                         new
                         {
-                            ClassTypeId = "scifi",
-                            Name = "Science Fiction"
+                            ClassTypeId = "computerscience",
+                            Name = "Computer Science"
                         },
                         new
                         {
                             ClassTypeId = "history",
                             Name = "History"
+                        },
+                        new
+                        {
+                            ClassTypeId = "health",
+                            Name = "Health"
+                        },
+                        new
+                        {
+                            ClassTypeId = "art",
+                            Name = "Art"
+                        },
+                        new
+                        {
+                            ClassTypeId = "other",
+                            Name = "Other"
                         });
                 });
 
@@ -602,13 +444,13 @@ namespace My_Classes_App.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(55)")
+                        .HasMaxLength(55);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(55)")
+                        .HasMaxLength(55);
 
                     b.HasKey("TeacherId");
 
@@ -618,152 +460,74 @@ namespace My_Classes_App.Migrations
                         new
                         {
                             TeacherId = 1,
-                            FirstName = "Michelle",
-                            LastName = "Alexander"
+                            FirstName = "Ron",
+                            LastName = "Thompson"
                         },
                         new
                         {
                             TeacherId = 2,
-                            FirstName = "Stephen E.",
-                            LastName = "Ambrose"
+                            FirstName = "Grace",
+                            LastName = "Beckman"
                         },
                         new
                         {
                             TeacherId = 3,
-                            FirstName = "Margaret",
-                            LastName = "Atwood"
+                            FirstName = "Margot",
+                            LastName = "Fan"
                         },
                         new
                         {
                             TeacherId = 4,
-                            FirstName = "Jane",
-                            LastName = "Austen"
+                            FirstName = "Peter",
+                            LastName = "Peteson"
                         },
                         new
                         {
                             TeacherId = 5,
-                            FirstName = "James",
-                            LastName = "Baldwin"
+                            FirstName = "Nala",
+                            LastName = "Bean"
                         },
                         new
                         {
                             TeacherId = 6,
-                            FirstName = "Emily",
-                            LastName = "Bronte"
+                            FirstName = "Joshua",
+                            LastName = "Lampshade"
                         },
                         new
                         {
                             TeacherId = 7,
-                            FirstName = "Agatha",
-                            LastName = "Christie"
+                            FirstName = "Tyler",
+                            LastName = "Shera"
                         },
                         new
                         {
                             TeacherId = 8,
-                            FirstName = "Ta-Nehisi",
-                            LastName = "Coates"
+                            FirstName = "Tiffany",
+                            LastName = "Fitzmagic"
                         },
                         new
                         {
                             TeacherId = 9,
-                            FirstName = "Jared",
-                            LastName = "Diamond"
+                            FirstName = "Randy",
+                            LastName = "Greteman"
                         },
                         new
                         {
                             TeacherId = 10,
-                            FirstName = "Joan",
-                            LastName = "Didion"
+                            FirstName = "Brittany",
+                            LastName = "Lionbridge"
                         },
                         new
                         {
                             TeacherId = 11,
-                            FirstName = "Daphne",
-                            LastName = "Du Maurier"
+                            FirstName = "Michael",
+                            LastName = "Michaelson"
                         },
                         new
                         {
                             TeacherId = 12,
-                            FirstName = "Tina",
-                            LastName = "Fey"
-                        },
-                        new
-                        {
-                            TeacherId = 13,
-                            FirstName = "Roxane",
-                            LastName = "Gay"
-                        },
-                        new
-                        {
-                            TeacherId = 14,
-                            FirstName = "Dashiel",
-                            LastName = "Hammett"
-                        },
-                        new
-                        {
-                            TeacherId = 15,
-                            FirstName = "Frank",
-                            LastName = "Herbert"
-                        },
-                        new
-                        {
-                            TeacherId = 16,
-                            FirstName = "Aldous",
-                            LastName = "Huxley"
-                        },
-                        new
-                        {
-                            TeacherId = 17,
-                            FirstName = "Stieg",
-                            LastName = "Larsson"
-                        },
-                        new
-                        {
-                            TeacherId = 18,
-                            FirstName = "David",
-                            LastName = "McCullough"
-                        },
-                        new
-                        {
-                            TeacherId = 19,
-                            FirstName = "Toni",
-                            LastName = "Morrison"
-                        },
-                        new
-                        {
-                            TeacherId = 20,
-                            FirstName = "George",
-                            LastName = "Orwell"
-                        },
-                        new
-                        {
-                            TeacherId = 21,
-                            FirstName = "Mary",
-                            LastName = "Shelley"
-                        },
-                        new
-                        {
-                            TeacherId = 22,
-                            FirstName = "Sun",
-                            LastName = "Tzu"
-                        },
-                        new
-                        {
-                            TeacherId = 23,
-                            FirstName = "Augusten",
-                            LastName = "Burroughs"
-                        },
-                        new
-                        {
-                            TeacherId = 25,
-                            FirstName = "JK",
-                            LastName = "Rowling"
-                        },
-                        new
-                        {
-                            TeacherId = 26,
-                            FirstName = "Seth",
-                            LastName = "Grahame-Smith"
+                            FirstName = "Haley",
+                            LastName = "Buschman"
                         });
                 });
 
