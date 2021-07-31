@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace My_Classes_App.Migrations
 {
-    public partial class newwwwwwwwwwwwwwwwwwww : Migration
+    public partial class newokn : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -243,11 +243,7 @@ namespace My_Classes_App.Migrations
             migrationBuilder.InsertData(
                 table: "Classes",
                 columns: new[] { "ClassId", "ClassTitle", "ClassTypeId", "NumberOfCredits" },
-                values: new object[,]
-                {
-                    { 6, "Advanced C#", "computerscience ", 3 },
-                    { 9, "Trigonometry", "mathmatics", 2 }
-                });
+                values: new object[] { 9, "Trigonometry", "mathmatics", 2 });
 
             migrationBuilder.InsertData(
                 table: "Teachers",
@@ -259,11 +255,11 @@ namespace My_Classes_App.Migrations
                     { 8, "Tiffany", "Fitzmagic" },
                     { 7, "Tyler", "Shera" },
                     { 6, "Joshua", "Lampshade" },
-                    { 1, "Ron", "Thompson" },
+                    { 2, "Grace", "Beckman" },
                     { 4, "Peter", "Peteson" },
                     { 3, "Margot", "Fan" },
-                    { 2, "Grace", "Beckman" },
                     { 11, "Michael", "Michaelson" },
+                    { 1, "Ron", "Thompson" },
                     { 5, "Nala", "Bean" },
                     { 12, "Haley", "Buschman" }
                 });
@@ -271,11 +267,7 @@ namespace My_Classes_App.Migrations
             migrationBuilder.InsertData(
                 table: "ClassTeachers",
                 columns: new[] { "ClassId", "TeacherId" },
-                values: new object[,]
-                {
-                    { 6, 5 },
-                    { 9, 8 }
-                });
+                values: new object[] { 9, 8 });
 
             migrationBuilder.InsertData(
                 table: "Classes",
@@ -288,6 +280,7 @@ namespace My_Classes_App.Migrations
                     { 10, "Geometry", "mathmatics ", 3 },
                     { 3, "Intro To Economics", "economics", 3 },
                     { 5, "Intro To C#", "computerscience", 5 },
+                    { 6, "Advanced C#", "computerscience", 5 },
                     { 8, "Java", "computerscience", 3 },
                     { 4, "American History", "history", 3 },
                     { 2, "Intro To Occupational Health", "health", 3 },
@@ -308,6 +301,7 @@ namespace My_Classes_App.Migrations
                     { 10, 8 },
                     { 3, 3 },
                     { 5, 5 },
+                    { 6, 5 },
                     { 8, 7 },
                     { 4, 4 },
                     { 2, 2 },
