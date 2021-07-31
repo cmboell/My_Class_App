@@ -7,7 +7,7 @@ namespace My_Classes_App.Controllers
 {//
     //account controller
     public class AccountController : Controller
-    {
+    {//
         private UserManager<User> userManager;
         private SignInManager<User> signInManager;
 
