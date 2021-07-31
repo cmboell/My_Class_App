@@ -1,17 +1,11 @@
 ﻿@model Class
-
-<div class="text-center">
-    <h1>Our Staff Pick!</h1>
-    <ul class="list-group">
-        <li class="list-group-item list-group-item-heading list-group-item-success">
-            <h5>
-                <a asp-controller="Class" 
-                   asp-action="Details"                   
-                   asp-route-id="@Model.ClassId" 
-                   asp-route-slug="@Model.ClassTitle.Slug()">
-                    @Model.ClassTitle
-                </a>
-            </h5>
-        </li>
-    </ul>
-</div>
+<!--home view-->
+    <div class="text-center">
+        <h1 style="text-decoration:underline">My Classes</h1>
+        <br />
+        <h4>Keep Track Of All Your: Classes, Teachers, Contacts</h4>
+        <br />
+        <h4>Create A Schedule Based On Class And Study Time</h4>
+        <br />
+        <h4>Shop For School Books On Our Online Bookstore</h4>
+    </div>

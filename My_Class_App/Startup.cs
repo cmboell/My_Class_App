@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;    // add this
+using Microsoft.AspNetCore.Identity;  
 using My_Classes_App.Models;
 using Microsoft.AspNetCore.Http;
 
@@ -33,11 +33,11 @@ namespace My_Classes_App
                 options.UseSqlServer(Configuration.GetConnectionString("MyClassContext")));
 
             services.AddHttpContextAccessor();
-            // services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IMyClassUnitOfWork, MyClassUnitOfWork>();
             services.AddTransient<IClass, MyClass>();
-            // add this
+            
             services.AddIdentity<User, IdentityRole>(options => {
                 options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = false;
@@ -56,8 +56,8 @@ namespace My_Classes_App
 
             app.UseRouting();
 
-            app.UseAuthentication();   // add this
-            app.UseAuthorization();    // add this
+            app.UseAuthentication();   // authentication
+            app.UseAuthorization();   //authorization
 
             app.UseSession();
 

@@ -1,17 +1,14 @@
 ﻿@model TeacherListViewModel
 @{
     ViewData["ClassTitle"] = " | Teacher Catalog";
-
-    // aliases to make paging and sorting code shorter
+    //makes paging and sorting shorter
     RouteDictionary current = Model.CurrentRoute;
     RouteDictionary routes = Model.CurrentRoute.Clone();
 }
 
-<h1>Teacher Catalog</h1>
+<h1>Teachers</h1>
 
 <table class="table table-bordered table-striped table-sm">
-    @* for the name columns, update the route dictionary with the field to sort by, and then use
-        that route dictionary and the current route to create route segments for sorting link *@
     <thead class="thead-dark">
         <tr>
             <th>
@@ -24,7 +21,7 @@
                 <a asp-action="List" asp-all-route-data="@routes"
                    class="text-white">Last Name</a>
             </th>
-            <th>Class(s)</th>
+            <th>Class(es)</th>
         </tr>
     </thead>
     <tbody>
@@ -44,13 +41,13 @@
                 </a>
             </td>
             <td>
-                @foreach (var ba in teacher.ClassTeachers)
+                @foreach (var ct in teacher.ClassTeachers)
                 {
                     <p>
                         <a asp-action="Details" asp-controller="Class"
-                           asp-route-id="@ba.ClassId"
-                           asp-route-slug="@ba.Class.ClassTitle.Slug()">
-                            @ba.Class.ClassTitle
+                           asp-route-id="@ct.ClassId"
+                           asp-route-slug="@ct.Class.ClassTitle.Slug()">
+                            @ct.Class.ClassTitle
                         </a>
                     </p>
                 }
@@ -59,16 +56,8 @@
         }
     </tbody>
 </table>
-
-@* paging links *@
 @{
-    @* Reset the route dictionary to the current route values. This is necessary
-        to clear the changes made while creating the sorting links above. Clone so
-        don't overwrite current route segment values. *@
     routes = Model.CurrentRoute.Clone();
-
-    @* update route dictionary with page number in 'i' and then use
-        updated route dictionary to create route segments for paging link. *@
     for (int i = 1; i <= Model.TotalPages; i++)
     {
         routes.PageNumber = i;
