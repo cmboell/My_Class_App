@@ -44,7 +44,7 @@ namespace My_Classes_App.Controllers
                 dto.Load(class1);
                 ClassItem item = new ClassItem {
                     Class = dto,
-                    Quantity = 1  // default value
+                    
                 };
 
                 aClass.Add(item);

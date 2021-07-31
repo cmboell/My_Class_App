@@ -4,6 +4,6 @@
     public class ClassItemDTO
     {
         public int ClassId { get; set; }
-        public int Quantity { get; set; }
+   
     }
 }

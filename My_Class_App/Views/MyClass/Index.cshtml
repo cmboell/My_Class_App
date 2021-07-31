@@ -32,7 +32,6 @@
                 <th>ClassTitle</th>
                 <th>Teacher(s)</th>
                 <th>NumberOfCredits</th>
-                <th>Quantity</th>
                 <th>totalCredits</th>
                 <th></th>
             </tr>
@@ -59,14 +58,9 @@
                         }
                     </td>
                     <td>@item.Class.NumberOfCredits.ToString("c")</td>
-                    <td>@item.Quantity</td>
                     <td>@item.totalCredits.ToString("c")</td>
                     <td>
                         <div class="float-right">
-                            <a asp-action="Edit" asp-controller="MyClass"
-                               asp-route-id="@item.Class.ClassId"
-                               asp-route-slug="@item.Class.ClassTitle.Slug()"
-                               class="btn btn-primary">Edit</a>
                             <button type="submit" name="id" value="@item.Class.ClassId"
                                     class="btn btn-primary">Remove</button>
                         </div>

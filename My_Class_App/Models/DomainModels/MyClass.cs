@@ -43,7 +43,7 @@ namespace My_Classes_App.Models
 
                         ClassItem item = new ClassItem {
                             Class = dto,
-                            Quantity = storedItem.Quantity
+                            
                         };
                         items.Add(item);
                     }
@@ -65,19 +65,9 @@ namespace My_Classes_App.Models
             if (itemInCart == null) {
                 items.Add(item);
             }
-            else {  
-                itemInCart.Quantity += 1;
-            }
         }
 
-        public void Edit(ClassItem item)
-        {
-            var itemInCart = GetById(item.Class.ClassId);
-            if (itemInCart != null) {
-                itemInCart.Quantity = item.Quantity;
-            }
-        }
-
+      
         public void Remove(ClassItem item) => items.Remove(item);
         public void Clear() => items.Clear();
         
@@ -94,6 +84,11 @@ namespace My_Classes_App.Models
                 responseCookies.SetObject<List<ClassItemDTO>>(ClassKey, items.ToDTO());
                 responseCookies.SetInt32(CountKey, items.Count);
             }
+        }
+
+        public void Edit(ClassItem item)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
