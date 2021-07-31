@@ -65,7 +65,7 @@ ViewContext.RouteData.Values["controller"]?.ToString();
                                   asp-area="">
                                 <input type="submit" value="Log Out"
                                        class="btn btn-outline-info" />
-                                <span class="text-light">@User.Identity.Name</span>
+                                <span class="text-info">@User.Identity.Name</span>
                             </form>
                         </li>
                     }
@@ -86,27 +86,41 @@ ViewContext.RouteData.Values["controller"]?.ToString();
                                asp-area="" class="btn btn-outline-info">Log In</a>
                         </li>
                     }
-
-                    <li class="nav-item @Nav.Active("Admin", current)">
-                        <a class="nav-link" asp-action="Index" asp-controller="Class" asp-area="Admin">
-                            <span></span>&nbsp;Admin
-                        </a>
-                    </li>
                 </ul>
             </div>
         </nav>
-        <header class="jumbotron text-center">
+        <header>
             <a asp-action="Index" asp-controller="Home">
-                <img src="~/images/" class="img-fluid center-block" />
+                <img src="~/images/bookbanner.jpg" class="img-fluid" />
             </a>
         </header>
         <main>
-            @if (TempData.Keys.Contains("message")) {
+            @if (TempData.Keys.Contains("message"))
+            {
                 <h4 class="bg-info text-center text-white p-2">@TempData["message"]</h4>
             }
             @RenderBody()
         </main>
     </div>
-  =
+    <footer style="padding-top:250px">
+        <div class="container" style="text-align:center">
+            <nav class="navbar navbar-expand-md navbar-brand bg-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
+                        aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item @Nav.Active("Admin", current)">
+                            <a class="nav-link" asp-action="Index" asp-controller="Class" asp-area="Admin">
+                                <span></span>&nbsp;Admin
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+    </footer>
 </body>
 </html>
