@@ -1,11 +1,9 @@
 ﻿@{
-    
-
     // use current controller or area to determine if tab is active
-    var current = ViewContext.RouteData.Values["area"]?.ToString() ?? 
-        ViewContext.RouteData.Values["controller"]?.ToString();
+    var current = ViewContext.RouteData.Values["area"]?.ToString() ??
+ViewContext.RouteData.Values["controller"]?.ToString();
 }
-
+<!--shared layout view-->
 <!DOCTYPE html>
 
 <html>
@@ -29,37 +27,36 @@
                     aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            <i class="fas fa-calendar-check" style="color:blue "></i>
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item @Nav.Active("Home", current)">
                         <a class="nav-link" asp-action="Index" asp-controller="Home" asp-area="">
-                            <span class="fas fa-home"></span>&nbsp;Home
+                            <span></span>&nbsp;Home
                         </a>
                     </li>
                     <li class="nav-item @Nav.Active("Class", current)">
                         <a class="nav-link" asp-action="List" asp-controller="Class" asp-area="">
-                            <span class="fas fa-class1-open"></span>&nbsp;Classes
+                            <span></span>&nbsp;Classes
                         </a>
                     </li>
                     <li class="nav-item @Nav.Active("Teacher", current)">
                         <a class="nav-link" asp-action="List" asp-controller="Teacher" asp-area="">
-                            <span class="fas fa-feather-alt"></span>&nbsp;Teachers
+                            <span></span>&nbsp;Teachers
                         </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item ">
+                    <li class="nav-item @Nav.Active("MyClass", current)">
                         <a class="nav-link" asp-action="Index" asp-controller="MyClass" asp-area="">
-                            <span class="fas fa-shopping-aClass"></span>&nbsp;MyClasses
-                            
+                            <span></span>&nbsp;MyClasses
+
                         </a>
                     </li>
-                    
+
                     <!-- Login buttons and links -->
                     @using Microsoft.AspNetCore.Identity
                     @inject SignInManager<User> signInManager
-
                     @if (signInManager.IsSignedIn(User))
                     {
                         // signed-in user - Log Out button and username
@@ -67,7 +64,7 @@
                             <form method="post" asp-action="LogOut" asp-controller="Account"
                                   asp-area="">
                                 <input type="submit" value="Log Out"
-                                       class="btn btn-outline-light" />
+                                       class="btn btn-outline-info" />
                                 <span class="text-light">@User.Identity.Name</span>
                             </form>
                         </li>
@@ -80,19 +77,19 @@
                         <li class="nav-item @Nav.Active("Register", action)">
                             <a asp-action="Register" asp-controller="Account"
                                asp-area="" class="nav-link">
-                                <span class="fas fa-edit"></span>&nbsp;Register							   
-							</a>
+                                <span></span>&nbsp;Register
+                            </a>
                         </li>
 
                         <li class="nav-item">
                             <a asp-action="Login" asp-controller="Account"
-                               asp-area="" class="btn btn-outline-light">Log In</a>
+                               asp-area="" class="btn btn-outline-info">Log In</a>
                         </li>
                     }
 
                     <li class="nav-item @Nav.Active("Admin", current)">
                         <a class="nav-link" asp-action="Index" asp-controller="Class" asp-area="Admin">
-                            <span class="fas fa-cog"></span>&nbsp;Admin
+                            <span></span>&nbsp;Admin
                         </a>
                     </li>
                 </ul>
@@ -100,7 +97,7 @@
         </nav>
         <header class="jumbotron text-center">
             <a asp-action="Index" asp-controller="Home">
-                <img src="" class="img-fluid center-block" />
+                <img src="~/images/" class="img-fluid center-block" />
             </a>
         </header>
         <main>
@@ -110,6 +107,6 @@
             @RenderBody()
         </main>
     </div>
-
+  =
 </body>
 </html>
