@@ -9,11 +9,11 @@ namespace My_Classes_App.Models
             if (builder.IsFilterByClassType) {//class type filter
                 Where = c => c.ClassTypeId == builder.CurrentRoute.ClassTypeFilter;
             }
-            if (builder.IsFilterByCredits) {//filter by credits
-                if (builder.CurrentRoute.CreditFilter == "under 2")
+            if (builder.IsFilterByCredits) {//filter by credits 
+                if (builder.CurrentRoute.CreditFilter == "under2")
                     Where = c => c.NumberOfCredits < 2;
-                else if (builder.CurrentRoute.CreditFilter == "2 to 3")
-                    Where = c => c.NumberOfCredits >= 2 && c.NumberOfCredits <= 3;
+                else if (builder.CurrentRoute.CreditFilter == "2to3")
+                    Where = c => c.NumberOfCredits > 1 && c.NumberOfCredits < 4;
                 else
                     Where = c => c.NumberOfCredits > 3;
             }
