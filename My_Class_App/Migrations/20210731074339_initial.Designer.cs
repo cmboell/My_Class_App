@@ -10,8 +10,8 @@ using My_Classes_App.Models;
 namespace My_Classes_App.Migrations
 {
     [DbContext(typeof(MyClassContext))]
-    [Migration("20210731064755_newokn")]
-    partial class newokn
+    [Migration("20210731074339_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
