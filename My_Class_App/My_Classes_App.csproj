@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Models\DomainModels\ClassTeacher.cs">
+    <Compile Update="Models\ClassesAndTeachers\DomainModels\ClassTeacher.cs">
       <CopyToOutputDirectory>DCo not copy</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>
