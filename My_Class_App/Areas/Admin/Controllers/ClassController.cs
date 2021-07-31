@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Authorization; //adds authorization
+using Microsoft.AspNetCore.Authorization; //--adds authorization
 //admin class controller 
 namespace My_Classes_App.Areas.Admin.Controllers
 {
