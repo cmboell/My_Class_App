@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Homework>
+@{
+    string Overdue(Homework homework) => homework.Overdue ? "bg-warning" : "";
+}
+<!--homework view-->
+<header class="bg-primary text-white text-center">
+    <h1 class="m-3 p-3">Homework</h1>
+</header>
+<div class="row">
+    <div class="col-sm-2">
+        <form asp-action="Filter" method="post">
+            <div class="form-group">
+                <label>Homework Type:</label>
+                <select name="filter" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Sprints,
+                    "HomeworkTypeId", "Name", ViewBag.Filters.HomeworkTypeId))">
+                    <option value="all">All</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>DueDate:</label>
+                <select name="filter" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.DueFilters,
+                    "Key", "Value", ViewBag.Filters.Due))">
+                    <option value="all">All</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Status:</label>
+                <select name="filter" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Statuses,
+                    "StatusId", "Name", ViewBag.Filters.StatusId))">
+                    <option value="all">All</option>
+                </select>
+               
+            </div>
+            <button type="submit">Filter</button>
+            <a asp-action="Index" asp-route-id="" class="btn btn-primary">Clear</a>
+        </form>
+    </div>
+    <div class="col-sm-10">
+
+        <a asp-action="Add"><b>Add new homework</b></a>
+
+        <table class="table table-bordered table-striped mt-2">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Due Date</th>
+                    <th>P.V.</th>
+                    <th>Status</th>
+                    <th class="w-25"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Homework homework in Model)
+                {
+                    string overdue = Overdue(homework);
+                    <tr>
+                        <td>@homework.AssignmentName</td>
+                        <td>@homework.Description</td>
+                        <td>@homework.HomeworkType.Name</td>
+                        <td class="@overdue">@homework.DueDate?.ToShortDateString()</td>
+                        <td>@homework.PointValue</td>
+                        <td class="@overdue">@homework.Status.Name</td>
+                        <td>
+                            <form asp-action="Edit" method="post"
+                                  asp-route-id="@ViewBag.Filters.FilterString"
+                                  class="mr-2">
+
+                                <input type="hidden"
+                                       name="@nameof(Homework.HomeworkId)" value="@homework.HomeworkId" />
+
+                                <button type="submit"
+                                        name="@nameof(Homework.StatusId)" value="d"
+                                        >
+                                    Completed
+                                </button>
+
+                                <button type="submit"
+                                        >
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -45,6 +45,11 @@ ViewContext.RouteData.Values["controller"]?.ToString();
                             <span></span>&nbsp;Teachers
                         </a>
                     </li>
+                    <li class="nav-item @Nav.Active("Homework", current)">
+                        <a class="nav-link" asp-action="Index" asp-controller="Homework" asp-area="">
+                            <span></span>&nbsp;Homework
+                        </a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item @Nav.Active("MyClass", current)">
