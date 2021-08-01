@@ -5,6 +5,7 @@ using My_Classes_App.Models;
 namespace My_Classes_App.Controllers
 {
     //home controller
+
     public class HomeController : Controller
     {
         private IRepository<Class> data { get; set; }

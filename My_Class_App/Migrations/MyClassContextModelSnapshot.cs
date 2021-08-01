@@ -540,7 +540,7 @@ namespace My_Classes_App.Migrations
                         },
                         new
                         {
-                            StatusId = "redo",
+                            StatusId = "r",
                             Name = "Redo"
                         },
                         new

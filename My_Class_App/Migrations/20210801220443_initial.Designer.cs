@@ -10,7 +10,7 @@ using My_Classes_App.Models;
 namespace My_Classes_App.Migrations
 {
     [DbContext(typeof(MyClassContext))]
-    [Migration("20210731074339_initial")]
+    [Migration("20210801220443_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -435,6 +435,123 @@ namespace My_Classes_App.Migrations
                         });
                 });
 
+            modelBuilder.Entity("My_Classes_App.Models.Homework", b =>
+                {
+                    b.Property<int>("HomeworkId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AssignmentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(55)")
+                        .HasMaxLength(55);
+
+                    b.Property<DateTime?>("DueDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("HomeworkTypeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("PointValue")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("StatusId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("HomeworkId");
+
+                    b.HasIndex("HomeworkTypeId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("HomeworkAssignments");
+                });
+
+            modelBuilder.Entity("My_Classes_App.Models.HomeworkType", b =>
+                {
+                    b.Property<string>("HomeworkTypeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("HomeworkTypeId");
+
+                    b.ToTable("Sprints");
+
+                    b.HasData(
+                        new
+                        {
+                            HomeworkTypeId = "assignment",
+                            Name = "Assignment"
+                        },
+                        new
+                        {
+                            HomeworkTypeId = "quiz",
+                            Name = "Quiz"
+                        },
+                        new
+                        {
+                            HomeworkTypeId = "test",
+                            Name = "Test"
+                        },
+                        new
+                        {
+                            HomeworkTypeId = "groupproject",
+                            Name = "Group Project"
+                        },
+                        new
+                        {
+                            HomeworkTypeId = "finalproject",
+                            Name = "Final Project"
+                        });
+                });
+
+            modelBuilder.Entity("My_Classes_App.Models.Status", b =>
+                {
+                    b.Property<string>("StatusId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StatusId");
+
+                    b.ToTable("Statuses");
+
+                    b.HasData(
+                        new
+                        {
+                            StatusId = "t",
+                            Name = "To Do"
+                        },
+                        new
+                        {
+                            StatusId = "i",
+                            Name = "In progress"
+                        },
+                        new
+                        {
+                            StatusId = "r",
+                            Name = "Redo"
+                        },
+                        new
+                        {
+                            StatusId = "d",
+                            Name = "Done"
+                        });
+                });
+
             modelBuilder.Entity("My_Classes_App.Models.Teacher", b =>
                 {
                     b.Property<int>("TeacherId")
@@ -673,6 +790,21 @@ namespace My_Classes_App.Migrations
                     b.HasOne("My_Classes_App.Models.Teacher", "Teacher")
                         .WithMany("ClassTeachers")
                         .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("My_Classes_App.Models.Homework", b =>
+                {
+                    b.HasOne("My_Classes_App.Models.HomeworkType", "HomeworkType")
+                        .WithMany()
+                        .HasForeignKey("HomeworkTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("My_Classes_App.Models.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
