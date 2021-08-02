@@ -62,6 +62,6 @@
     {
         routes.PageNumber = i;
         <a asp-action="List" asp-all-route-data="@routes"
-           class="btn btn-outline-primary @Nav.Active(i, current.PageNumber)">@i</a>
+           class="btn btn-outline-dark @Nav.Active(i, current.PageNumber)">@i</a>
     }
 }

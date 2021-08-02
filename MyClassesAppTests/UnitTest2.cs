@@ -7,7 +7,7 @@ using My_Classes_App.Models;
 
 namespace My_Classes_App.Tests
 {
-    public class UnitTests2
+    public class UnitTest2
     {
         //class controller tests
         [Fact]
@@ -91,6 +91,20 @@ namespace My_Classes_App.Tests
 
             // assert
             Assert.IsType<Class>(model);
+        }
+        [Fact]
+        public void IndexActionMethod_ReturnsAViewResult()
+        {
+            // arrange
+            var rep = new Mock<IScheduleRepository<EventType>>();
+            var controller = new EventTypeController(rep.Object);
+
+            // act
+            var result = controller.Index();
+
+            // assert
+            Assert.IsType<ViewResult>(result);
+
         }
     }
 }

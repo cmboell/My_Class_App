@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace My_Classes_App.Controllers
 {
+    [Authorize]
     public class SchedulehomeController : Controller
     {
         private IScheduleRepository<Models.Schedule> data { get; set; }

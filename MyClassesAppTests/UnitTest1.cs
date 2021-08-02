@@ -216,7 +216,7 @@ namespace MyClassesAppTests
         //nav tests
         [Theory]
         [InlineData("Home", "Classes")]    // runs a test with these arguments
-        [InlineData("Classes", "Home")]   // runs another test with these arguments
+        [InlineData("Classes", "Home")]   // then these arguments
         public void ActiveMethod_ReturnsEmptyStringIfNoMatch(string s1, string s2)
         {
             // act
@@ -225,5 +225,6 @@ namespace MyClassesAppTests
             // assert
             Assert.Equal("", active);
         }
+     
     }
 }
