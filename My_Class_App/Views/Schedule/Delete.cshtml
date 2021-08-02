@@ -1,0 +1,27 @@
+﻿@model Schedule
+
+@{
+    ViewData["Title"] = "Delete Schedule";
+}
+
+<h1 class="display-4">Delete Schedule</h1>
+<ul class="list-group mb-2">
+    <li class="list-group-item">
+        <h4>@Model?.Title</h4>
+    </li>
+    <li class="list-group-item">
+        Notes: @Model?.Notes
+    </li>
+    <li class="list-group-item">
+        Event Type: @Model?.EventType.TypeOfEvent
+    </li>
+    <li class="list-group-item">
+        Day and Time: @Model?.Day.Name @Model?.MilitaryTime
+    </li>
+</ul>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ScheduleId" />
+        <button type="submit">Delete</button>
+        <my-link-button action="Index" controller="Schedulehome">Cancel</my-link-button>
+</form>

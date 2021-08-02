@@ -19,14 +19,14 @@
 
     <div class="form-group">
         <label asp-for="HomeworkTypeId">Type:</label>
-        <select asp-for="HomeworkTypeId" class="form-control" 
+        <select asp-for="HomeworkTypeId" class="form-control"
                 asp-items="@(new SelectList(ViewBag.Sprints, "HomeworkTypeId", "Name"))">
             <option value="">Select Homework Type</option>
         </select>
         <span asp-validation-for="HomeworkTypeId" class="text-danger"></span>
     </div>
 
-    <div class="form-group"> 
+    <div class="form-group">
         <label asp-for="DueDate">Due Date:</label>
         <input type="text" asp-for="DueDate" class="form-control" placeholder="Enter A Date">
         <span asp-validation-for="DueDate" class="text-danger"></span><!--shows error message underneath input box-->
@@ -43,10 +43,10 @@
             <option value="">Select A Status</option>
         </select>
         <span asp-validation-for="StatusId" class="text-danger"></span>
-        
+
     </div>
 
     <button type="submit">Add</button>
-    <a asp-action="Index" class="btn btn-primary">Cancel</a>
+    <a asp-action="Index" class="btn btn-outline-dark">Cancel</a>
 </form>
 

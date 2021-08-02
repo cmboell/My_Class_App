@@ -20,12 +20,9 @@
                 <td>@classtype.ClassTypeId</td>
                 <td>@classtype.Name</td>
                 <td>
-                    <a asp-action="ViewClasses" asp-area="Admin" asp-route-id="@classtype.ClassTypeId"
-                        class="btn btn-primary">View Classes</a>
-                    <a asp-action="Edit" asp-area="Admin" asp-route-id="@classtype.ClassTypeId"
-                        class="btn btn-primary">Edit</a>
-                    <a asp-action="Delete" asp-area="Admin" asp-route-id="@classtype.ClassTypeId"
-                        class="btn btn-primary">Delete</a>
+                   <a asp-action="ViewClasses" asp-area="Admin" asp-route-id="@classtype.ClassTypeId" class="btn btn-dark">View Classes</a>
+                      <a asp-action="Edit" asp-area="Admin" asp-route-id="@classtype.ClassTypeId" class="btn btn-dark">Edit</a>
+                    <a asp-action="Delete" asp-area="Admin" asp-route-id="@classtype.ClassTypeId" class="btn btn-dark">Delete</a>
                 </td>
             </tr>
         }

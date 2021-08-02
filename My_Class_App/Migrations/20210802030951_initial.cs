@@ -61,6 +61,32 @@ namespace My_Classes_App.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Days",
+                columns: table => new
+                {
+                    DayId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 10, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Days", x => x.DayId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventTypes",
+                columns: table => new
+                {
+                    EventTypeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeOfEvent = table.Column<string>(maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventTypes", x => x.EventTypeId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Sprints",
                 columns: table => new
                 {
@@ -226,6 +252,35 @@ namespace My_Classes_App.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Schedules",
+                columns: table => new
+                {
+                    ScheduleId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(maxLength: 100, nullable: false),
+                    Notes = table.Column<string>(nullable: true),
+                    MilitaryTime = table.Column<string>(maxLength: 4, nullable: false),
+                    EventTypeId = table.Column<int>(nullable: false),
+                    DayId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Schedules", x => x.ScheduleId);
+                    table.ForeignKey(
+                        name: "FK_Schedules_Days_DayId",
+                        column: x => x.DayId,
+                        principalTable: "Days",
+                        principalColumn: "DayId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Schedules_EventTypes_EventTypeId",
+                        column: x => x.EventTypeId,
+                        principalTable: "EventTypes",
+                        principalColumn: "EventTypeId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "HomeworkAssignments",
                 columns: table => new
                 {
@@ -284,20 +339,47 @@ namespace My_Classes_App.Migrations
                 columns: new[] { "ClassTypeId", "Name" },
                 values: new object[,]
                 {
+                    { "other", "Other" },
                     { "literature", "Literature" },
                     { "mathmatics ", "Mathmatics" },
                     { "economics", "Economics" },
                     { "computerscience", "Computer Science" },
                     { "history", "History" },
                     { "health", "Health" },
-                    { "art", "Art" },
-                    { "other", "Other" }
+                    { "art", "Art" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Classes",
                 columns: new[] { "ClassId", "ClassTitle", "ClassTypeId", "NumberOfCredits" },
                 values: new object[] { 9, "Trigonometry", "mathmatics", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Days",
+                columns: new[] { "DayId", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Monday" },
+                    { 2, "Tuesday" },
+                    { 3, "Wednesday" },
+                    { 4, "Thursday" },
+                    { 5, "Friday" },
+                    { 6, "Saturday" },
+                    { 7, "Sunday" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EventTypes",
+                columns: new[] { "EventTypeId", "TypeOfEvent" },
+                values: new object[,]
+                {
+                    { 5, "Other" },
+                    { 4, "Registration" },
+                    { 6, "Homework" },
+                    { 2, "Meeting" },
+                    { 1, "Class" },
+                    { 3, "Event" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Sprints",
@@ -316,8 +398,8 @@ namespace My_Classes_App.Migrations
                 columns: new[] { "StatusId", "Name" },
                 values: new object[,]
                 {
-                    { "d", "Done" },
                     { "r", "Redo" },
+                    { "d", "Done" },
                     { "t", "To Do" },
                     { "i", "In progress" }
                 });
@@ -446,6 +528,16 @@ namespace My_Classes_App.Migrations
                 name: "IX_HomeworkAssignments_StatusId",
                 table: "HomeworkAssignments",
                 column: "StatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Schedules_DayId",
+                table: "Schedules",
+                column: "DayId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Schedules_EventTypeId",
+                table: "Schedules",
+                column: "EventTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -472,6 +564,9 @@ namespace My_Classes_App.Migrations
                 name: "HomeworkAssignments");
 
             migrationBuilder.DropTable(
+                name: "Schedules");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -488,6 +583,12 @@ namespace My_Classes_App.Migrations
 
             migrationBuilder.DropTable(
                 name: "Statuses");
+
+            migrationBuilder.DropTable(
+                name: "Days");
+
+            migrationBuilder.DropTable(
+                name: "EventTypes");
 
             migrationBuilder.DropTable(
                 name: "ClassTypes");

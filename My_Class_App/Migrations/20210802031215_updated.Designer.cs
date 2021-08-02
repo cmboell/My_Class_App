@@ -10,8 +10,8 @@ using My_Classes_App.Models;
 namespace My_Classes_App.Migrations
 {
     [DbContext(typeof(MyClassContext))]
-    [Migration("20210801220443_initial")]
-    partial class initial
+    [Migration("20210802031215_updated")]
+    partial class updated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -435,6 +435,114 @@ namespace My_Classes_App.Migrations
                         });
                 });
 
+            modelBuilder.Entity("My_Classes_App.Models.Day", b =>
+                {
+                    b.Property<int>("DayId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.HasKey("DayId");
+
+                    b.ToTable("Days");
+
+                    b.HasData(
+                        new
+                        {
+                            DayId = 1,
+                            Name = "Monday"
+                        },
+                        new
+                        {
+                            DayId = 2,
+                            Name = "Tuesday"
+                        },
+                        new
+                        {
+                            DayId = 3,
+                            Name = "Wednesday"
+                        },
+                        new
+                        {
+                            DayId = 4,
+                            Name = "Thursday"
+                        },
+                        new
+                        {
+                            DayId = 5,
+                            Name = "Friday"
+                        },
+                        new
+                        {
+                            DayId = 6,
+                            Name = "Saturday"
+                        },
+                        new
+                        {
+                            DayId = 7,
+                            Name = "Sunday"
+                        });
+                });
+
+            modelBuilder.Entity("My_Classes_App.Models.EventType", b =>
+                {
+                    b.Property<int>("EventTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("TypeOfEvent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("EventTypeId");
+
+                    b.ToTable("EventTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            EventTypeId = 1,
+                            TypeOfEvent = "Class"
+                        },
+                        new
+                        {
+                            EventTypeId = 2,
+                            TypeOfEvent = "Meeting"
+                        },
+                        new
+                        {
+                            EventTypeId = 3,
+                            TypeOfEvent = "Event"
+                        },
+                        new
+                        {
+                            EventTypeId = 4,
+                            TypeOfEvent = "Registration"
+                        },
+                        new
+                        {
+                            EventTypeId = 5,
+                            TypeOfEvent = "Other"
+                        },
+                        new
+                        {
+                            EventTypeId = 6,
+                            TypeOfEvent = "Homework"
+                        },
+                        new
+                        {
+                            EventTypeId = 7,
+                            TypeOfEvent = "Presentation"
+                        });
+                });
+
             modelBuilder.Entity("My_Classes_App.Models.Homework", b =>
                 {
                     b.Property<int>("HomeworkId")
@@ -515,6 +623,41 @@ namespace My_Classes_App.Migrations
                             HomeworkTypeId = "finalproject",
                             Name = "Final Project"
                         });
+                });
+
+            modelBuilder.Entity("My_Classes_App.Models.Schedule", b =>
+                {
+                    b.Property<int>("ScheduleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DayId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EventTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MilitaryTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(4)")
+                        .HasMaxLength(4);
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("ScheduleId");
+
+                    b.HasIndex("DayId");
+
+                    b.HasIndex("EventTypeId");
+
+                    b.ToTable("Schedules");
                 });
 
             modelBuilder.Entity("My_Classes_App.Models.Status", b =>
@@ -806,6 +949,21 @@ namespace My_Classes_App.Migrations
                         .WithMany()
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("My_Classes_App.Models.Schedule", b =>
+                {
+                    b.HasOne("My_Classes_App.Models.Day", "Day")
+                        .WithMany("Schedules")
+                        .HasForeignKey("DayId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("My_Classes_App.Models.EventType", "EventType")
+                        .WithMany("Schedules")
+                        .HasForeignKey("EventTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

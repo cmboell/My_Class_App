@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Schedule>
+
+@{
+    ViewData["Title"] = "Schedule";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Schedule</h1>
+    <vc:day-filter></vc:day-filter>
+    <div>
+    <a class="navbar-brand"  asp-action="Index" asp-controller="Schedulehome" asp-route-id="">Show Full Schedule</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    </div>
+</div>
+
+<a asp-action="Add" asp-controller="Schedule" class="ml-3">Add Schedule</a>
+<table class="table">
+    <thead>
+        <tr>
+        <th>Title</th>
+        <th>Notes</th>
+        <th>Event Type</th>
+        <th>Day</th>
+        <th>Time</th>
+        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Schedule s in Model)
+        {
+            <tr>
+                <td>@s.Title</td>
+                <td>@s.Notes</td>
+                <td>@s.EventType.TypeOfEvent</td>
+                <td>@s.Day.Name</td>
+                <td>@s.MilitaryTime</td>
+                <td>
+                    <link-button action="Edit" controller="Schedule" id="@s.ScheduleId">Edit</link-button>
+                    <my-link-button action="Delete" controller="Schedule" id="@s.ScheduleId">Delete</my-link-button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

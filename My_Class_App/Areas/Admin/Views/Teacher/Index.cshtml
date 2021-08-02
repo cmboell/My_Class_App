@@ -14,12 +14,9 @@
             <h5 class="mt-1 mr-5">Select an Teacher</h5>
             <select name="id" class="form-control ml-2 mr-2" 
                 asp-items='@new SelectList(Model, "TeacherId", "FullName")'></select>
-            <input type="submit" name="Operation" value="View Classes"
-                class="btn btn-primary ml-2 mr-2" />
-            <input type="submit" name="Operation" value="Edit"
-                class="btn btn-primary ml-2 mr-2" />
-            <input type="submit" name="Operation" value="Delete"
-                class="btn btn-primary ml-2 mr-2" />
+            <input type="submit" name="Operation" value="View Classes"  class="btn btn-dark ml-2 mr-2" />
+            <input type="submit" name="Operation" value="Edit"class="btn btn-dark ml-2 mr-2" />
+            <input type="submit" name="Operation" value="Delete" class="btn btn-dark ml-2 mr-2" />
         </form>
     </li>
 </ul>

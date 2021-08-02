@@ -68,22 +68,20 @@
                         </a>
                     </td>
                     <td>
-                        @foreach (var ba in class1.ClassTeachers)
+                        @foreach (var ct in class1.ClassTeachers)
                         {
                             <p>
                                 <a asp-action="Details" asp-controller="Teacher"
-                                   asp-route-id="@ba.TeacherId"
-                                   asp-route-slug="@ba.Teacher.FullName.Slug()">
-                                    @ba.Teacher.FullName
-                                </a>
+                                   asp-route-id="@ct.TeacherId"
+                                   asp-route-slug="@ct.Teacher.FullName.Slug()">
+                                    @ct.Teacher.FullName </a>
                             </p>
                         }
                     </td>
                     <td>@class1.ClassType?.Name</td>
                     <td>@class1.NumberOfCredits.ToString()</td>
                     <td>
-                        
-                        <button type="submit" name="id" value="@class1.ClassId"class="btn btn-primary">Add To My Classes</button>
+                        <button type="submit" name="id" value="@class1.ClassId">Add To My Classes</button>
                     </td>
                 </tr>
             }
@@ -96,7 +94,6 @@
     for (int i = 1; i <= Model.TotalPages; i++)
     {
         routes.PageNumber = i;
-        <a asp-action="List" asp-all-route-data="@routes"
-           class="btn btn-outline-primary @Nav.Active(i, current.PageNumber)">@i</a>
+        <a asp-action="List" asp-all-route-data="@routes" class="btn btn-outline-dark @Nav.Active(i, current.PageNumber)">@i</a>
     }
 }

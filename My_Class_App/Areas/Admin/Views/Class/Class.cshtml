@@ -67,9 +67,8 @@
     }
     <div class="row">
         <div class="col-sm-4 offset-sm-2">
-            <button type="submit" class="btn btn-primary">@action</button><!--submit button-->
-            <a asp-action="@(Operation.IsAdd(action) ? "Index" : "Search")"
-               class="btn btn-primary">Cancel</a><!--cancel button-->
+            <button type="submit">@action</button><!--submit button-->
+            <a asp-action="@(Operation.IsAdd(action) ? "Index" : "Search")" class="btn btn-outline-dark">Cancel</a><!--cancel button-->
         </div>
     </div>
 </form>

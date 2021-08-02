@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using My_Classes_App.Models;
 
 namespace My_Classes_App.Migrations
 {
     [DbContext(typeof(MyClassContext))]
-    partial class MyClassContextModelSnapshot : ModelSnapshot
+    [Migration("20210802030951_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -533,11 +535,6 @@ namespace My_Classes_App.Migrations
                         {
                             EventTypeId = 6,
                             TypeOfEvent = "Homework"
-                        },
-                        new
-                        {
-                            EventTypeId = 7,
-                            TypeOfEvent = "Presentation"
                         });
                 });
 

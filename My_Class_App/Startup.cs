@@ -37,7 +37,10 @@ namespace My_Classes_App
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IMyClassUnitOfWork, MyClassUnitOfWork>();
             services.AddTransient<IClass, MyClass>();
-            
+            services.AddTransient<IScheduleUnitOfWork, ScheduleUnitOfWork>();
+            services.AddTransient(typeof(IScheduleRepository<>), typeof(ScheduleRepository<>));
+
+
             services.AddIdentity<User, IdentityRole>(options => {
                 options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = false;

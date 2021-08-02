@@ -19,6 +19,9 @@ namespace My_Classes_App.Models
         public DbSet<Homework> HomeworkAssignments { get; set; }
         public DbSet<HomeworkType> Sprints { get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<Day> Days { get; set; }
+        public DbSet<EventType> EventTypes { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -43,6 +46,9 @@ namespace My_Classes_App.Models
             modelBuilder.ApplyConfiguration(new SeedClassTeachers());
             modelBuilder.ApplyConfiguration(new SeedStatuses());
             modelBuilder.ApplyConfiguration(new SeedHomeworkTypes());
+            modelBuilder.ApplyConfiguration(new SeedSchedule());
+            modelBuilder.ApplyConfiguration(new SeedDays());
+            modelBuilder.ApplyConfiguration(new SeedEventTypes());
         }
 
         public static async Task CreateAdminUser(IServiceProvider serviceProvider) //create admin info

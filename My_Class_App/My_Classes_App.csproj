@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Controllers\Schedule\ScheduleController.cs">
+      <CustomToolNamespace></CustomToolNamespace>
+    </Compile>
     <Compile Update="Models\ClassesAndTeachers\DomainModels\ClassTeacher.cs">
       <CopyToOutputDirectory>DCo not copy</CopyToOutputDirectory>
     </Compile>

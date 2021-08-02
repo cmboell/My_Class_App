@@ -3,7 +3,7 @@
     string Overdue(Homework homework) => homework.Overdue ? "bg-warning" : "";
 }
 <!--homework view-->
-<header class="bg-primary text-white text-center">
+<header class="bg-dark text-white text-center">
     <h1 class="m-3 p-3">Homework</h1>
 </header>
 <div class="row">
@@ -32,10 +32,10 @@
                     "StatusId", "Name", ViewBag.Filters.StatusId))">
                     <option value="all">All</option>
                 </select>
-               
+
             </div>
             <button type="submit">Filter</button>
-            <a asp-action="Index" asp-route-id="" class="btn btn-primary">Clear</a>
+           <a asp-action="Index" asp-route-id="" class="btn btn-outline-dark">Clear</a>
         </form>
     </div>
     <div class="col-sm-10">
@@ -69,20 +69,9 @@
                             <form asp-action="Edit" method="post"
                                   asp-route-id="@ViewBag.Filters.FilterString"
                                   class="mr-2">
-
-                                <input type="hidden"
-                                       name="@nameof(Homework.HomeworkId)" value="@homework.HomeworkId" />
-
-                                <button type="submit"
-                                        name="@nameof(Homework.StatusId)" value="d"
-                                        >
-                                    Completed
-                                </button>
-
-                                <button type="submit"
-                                        >
-                                    Delete
-                                </button>
+                                <input type="hidden"name="@nameof(Homework.HomeworkId)" value="@homework.HomeworkId" />
+                                <button type="submit" name="@nameof(Homework.StatusId)" value="d">Done</button>
+                                <button type="submit">  Delete </button>
                             </form>
                         </td>
                     </tr>
