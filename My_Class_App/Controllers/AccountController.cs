@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Session;
+using System.Threading.Tasks;
 namespace My_Classes_App.Controllers
 {
     //account controller
@@ -29,7 +28,8 @@ namespace My_Classes_App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new My_Classes_App.Models.User { 
+                var user = new My_Classes_App.Models.User
+                {
                     UserName = model.Username,
                     Firstname = model.Firstname,
                     Lastname = model.Lastname,
@@ -39,12 +39,12 @@ namespace My_Classes_App.Controllers
 
                 if (result.Succeeded)
                 {
-                    await signInManager.SignInAsync(user, isPersistent : false);
+                    await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    foreach (var error in result.Errors) 
+                    foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError("", error.Description);
                     }
@@ -72,14 +72,14 @@ namespace My_Classes_App.Controllers
         public async Task<IActionResult> LogIn(LoginViewModel model)
         {
             if (ModelState.IsValid)
-            {                
+            {
                 var result = await signInManager.PasswordSignInAsync(
-                    model.Username, model.Password, isPersistent: model.RememberMe, 
+                    model.Username, model.Password, isPersistent: model.RememberMe,
                     lockoutOnFailure: false);
 
                 if (result.Succeeded)
                 {
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) && 
+                    if (!string.IsNullOrEmpty(model.ReturnUrl) &&
                         Url.IsLocalUrl(model.ReturnUrl))
                     {
                         return Redirect(model.ReturnUrl);

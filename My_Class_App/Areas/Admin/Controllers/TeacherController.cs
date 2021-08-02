@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
 //admin teacher controller
 namespace My_Classes_App.Areas.Admin.Controllers
@@ -13,7 +13,8 @@ namespace My_Classes_App.Areas.Admin.Controllers
 
         public ViewResult Index()
         {
-            var teachers = data.List(new QueryOptions<Teacher> {
+            var teachers = data.List(new QueryOptions<Teacher>
+            {
                 OrderBy = t => t.FirstName
             });
             return View(teachers);
@@ -41,21 +42,25 @@ namespace My_Classes_App.Areas.Admin.Controllers
         public IActionResult Add(Teacher teacher, string operation)
         {
             var validate = new Validate(TempData);
-            if (!validate.IsTeacherChecked) {
+            if (!validate.IsTeacherChecked)
+            {
                 validate.CheckTeacher(teacher.FirstName, teacher.LastName, operation, data);
-                if (!validate.IsValid) {
+                if (!validate.IsValid)
+                {
                     ModelState.AddModelError(nameof(teacher.LastName), validate.ErrorMessage);
-                }    
+                }
             }
-            
-            if (ModelState.IsValid) {
+
+            if (ModelState.IsValid)
+            {
                 data.Insert(teacher);
                 data.Save();
                 validate.ClearTeacher();
                 TempData["message"] = $"{teacher.FullName} added to Teachers.";//message when teacher is added
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
-            else {
+            else
+            {
                 return View("Teacher", teacher);
             }
         }
@@ -67,13 +72,15 @@ namespace My_Classes_App.Areas.Admin.Controllers
         public IActionResult Edit(Teacher teacher)
         {
             // no remote validation of teacher on edit
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 data.Update(teacher);
                 data.Save();
                 TempData["message"] = $"{teacher.FullName} updated.";
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
-            else {
+            else
+            {
                 return View("Teacher", teacher);
             }
         }
@@ -81,17 +88,20 @@ namespace My_Classes_App.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var teacher = data.Get(new QueryOptions<Teacher> {
+            var teacher = data.Get(new QueryOptions<Teacher>
+            {
                 Includes = "ClassTeachers",
                 Where = t => t.TeacherId == id
             });
 
-            if (teacher.ClassTeachers.Count > 0) {                          
+            if (teacher.ClassTeachers.Count > 0)
+            {
                 //message when a teacher can't be deleted because of association
                 TempData["message"] = $"Can't delete teacher {teacher.FullName} because they are associated with these classes.";
                 return GoToTeacherSearch(teacher);
             }
-            else {
+            else
+            {
                 return View("Teacher", teacher);
             }
         }
@@ -102,7 +112,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
             data.Delete(teacher);
             data.Save();
             TempData["message"] = $"{teacher.FullName} removed from Teachers."; //temp data message when teacher is removed
-            return RedirectToAction("Index");  
+            return RedirectToAction("Index");
         }
 
         public RedirectToActionResult ViewClasses(int id)
@@ -113,7 +123,8 @@ namespace My_Classes_App.Areas.Admin.Controllers
 
         private RedirectToActionResult GoToTeacherSearch(Teacher teacher)
         {
-            var search = new SearchData(TempData) {
+            var search = new SearchData(TempData)
+            {
                 SearchTerm = teacher.FullName,
                 Type = "teacher"
             };

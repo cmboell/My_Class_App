@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using Microsoft.AspNetCore.Authorization; //--adds authorization
 using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Authorization; //--adds authorization
+using System.Linq;
 //admin class controller 
 namespace My_Classes_App.Areas.Admin.Controllers
 {
@@ -12,7 +12,8 @@ namespace My_Classes_App.Areas.Admin.Controllers
         private IMyClassUnitOfWork data { get; set; }
         public ClassController(IMyClassUnitOfWork unit) => data = unit;
 
-        public ViewResult Index() {
+        public ViewResult Index()
+        {
             var search = new SearchData(TempData);
             search.Clear();
 
@@ -22,60 +23,72 @@ namespace My_Classes_App.Areas.Admin.Controllers
         [HttpPost]
         public RedirectToActionResult Search(SearchViewModel vm)
         {
-            if (ModelState.IsValid) {
-                var search = new SearchData(TempData) {
+            if (ModelState.IsValid)
+            {
+                var search = new SearchData(TempData)
+                {
                     SearchTerm = vm.SearchTerm,
                     Type = vm.Type
                 };
-                return RedirectToAction("Search"); 
-            }  
-            else {
+                return RedirectToAction("Search");
+            }
+            else
+            {
                 return RedirectToAction("Index");
-            }   
+            }
         }
         [HttpGet]
         public ViewResult Search()
         {
             var search = new SearchData(TempData);
 
-            if (search.HasSearchTerm) {
-                var vm = new SearchViewModel {
+            if (search.HasSearchTerm)
+            {
+                var vm = new SearchViewModel
+                {
                     SearchTerm = search.SearchTerm
                 };
 
-                var options = new QueryOptions<Class> {
+                var options = new QueryOptions<Class>
+                {
                     Includes = "ClassType, ClassTeachers.Teacher"
                 };
-                if (search.isClass) { 
+                if (search.isClass)
+                {
                     options.Where = c => c.ClassTitle.Contains(vm.SearchTerm);
                     vm.Header = $"Search results for class name '{vm.SearchTerm}'";
                 }
-                if (search.IsTeacher) {
+                if (search.IsTeacher)
+                {
                     int index = vm.SearchTerm.LastIndexOf(' ');
-                    if (index == -1) {
+                    if (index == -1)
+                    {
                         options.Where = c => c.ClassTeachers.Any(
-                            ct => ct.Teacher.FirstName.Contains(vm.SearchTerm) || 
+                            ct => ct.Teacher.FirstName.Contains(vm.SearchTerm) ||
                             ct.Teacher.LastName.Contains(vm.SearchTerm));
                     }
-                    else {
+                    else
+                    {
                         string first = vm.SearchTerm.Substring(0, index);
-                        string last = vm.SearchTerm.Substring(index + 1); 
+                        string last = vm.SearchTerm.Substring(index + 1);
                         options.Where = c => c.ClassTeachers.Any(
-                            ct => ct.Teacher.FirstName.Contains(first) && 
+                            ct => ct.Teacher.FirstName.Contains(first) &&
                             ct.Teacher.LastName.Contains(last));
                     }
                     vm.Header = $"Search results for teacher '{vm.SearchTerm}'";
                 }
-                if (search.IsClassType) {                  
+                if (search.IsClassType)
+                {
                     options.Where = c => c.ClassTypeId.Contains(vm.SearchTerm);
                     vm.Header = $"Search results for class type ID '{vm.SearchTerm}'";
                 }
                 vm.Classes = data.Classes.List(options);
                 return View("SearchResults", vm);
             }
-            else {
+            else
+            {
                 return View("Index");
-            }     
+            }
         }
 
         [HttpGet]
@@ -84,15 +97,17 @@ namespace My_Classes_App.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Add(ClassViewModel vm)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 data.AddNewClassTeachers(vm.Class, vm.SelectedTeachers);
                 data.Classes.Insert(vm.Class);
                 data.Save();
                 //message when a class is added
                 TempData["message"] = $"{vm.Class.ClassTitle} added to Classes.";
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
-            else {
+            else
+            {
                 Load(vm, "Add");
                 return View("Class", vm);
             }
@@ -100,19 +115,21 @@ namespace My_Classes_App.Areas.Admin.Controllers
 
         [HttpGet]
         public ViewResult Edit(int id) => GetClass(id, "Edit");
-        
+
         [HttpPost]
         public IActionResult Edit(ClassViewModel vm)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 data.DeleteCurrentClassTeachers(vm.Class);
                 data.AddNewClassTeachers(vm.Class, vm.SelectedTeachers);
                 data.Classes.Update(vm.Class);
-                data.Save();                 
+                data.Save();
                 TempData["message"] = $"{vm.Class.ClassTitle} updated.";//message when update class
-                return RedirectToAction("Search");  
+                return RedirectToAction("Search");
             }
-            else {
+            else
+            {
                 Load(vm, "Edit");
                 return View("Class", vm);
             }
@@ -124,11 +141,11 @@ namespace My_Classes_App.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(ClassViewModel vm)
         {
-            data.Classes.Delete(vm.Class); 
+            data.Classes.Delete(vm.Class);
             data.Save();
             //message when delete a class
             TempData["message"] = $"{vm.Class.ClassTitle} removed from Classes.";
-            return RedirectToAction("Search");  
+            return RedirectToAction("Search");
         }
 
         private ViewResult GetClass(int id, string operation)
@@ -139,10 +156,12 @@ namespace My_Classes_App.Areas.Admin.Controllers
         }
         private void Load(ClassViewModel vm, string op, int? id = null)
         {
-            if (Operation.IsAdd(op)) { 
+            if (Operation.IsAdd(op))
+            {
                 vm.Class = new Class();
             }
-            else {
+            else
+            {
                 vm.Class = data.Classes.Get(new QueryOptions<Class>
                 {
                     Includes = "ClassTeachers.Teacher, ClassType",
@@ -152,10 +171,14 @@ namespace My_Classes_App.Areas.Admin.Controllers
 
             vm.SelectedTeachers = vm.Class.ClassTeachers?.Select(
                 ct => ct.Teacher.TeacherId).ToArray();
-            vm.Teachers = data.Teachers.List(new QueryOptions<Teacher> {
-                OrderBy = t => t.FirstName });
-            vm.ClassTypes = data.ClassTypes.List(new QueryOptions<ClassType> {
-                    OrderBy = ct => ct.Name });
+            vm.Teachers = data.Teachers.List(new QueryOptions<Teacher>
+            {
+                OrderBy = t => t.FirstName
+            });
+            vm.ClassTypes = data.ClassTypes.List(new QueryOptions<ClassType>
+            {
+                OrderBy = ct => ct.Name
+            });
         }
 
     }

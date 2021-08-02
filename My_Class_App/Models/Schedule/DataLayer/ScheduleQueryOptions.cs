@@ -13,7 +13,8 @@ namespace My_Classes_App.Models
         private string[] includes;
 
         // public write-only property for include statements - converts string to array
-        public string Includes {
+        public string Includes
+        {
             set => includes = value.Replace(" ", "").Split(',');
         }
 

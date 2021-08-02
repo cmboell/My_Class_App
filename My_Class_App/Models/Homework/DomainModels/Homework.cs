@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 //homework model
 namespace My_Classes_App.Models
@@ -26,7 +23,7 @@ namespace My_Classes_App.Models
         [Range(typeof(DateTime), "1/1/2000", "12/31/2099", ErrorMessage = "DueDate must be after 1/1/2000 and cannot exceed 12/31/2099")]//sets date range
         public DateTime? DueDate { get; set; }
 
-        [Required(ErrorMessage ="Select A Type")]
+        [Required(ErrorMessage = "Select A Type")]
         public string HomeworkTypeId { get; set; }
         public HomeworkType HomeworkType { get; set; }
 
@@ -36,7 +33,7 @@ namespace My_Classes_App.Models
         public Status Status { get; set; }
 
         public bool Overdue =>
-            StatusId == "t" && DueDate<DateTime.Today|| StatusId == "i"  && DueDate < DateTime.Today || StatusId == "r" && DueDate < DateTime.Today;
+            StatusId == "t" && DueDate < DateTime.Today || StatusId == "i" && DueDate < DateTime.Today || StatusId == "r" && DueDate < DateTime.Today;
         //checks to see if homework is overdue
 
     }

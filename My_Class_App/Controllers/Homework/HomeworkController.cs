@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Linq;
 namespace My_Classes_App.Controllers
 {  //homework controller 
     [Authorize]
@@ -26,7 +24,7 @@ namespace My_Classes_App.Controllers
             // get Homework objects from database based on current filters
             IQueryable<Homework> query = context.HomeworkAssignments
                 .Include(t => t.HomeworkType).Include(t => t.Status);
-              if (filters.HasHomeworkType)
+            if (filters.HasHomeworkType)
             {
                 query = query.Where(t => t.HomeworkTypeId == filters.HomeworkTypeId);
             }
@@ -79,7 +77,7 @@ namespace My_Classes_App.Controllers
             string id = string.Join('-', filter);
             return RedirectToAction("Index", new { ID = id });
         }
-        
+
         [HttpPost]
         public IActionResult Edit([FromRoute] string id, Homework selected)
         {

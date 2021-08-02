@@ -1,9 +1,9 @@
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Xunit;
 using Moq;
 using My_Classes_App.Controllers;
 using My_Classes_App.Models;
+using System.Collections.Generic;
+using Xunit;
 
 namespace My_Classes_App.Tests
 {

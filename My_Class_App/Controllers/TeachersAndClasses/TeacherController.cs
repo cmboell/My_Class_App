@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Authorization;
 namespace My_Classes_App.Controllers
 {
     //teacher controller
@@ -18,7 +18,8 @@ namespace My_Classes_App.Controllers
             var builder = new GridBuilder(HttpContext.Session, vals, defaultSort);
             builder.SaveRouteSegments();
 
-            var options = new QueryOptions<Teacher> {
+            var options = new QueryOptions<Teacher>
+            {
                 Includes = "ClassTeachers.Class",
                 PageNumber = builder.CurrentRoute.PageNumber,
                 PageSize = builder.CurrentRoute.PageSize,
@@ -29,7 +30,8 @@ namespace My_Classes_App.Controllers
             else
                 options.OrderBy = t => t.LastName;
 
-            var vm = new TeacherListViewModel {
+            var vm = new TeacherListViewModel
+            {
                 Teachers = data.List(options),
                 CurrentRoute = builder.CurrentRoute,
                 TotalPages = builder.GetTotalPages(data.Count)
@@ -40,7 +42,8 @@ namespace My_Classes_App.Controllers
 
         public IActionResult Details(int id)
         {
-            var teacher = data.Get(new QueryOptions<Teacher> {
+            var teacher = data.Get(new QueryOptions<Teacher>
+            {
                 Includes = "ClassTeachers.Class",
                 Where = t => t.TeacherId == id
             });

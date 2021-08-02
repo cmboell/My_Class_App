@@ -6,7 +6,7 @@ namespace My_Classes_App.Models
     {
         public ClassesGridBuilder(ISession sess) : base(sess) { }
 
-        public ClassesGridBuilder(ISession sess, ClassesGridDTO values, 
+        public ClassesGridBuilder(ISession sess, ClassesGridDTO values,
             string defaultSortField) : base(sess, values, defaultSortField)
         {
             bool isInitial = values.ClassType.IndexOf(FilterPrefix.ClassType) == -1;
@@ -17,9 +17,12 @@ namespace My_Classes_App.Models
 
         public void LoadFilterSegments(string[] filter, Teacher teacher)
         {
-            if (teacher == null) { 
+            if (teacher == null)
+            {
                 routes.TeacherFilter = FilterPrefix.Teacher + filter[0];
-            } else {
+            }
+            else
+            {
                 routes.TeacherFilter = FilterPrefix.Teacher + filter[0]
                     + "-" + teacher.FullName.Slug();
             }
@@ -28,7 +31,7 @@ namespace My_Classes_App.Models
         }
         public void ClearFilterSegments() => routes.ClearFilters();
 
-        string def = ClassesGridDTO.DefaultFilter;   
+        string def = ClassesGridDTO.DefaultFilter;
         public bool IsFilterByTeacher => routes.TeacherFilter != def;
         public bool IsFilterByClassType => routes.ClassTypeFilter != def;
         public bool IsFilterByCredits => routes.CreditFilter != def;

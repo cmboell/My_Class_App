@@ -1,12 +1,11 @@
-using System;
-using Xunit;
-using My_Classes_App.Models;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Moq;
 using My_Classes_App.Areas.Admin.Controllers;
-using Microsoft.AspNetCore.Http;
+using My_Classes_App.Models;
+using System.Collections.Generic;
+using Xunit;
 
 namespace MyClassesAppTests
 {
@@ -225,6 +224,6 @@ namespace MyClassesAppTests
             // assert
             Assert.Equal("", active);
         }
-     
+
     }
 }

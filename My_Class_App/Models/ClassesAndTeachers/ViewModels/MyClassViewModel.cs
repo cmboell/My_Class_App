@@ -2,7 +2,7 @@
 //my class view model
 namespace My_Classes_App.Models
 {
-    public class MyClassViewModel 
+    public class MyClassViewModel
     {
         public IEnumerable<ClassItem> List { get; set; }
         public int totalCredits { get; set; }

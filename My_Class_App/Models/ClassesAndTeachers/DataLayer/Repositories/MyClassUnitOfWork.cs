@@ -7,8 +7,10 @@
         public MyClassUnitOfWork(MyClassContext ctx) => context = ctx;
 
         private IRepository<Class> classData;
-        public IRepository<Class> Classes {
-            get {
+        public IRepository<Class> Classes
+        {
+            get
+            {
                 if (classData == null)
                     classData = new Repository<Class>(context);
                 return classData;
@@ -16,8 +18,10 @@
         }
 
         private IRepository<Teacher> teacherData;
-        public IRepository<Teacher> Teachers {
-            get {
+        public IRepository<Teacher> Teachers
+        {
+            get
+            {
                 if (teacherData == null)
                     teacherData = new Repository<Teacher>(context);
                 return teacherData;
@@ -25,8 +29,10 @@
         }
 
         private IRepository<ClassTeacher> classTeacherData;
-        public IRepository<ClassTeacher> ClassTeachers {
-            get {
+        public IRepository<ClassTeacher> ClassTeachers
+        {
+            get
+            {
                 if (classTeacherData == null)
                     classTeacherData = new Repository<ClassTeacher>(context);
                 return classTeacherData;
@@ -36,7 +42,8 @@
         private IRepository<ClassType> classTypeData;
         public IRepository<ClassType> ClassTypes
         {
-            get {
+            get
+            {
                 if (classTypeData == null)
                     classTypeData = new Repository<ClassType>(context);
                 return classTypeData;
@@ -45,10 +52,12 @@
 
         public void DeleteCurrentClassTeachers(Class class1)
         {
-            var currentTeachers = ClassTeachers.List(new QueryOptions<ClassTeacher> {
+            var currentTeachers = ClassTeachers.List(new QueryOptions<ClassTeacher>
+            {
                 Where = ct => ct.ClassId == ct.ClassId
             });
-            foreach (ClassTeacher ct in currentTeachers) {
+            foreach (ClassTeacher ct in currentTeachers)
+            {
                 ClassTeachers.Delete(ct);
             }
         }

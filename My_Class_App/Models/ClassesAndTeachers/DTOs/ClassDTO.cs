@@ -16,7 +16,8 @@ namespace My_Classes_App.Models
             ClassTitle = class1.ClassTitle;
             NumberOfCredits = class1.NumberOfCredits;
             Teachers = new Dictionary<int, string>();
-            foreach (ClassTeacher ct in class1.ClassTeachers) {
+            foreach (ClassTeacher ct in class1.ClassTeachers)
+            {
                 Teachers.Add(ct.Teacher.TeacherId, ct.Teacher.FullName);
             }
         }

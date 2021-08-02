@@ -7,12 +7,14 @@ namespace My_Classes_App.Models
     public class QueryOptions<T>
     {
         public Expression<Func<T, Object>> OrderBy { get; set; }
-        public string OrderByDirection { get; set; } = "asc";  
+        public string OrderByDirection { get; set; } = "asc";
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public WhereClauses<T> WhereClauses { get; set; }
-        public Expression<Func<T, bool>> Where {
-            set {
+        public Expression<Func<T, bool>> Where
+        {
+            set
+            {
                 if (WhereClauses == null)
                 {
                     WhereClauses = new WhereClauses<T>();
@@ -22,7 +24,8 @@ namespace My_Classes_App.Models
         }
 
         private string[] includes;
-        public string Includes {
+        public string Includes
+        {
             set => includes = value.Replace(" ", "").Split(',');
         }
         public string[] GetIncludes() => includes ?? new string[0];
@@ -32,6 +35,6 @@ namespace My_Classes_App.Models
         public bool HasPaging => PageNumber > 0 && PageSize > 0;
     }
 
-    public class WhereClauses<T>:List<Expression<Func<T, bool>>> {}
+    public class WhereClauses<T> : List<Expression<Func<T, bool>>> { }
 
 }

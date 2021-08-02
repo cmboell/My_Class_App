@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.AspNetCore.Routing;
 
 namespace My_Classes_App.TagHelpers
 {
-    public class LinkButtonTagHelper :TagHelper
+    public class LinkButtonTagHelper : TagHelper
     {
         private LinkGenerator linkBuilder;
         public LinkButtonTagHelper(LinkGenerator lg) => linkBuilder = lg;

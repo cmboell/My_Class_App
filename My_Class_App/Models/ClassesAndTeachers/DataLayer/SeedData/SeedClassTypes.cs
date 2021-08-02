@@ -11,11 +11,11 @@ namespace My_Classes_App.Models
                 new ClassType { ClassTypeId = "literature", Name = "Literature" },
                 new ClassType { ClassTypeId = "mathmatics ", Name = "Mathmatics" },
                 new ClassType { ClassTypeId = "economics", Name = "Economics" },
-                new ClassType { ClassTypeId = "computerscience", Name ="Computer Science" },
+                new ClassType { ClassTypeId = "computerscience", Name = "Computer Science" },
                 new ClassType { ClassTypeId = "history", Name = "History" },
-                new ClassType { ClassTypeId= "health" , Name= "Health"},
-                new ClassType { ClassTypeId ="art", Name="Art"},
-                new ClassType { ClassTypeId = "other", Name ="Other"}
+                new ClassType { ClassTypeId = "health", Name = "Health" },
+                new ClassType { ClassTypeId = "art", Name = "Art" },
+                new ClassType { ClassTypeId = "other", Name = "Other" }
             );
         }
     }

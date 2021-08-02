@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-//status model
+﻿//status model
 namespace My_Classes_App.Models
 {
     public class Status

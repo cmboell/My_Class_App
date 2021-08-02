@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Authorization;
 //my class controller
 namespace My_Classes_App.Controllers
 {
@@ -17,11 +17,12 @@ namespace My_Classes_App.Controllers
             aClass.Load(data);
         }
 
-        public ViewResult Index() 
+        public ViewResult Index()
         {
             var builder = new ClassesGridBuilder(HttpContext.Session);
 
-            var vm = new MyClassViewModel {
+            var vm = new MyClassViewModel
+            {
                 List = aClass.List,
                 totalCredits = aClass.totalCredits,
                 ClassGridRoute = builder.CurrentRoute
@@ -32,19 +33,23 @@ namespace My_Classes_App.Controllers
         [HttpPost]
         public RedirectToActionResult Add(int id)
         {
-            var class1 = data.Get(new QueryOptions<Class> {
+            var class1 = data.Get(new QueryOptions<Class>
+            {
                 Includes = "ClassTeachers.Teacher, ClassType",
                 Where = c => c.ClassId == id
             });
-            if (class1 == null){
+            if (class1 == null)
+            {
                 TempData["message"] = "Unable to add class to Classes.";   //message when cant add to classes
             }
-            else {
+            else
+            {
                 var dto = new ClassDTO();
                 dto.Load(class1);
-                ClassItem item = new ClassItem {
+                ClassItem item = new ClassItem
+                {
                     Class = dto,
-                    
+
                 };
 
                 aClass.Add(item);
@@ -67,7 +72,7 @@ namespace My_Classes_App.Controllers
             TempData["message"] = $"{item.Class.ClassTitle} removed from Classes."; //when removed from classes
             return RedirectToAction("Index");
         }
-                
+
         [HttpPost]
         public RedirectToActionResult Clear()
         {

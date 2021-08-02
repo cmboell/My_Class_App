@@ -339,14 +339,14 @@ namespace My_Classes_App.Migrations
                 columns: new[] { "ClassTypeId", "Name" },
                 values: new object[,]
                 {
-                    { "other", "Other" },
                     { "literature", "Literature" },
                     { "mathmatics ", "Mathmatics" },
                     { "economics", "Economics" },
                     { "computerscience", "Computer Science" },
                     { "history", "History" },
                     { "health", "Health" },
-                    { "art", "Art" }
+                    { "art", "Art" },
+                    { "other", "Other" }
                 });
 
             migrationBuilder.InsertData(
@@ -359,13 +359,13 @@ namespace My_Classes_App.Migrations
                 columns: new[] { "DayId", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Monday" },
-                    { 2, "Tuesday" },
-                    { 3, "Wednesday" },
-                    { 4, "Thursday" },
-                    { 5, "Friday" },
+                    { 7, "Sunday" },
                     { 6, "Saturday" },
-                    { 7, "Sunday" }
+                    { 5, "Friday" },
+                    { 1, "Monday" },
+                    { 3, "Wednesday" },
+                    { 2, "Tuesday" },
+                    { 4, "Thursday" }
                 });
 
             migrationBuilder.InsertData(
@@ -374,11 +374,12 @@ namespace My_Classes_App.Migrations
                 values: new object[,]
                 {
                     { 5, "Other" },
+                    { 7, "Presentation" },
                     { 4, "Registration" },
                     { 6, "Homework" },
                     { 2, "Meeting" },
-                    { 1, "Class" },
-                    { 3, "Event" }
+                    { 3, "Event" },
+                    { 1, "Class" }
                 });
 
             migrationBuilder.InsertData(

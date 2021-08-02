@@ -9,7 +9,8 @@ namespace My_Classes_App.Models
             var sb = new StringBuilder();
             foreach (char c in s)
             {
-                if (!char.IsPunctuation(c) || c == '-') { 
+                if (!char.IsPunctuation(c) || c == '-')
+                {
                     sb.Append(c);
                 }
             }

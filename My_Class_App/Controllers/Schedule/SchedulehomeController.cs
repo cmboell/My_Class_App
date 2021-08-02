@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Authorization;
 namespace My_Classes_App.Controllers
 {
     [Authorize]
@@ -17,10 +17,12 @@ namespace My_Classes_App.Controllers
                 Includes = "EventType, Day"
             };
             // order by day if no filter. Otherwise, filter by day and order by time.
-            if (id == 0) {
+            if (id == 0)
+            {
                 scheduleOptions.OrderBy = s => s.DayId;
             }
-            else {
+            else
+            {
                 scheduleOptions.Where = s => s.DayId == id;
                 scheduleOptions.OrderBy = s => s.MilitaryTime;
             }

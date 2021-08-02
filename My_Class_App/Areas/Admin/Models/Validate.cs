@@ -23,7 +23,7 @@ namespace My_Classes_App.Models
 
         public void CheckTeacher(string firstName, string lastName, string operation, IRepository<Teacher> data)
         {
-            Teacher entity = null; 
+            Teacher entity = null;
             if (Operation.IsAdd(operation))
             {
                 entity = data.Get(new QueryOptions<Teacher>

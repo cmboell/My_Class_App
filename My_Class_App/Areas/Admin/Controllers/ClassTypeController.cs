@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;//adds authorization
+using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Authorization;//adds authorization
 //admin class type controller
 namespace My_Classes_App.Areas.Admin.Controllers
 {
@@ -16,7 +16,8 @@ namespace My_Classes_App.Areas.Admin.Controllers
             var search = new SearchData(TempData);
             search.Clear();
 
-            var classtypes = data.List(new QueryOptions<ClassType> {
+            var classtypes = data.List(new QueryOptions<ClassType>
+            {
                 OrderBy = ct => ct.Name
             });
             return View(classtypes);
@@ -29,21 +30,25 @@ namespace My_Classes_App.Areas.Admin.Controllers
         public IActionResult Add(ClassType classtype)
         {
             var validate = new Validate(TempData);
-            if (!validate.IsClassTypeChecked) {
+            if (!validate.IsClassTypeChecked)
+            {
                 validate.CheckClassType(classtype.ClassTypeId, data);
-                if (!validate.IsValid) {
+                if (!validate.IsValid)
+                {
                     ModelState.AddModelError(nameof(classtype.ClassTypeId), validate.ErrorMessage);
-                }     
+                }
             }
 
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 data.Insert(classtype);
                 data.Save();
                 validate.ClearClassType();
                 TempData["message"] = $"{classtype.Name} added to Class Types.";//message when add a class type
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
-            else {
+            else
+            {
                 return View("ClassType", classtype);
             }
         }
@@ -54,30 +59,36 @@ namespace My_Classes_App.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(ClassType classtype)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 data.Update(classtype);
                 data.Save();
                 TempData["message"] = $"{classtype.Name} updated.";
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
-            else {
+            else
+            {
                 return View("ClassType", classtype);
             }
         }
 
         [HttpGet]
-        public IActionResult Delete(string id) {
-            var classtype = data.Get(new QueryOptions<ClassType> {
+        public IActionResult Delete(string id)
+        {
+            var classtype = data.Get(new QueryOptions<ClassType>
+            {
                 Includes = "Classes",
                 Where = ct => ct.ClassTypeId == id
             });
 
-            if (classtype.Classes.Count > 0) {
+            if (classtype.Classes.Count > 0)
+            {
                 //message when a class type can't be deleted because of association
                 TempData["message"] = $"Can't delete classtype {classtype.Name} because it's associated with these classes.";
                 return GoToClassSearchResults(id);
             }
-            else {
+            else
+            {
                 return View("ClassType", classtype);
             }
         }
@@ -88,14 +99,15 @@ namespace My_Classes_App.Areas.Admin.Controllers
             data.Delete(classtype);
             data.Save();
             TempData["message"] = $"{classtype.Name} removed from ClassTypes."; //message when a class type is deleted
-            return RedirectToAction("Index"); 
+            return RedirectToAction("Index");
         }
 
         public RedirectToActionResult ViewClasses(string id) => GoToClassSearchResults(id);
 
         private RedirectToActionResult GoToClassSearchResults(string id)
         {
-            var search = new SearchData(TempData) {
+            var search = new SearchData(TempData)
+            {
                 SearchTerm = id,
                 Type = "classtype"
             };

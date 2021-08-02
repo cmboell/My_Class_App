@@ -10,7 +10,8 @@ namespace My_Classes_App.Controllers
 
         public ViewResult Index()
         {
-            var options = new ScheduleQueryOptions<EventType> {
+            var options = new ScheduleQueryOptions<EventType>
+            {
                 OrderBy = t => t.TypeOfEvent
             };
             return View(eventTypes.List(options));
@@ -22,12 +23,14 @@ namespace My_Classes_App.Controllers
         [HttpPost]
         public IActionResult Add(EventType eventType)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 eventTypes.Insert(eventType);
                 eventTypes.Save();
                 return RedirectToAction("Index");
             }
-            else{
+            else
+            {
                 return View(eventType);
             }
         }

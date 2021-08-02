@@ -1,15 +1,15 @@
-﻿using System;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using System;
 //model
 namespace My_Classes_App.Models
 {
     public static class CookieExtensions
     {
-        public static string GetString(this IRequestCookieCollection cookies, string key) => 
+        public static string GetString(this IRequestCookieCollection cookies, string key) =>
             cookies[key];
 
-        public static int? GetInt32(this IRequestCookieCollection cookies, string key) => 
+        public static int? GetInt32(this IRequestCookieCollection cookies, string key) =>
             int.TryParse(cookies[key], out int i) ? i : (int?)null;
 
         public static T GetObject<T>(this IRequestCookieCollection cookies, string key)
@@ -19,24 +19,26 @@ namespace My_Classes_App.Models
         }
 
 
-        public static void SetString(this IResponseCookies cookies, string key, 
+        public static void SetString(this IResponseCookies cookies, string key,
             string value, int days = 30)
         {
-            cookies.Delete(key); 
-            if (days == 0) {
+            cookies.Delete(key);
+            if (days == 0)
+            {
                 cookies.Append(key, value);
             }
-            else {
+            else
+            {
                 CookieOptions options = new CookieOptions { Expires = DateTime.Now.AddDays(days) };
                 cookies.Append(key, value, options);
             }
-            
+
         }
-        public static void SetInt32(this IResponseCookies cookies, string key, 
+        public static void SetInt32(this IResponseCookies cookies, string key,
             int value, int days = 30) =>
             cookies.SetString(key, value.ToString(), days);
 
-        public static void SetObject<T>(this IResponseCookies cookies, string key, 
+        public static void SetObject<T>(this IResponseCookies cookies, string key,
             T value, int days = 30) =>
             cookies.SetString(key, JsonConvert.SerializeObject(value), days);
 

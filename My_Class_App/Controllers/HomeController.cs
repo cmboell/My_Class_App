@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
+using System;
 
 namespace My_Classes_App.Controllers
 {
@@ -13,7 +13,8 @@ namespace My_Classes_App.Controllers
 
         public ViewResult Index()
         {
-            var random = data.Get(new QueryOptions<Class> {
+            var random = data.Get(new QueryOptions<Class>
+            {
                 OrderBy = c => Guid.NewGuid()
             });
 

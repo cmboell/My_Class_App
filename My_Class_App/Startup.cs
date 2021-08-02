@@ -1,12 +1,10 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;  
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Http;
 
 namespace My_Classes_App
 {
@@ -26,7 +24,7 @@ namespace My_Classes_App
 
             services.AddMemoryCache();
             services.AddSession();
-            
+
             services.AddControllersWithViews().AddNewtonsoftJson();
 
             services.AddDbContext<MyClassContext>(options =>
@@ -41,13 +39,14 @@ namespace My_Classes_App
             services.AddTransient(typeof(IScheduleRepository<>), typeof(ScheduleRepository<>));
 
 
-            services.AddIdentity<User, IdentityRole>(options => {
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
                 options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = false;
             }).AddEntityFrameworkStores<MyClassContext>()
               .AddDefaultTokenProviders();
-           
+
         }
 
         // Use this method to configure the HTTP request pipeline.

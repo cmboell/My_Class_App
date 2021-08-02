@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
-using Microsoft.AspNetCore.Authorization;
 namespace My_Classes_App.Controllers
 {
     //class controller
@@ -14,10 +14,11 @@ namespace My_Classes_App.Controllers
 
         public ViewResult List(ClassesGridDTO values)
         {
-            var builder = new ClassesGridBuilder(HttpContext.Session, values, 
+            var builder = new ClassesGridBuilder(HttpContext.Session, values,
                 defaultSortField: nameof(Class.ClassTitle));
 
-            var options = new ClassQueryOptions {
+            var options = new ClassQueryOptions
+            {
                 Includes = "ClassTeachers.Teacher, ClassType",
                 OrderByDirection = builder.CurrentRoute.SortDirection,
                 PageNumber = builder.CurrentRoute.PageNumber,
@@ -25,12 +26,17 @@ namespace My_Classes_App.Controllers
             };
             options.SortFilter(builder);
 
-            var vm = new ClassListViewModel{
+            var vm = new ClassListViewModel
+            {
                 Classes = data.Classes.List(options),
-                Teachers = data.Teachers.List(new QueryOptions<Teacher> {
-                    OrderBy = t => t.FirstName }),
-                ClassTypes = data.ClassTypes.List(new QueryOptions<ClassType> {
-                    OrderBy = ct => ct.Name }),
+                Teachers = data.Teachers.List(new QueryOptions<Teacher>
+                {
+                    OrderBy = t => t.FirstName
+                }),
+                ClassTypes = data.ClassTypes.List(new QueryOptions<ClassType>
+                {
+                    OrderBy = ct => ct.Name
+                }),
                 CurrentRoute = builder.CurrentRoute,
                 TotalPages = builder.GetTotalPages(data.Classes.Count)
             };
@@ -40,7 +46,8 @@ namespace My_Classes_App.Controllers
 
         public ViewResult Details(int id)
         {
-            var class1 = data.Classes.Get(new QueryOptions<Class> {
+            var class1 = data.Classes.Get(new QueryOptions<Class>
+            {
                 Includes = "ClassTeachers.Teacher, ClassType",
                 Where = c => c.ClassId == id
             });
@@ -52,10 +59,12 @@ namespace My_Classes_App.Controllers
         {
             var builder = new ClassesGridBuilder(HttpContext.Session);
 
-            if (clear) {
+            if (clear)
+            {
                 builder.ClearFilterSegments();
             }
-            else {
+            else
+            {
                 var teacher = data.Teachers.Get(filter[0].ToInt());
                 builder.CurrentRoute.PageNumber = 1;
                 builder.LoadFilterSegments(filter, teacher);
@@ -64,5 +73,5 @@ namespace My_Classes_App.Controllers
             builder.SaveRouteSegments();
             return RedirectToAction("List", builder.CurrentRoute);
         }
-    }   
+    }
 }

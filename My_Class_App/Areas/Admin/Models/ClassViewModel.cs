@@ -10,7 +10,8 @@ namespace My_Classes_App.Models
         public IEnumerable<Teacher> Teachers { get; set; }
         public int[] SelectedTeachers { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext ctx) {
+        public IEnumerable<ValidationResult> Validate(ValidationContext ctx)
+        {
             if (SelectedTeachers == null)
             {
                 yield return new ValidationResult(

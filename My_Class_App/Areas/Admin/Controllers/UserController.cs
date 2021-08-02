@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using My_Classes_App.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 //admin user controller
 namespace My_Classes_App.Areas.Admin.Controllers
 {
@@ -13,7 +13,7 @@ namespace My_Classes_App.Areas.Admin.Controllers
     {
         private UserManager<User> userManager;
         private RoleManager<IdentityRole> roleManager;
-        public UserController(UserManager<User> userMngr, 
+        public UserController(UserManager<User> userMngr,
             RoleManager<IdentityRole> roleMngr)
         {
             userManager = userMngr;

@@ -10,7 +10,8 @@ namespace My_Classes_App.Components
 
         public IViewComponentResult Invoke()
         {
-            var days = data.List(new ScheduleQueryOptions<Day> {
+            var days = data.List(new ScheduleQueryOptions<Day>
+            {
                 OrderBy = d => d.DayId
             });
             return View(days);

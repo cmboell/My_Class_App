@@ -9,15 +9,17 @@ namespace My_Classes_App.Models
         protected RouteDictionary routes { get; set; }
         protected ISession session { get; set; }
 
-        public GridBuilder(ISession sess) {
+        public GridBuilder(ISession sess)
+        {
             session = sess;
             routes = session.GetObject<RouteDictionary>(RouteKey) ?? new RouteDictionary();
         }
 
-        public GridBuilder(ISession sess, GridDTO values, string defaultSortField) {
+        public GridBuilder(ISession sess, GridDTO values, string defaultSortField)
+        {
             session = sess;
 
-            routes = new RouteDictionary(); 
+            routes = new RouteDictionary();
             routes.PageNumber = values.PageNumber;
             routes.PageSize = values.PageSize;
             routes.SortField = values.SortField ?? defaultSortField;
@@ -29,11 +31,12 @@ namespace My_Classes_App.Models
         public void SaveRouteSegments() =>
             session.SetObject<RouteDictionary>(RouteKey, routes);
 
-        public int GetTotalPages(int count) {
+        public int GetTotalPages(int count)
+        {
             int size = routes.PageSize;
             return (count + size - 1) / size;
         }
-            
+
         public RouteDictionary CurrentRoute => routes;
     }
 }

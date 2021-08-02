@@ -9,7 +9,7 @@ namespace My_Classes_App.Models
         {
             entity.HasData(
                new Day { DayId = 1, Name = "Monday" },
-               new Day { DayId = 2, Name = "Tuesday" }, 
+               new Day { DayId = 2, Name = "Tuesday" },
                new Day { DayId = 3, Name = "Wednesday" },
                new Day { DayId = 4, Name = "Thursday" },
                new Day { DayId = 5, Name = "Friday" },

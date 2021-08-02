@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
 //teacher model
 namespace My_Classes_App.Models
 {
@@ -14,8 +14,8 @@ namespace My_Classes_App.Models
 
         [Required(ErrorMessage = "Please enter a last name.")]
         [MaxLength(55)]
-        [Remote("CheckTeacher", "Validation", "Admin", 
-            AdditionalFields = "FirstName, Operation")] 
+        [Remote("CheckTeacher", "Validation", "Admin",
+            AdditionalFields = "FirstName, Operation")]
         public string LastName { get; set; }
 
         public string FullName => $"{FirstName} {LastName}";

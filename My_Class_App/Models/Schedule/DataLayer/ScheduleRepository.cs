@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 
 namespace My_Classes_App.Models
 {
@@ -18,12 +18,14 @@ namespace My_Classes_App.Models
         public virtual IEnumerable<T> List(ScheduleQueryOptions<T> options)
         {
             IQueryable<T> query = dbset;
-            foreach (string include in options.GetIncludes()) {
+            foreach (string include in options.GetIncludes())
+            {
                 query = query.Include(include);
             }
             if (options.HasWhere)
                 query = query.Where(options.Where);
-            if (options.HasOrderBy) {
+            if (options.HasOrderBy)
+            {
                 query = query.OrderBy(options.OrderBy);
             }
             return query.ToList();
@@ -34,7 +36,8 @@ namespace My_Classes_App.Models
         public virtual T Get(ScheduleQueryOptions<T> options)
         {
             IQueryable<T> query = dbset;
-            foreach (string include in options.GetIncludes()) {
+            foreach (string include in options.GetIncludes())
+            {
                 query = query.Include(include);
             }
             if (options.HasWhere)

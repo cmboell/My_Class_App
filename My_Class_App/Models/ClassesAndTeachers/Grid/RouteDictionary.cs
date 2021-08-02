@@ -13,47 +13,55 @@ namespace My_Classes_App.Models
 
     public class RouteDictionary : Dictionary<string, string>
     {
-        public int PageNumber {
+        public int PageNumber
+        {
             get => Get(nameof(GridDTO.PageNumber)).ToInt();
             set => this[nameof(GridDTO.PageNumber)] = value.ToString();
         }
 
-        public int PageSize {
+        public int PageSize
+        {
             get => Get(nameof(GridDTO.PageSize)).ToInt();
             set => this[nameof(GridDTO.PageSize)] = value.ToString();
         }
 
-        public string SortField {
+        public string SortField
+        {
             get => Get(nameof(GridDTO.SortField));
             set => this[nameof(GridDTO.SortField)] = value;
         }
 
-        public string SortDirection {
+        public string SortDirection
+        {
             get => Get(nameof(GridDTO.SortDirection));
             set => this[nameof(GridDTO.SortDirection)] = value;
         }
 
-        public void SetSortAndDirection(string fieldName, RouteDictionary current) {
+        public void SetSortAndDirection(string fieldName, RouteDictionary current)
+        {
             this[nameof(GridDTO.SortField)] = fieldName;
 
-            if (current.SortField.EqualsNoCase(fieldName) && 
+            if (current.SortField.EqualsNoCase(fieldName) &&
                 current.SortDirection == "asc")
                 this[nameof(GridDTO.SortDirection)] = "desc";
             else
                 this[nameof(GridDTO.SortDirection)] = "asc";
         }
 
-        public string ClassTypeFilter {
+        public string ClassTypeFilter
+        {
             get => Get(nameof(ClassesGridDTO.ClassType))?.Replace(FilterPrefix.ClassType, "");
             set => this[nameof(ClassesGridDTO.ClassType)] = value;
         }
 
-        public string CreditFilter {
+        public string CreditFilter
+        {
             get => Get(nameof(ClassesGridDTO.NumberOfCredits))?.Replace(FilterPrefix.NumberOfCredits, "");
             set => this[nameof(ClassesGridDTO.NumberOfCredits)] = value;
         }
 
-        public string TeacherFilter {
+        public string TeacherFilter
+        {
             get
             {
                 string s = Get(nameof(ClassesGridDTO.Teacher))?.Replace(FilterPrefix.Teacher, "");
@@ -71,7 +79,8 @@ namespace My_Classes_App.Models
         public RouteDictionary Clone()
         {
             var clone = new RouteDictionary();
-            foreach (var key in Keys) {
+            foreach (var key in Keys)
+            {
                 clone.Add(key, this[key]);
             }
             return clone;
