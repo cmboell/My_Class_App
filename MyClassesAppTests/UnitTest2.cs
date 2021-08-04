@@ -39,15 +39,15 @@ namespace My_Classes_App.Tests
         }
 
         [Fact]
-        public void Details_ModelIsABookObject()
+        public void Details_ModelIsAClassObject()
         {
             // arrange
-            var bookRep = new Mock<IRepository<Class>>();
-            bookRep.Setup(m => m.Get(It.IsAny<QueryOptions<Class>>()))
+            var classRep = new Mock<IRepository<Class>>();
+            classRep.Setup(m => m.Get(It.IsAny<QueryOptions<Class>>()))
                 .Returns(new Class { ClassTeachers = new List<ClassTeacher>() });
 
             var unit = new Mock<IMyClassUnitOfWork>();
-            unit.Setup(m => m.Classes).Returns(bookRep.Object);
+            unit.Setup(m => m.Classes).Returns(classRep.Object);
 
             var controller = new ClassController(unit.Object);
 
@@ -80,7 +80,7 @@ namespace My_Classes_App.Tests
         }
         //homecontrollertests
         [Fact]
-        public void IndexActionMethod_ModelIsABookObject()
+        public void IndexActionMethod_ModelIsAClassObject()
         {
             // arrange
             var rep = new FakeClassRepository();

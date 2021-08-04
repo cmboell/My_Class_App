@@ -15,34 +15,34 @@ namespace MyClassesAppTests
         public IMyClassUnitOfWork GetUnitOfWork()
         {
             // set up Class repository
-            var bookRep = new Mock<IRepository<Class>>();
-            bookRep.Setup(m => m.Get(It.IsAny<QueryOptions<Class>>()))
+            var classRep = new Mock<IRepository<Class>>();
+            classRep.Setup(m => m.Get(It.IsAny<QueryOptions<Class>>()))
                 .Returns(new Class { ClassTeachers = new List<ClassTeacher>() });
-            bookRep.Setup(m => m.List(It.IsAny<QueryOptions<Class>>()))
+            classRep.Setup(m => m.List(It.IsAny<QueryOptions<Class>>()))
                .Returns(new List<Class>());
-            bookRep.Setup(m => m.Count).Returns(0);
+            classRep.Setup(m => m.Count).Returns(0);
 
             // set up Teacher repository
-            var authorRep = new Mock<IRepository<Teacher>>();
-            authorRep.Setup(m => m.List(It.IsAny<QueryOptions<Teacher>>()))
+            var teacherRep = new Mock<IRepository<Teacher>>();
+            teacherRep.Setup(m => m.List(It.IsAny<QueryOptions<Teacher>>()))
                 .Returns(new List<Teacher>());
 
             // set up ClassType repository
-            var genreRep = new Mock<IRepository<ClassType>>();
-            genreRep.Setup(m => m.List(It.IsAny<QueryOptions<ClassType>>()))
+            var classTypeRep = new Mock<IRepository<ClassType>>();
+            classTypeRep.Setup(m => m.List(It.IsAny<QueryOptions<ClassType>>()))
                 .Returns(new List<ClassType>());
 
             // set up unit of work
             var unit = new Mock<IMyClassUnitOfWork>();
-            unit.Setup(m => m.Classes).Returns(bookRep.Object);
-            unit.Setup(m => m.Teachers).Returns(authorRep.Object);
-            unit.Setup(m => m.ClassTypes).Returns(genreRep.Object);
+            unit.Setup(m => m.Classes).Returns(classRep.Object);
+            unit.Setup(m => m.Teachers).Returns(teacherRep.Object);
+            unit.Setup(m => m.ClassTypes).Returns(classTypeRep.Object);
 
             return unit.Object;
         }
 
         [Fact]
-        public void Edit_GET_ModelIsBookViewModel()
+        public void Edit_GET_ModelIsClassViewModel()
         {
             // arrange
             var unit = GetUnitOfWork();
@@ -89,7 +89,7 @@ namespace MyClassesAppTests
             Assert.IsType<RedirectToActionResult>(result);
         }
         [Fact]
-        public void Edit_GET_ModelIsAuthorObject()
+        public void Edit_GET_ModelIsTeacherObject()
         {
             // arrange
             var rep = new Mock<IRepository<Teacher>>();
@@ -106,17 +106,6 @@ namespace MyClassesAppTests
         [Fact]
         public void Edit_POST_ReturnsRedirectToActionResultIfModelStateIsValid()
         {
-            // FakeTeacherRepository and FakeTempData classes - not used
-            // arrange
-            /*
-            var rep = new FakeTeacherRepository();
-            var controller = new TeacherController(rep)
-            {
-                TempData = new FakeTempData()
-            };
-            */
-
-            // Moq
             // arrange
             var rep = new Mock<IRepository<Teacher>>();
             var temp = new Mock<ITempDataDictionary>();
@@ -176,7 +165,7 @@ namespace MyClassesAppTests
             }
 
             [Fact]
-            public void Subtotal_ReturnsAInt()
+            public void CeditTotal_ReturnsAInt()
             {
                 // arrange
                 MyClass aClass = GetMyClass();

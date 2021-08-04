@@ -18,7 +18,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>DueDate:</label>
+                <label>Due Date:</label>
                 <select name="filter" class="form-control"
                         asp-items="@(new SelectList(ViewBag.DueFilters,
                     "Key", "Value", ViewBag.Filters.Due))">
